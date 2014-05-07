@@ -23,7 +23,7 @@ package algoritms.sedgewick.unionFind;
  ****************************************************************************/
 
 
-import algoritms.sedgewick.io.*;
+import algoritms.sedgewick.Out;
 import webserg.scjp.IntegerRef;
 
 import java.io.File;
@@ -123,9 +123,9 @@ public class UF {
             int q = Integer.parseInt(l[1]);
             if (uf.connected(p, q)) continue;
             uf.union(p, q);
-            StdOut.println(p + " " + q);
+            Out.println(p + " " + q);
         }
-        StdOut.println(uf.count() + " components");
+        Out.println(uf.count() + " components");
     }
 
 }
