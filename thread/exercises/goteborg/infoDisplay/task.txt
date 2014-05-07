@@ -1,0 +1,70 @@
+Problem 2: An information display
+http://www.cse.chalmers.se/edu/year/2012/course/TDA382_Concurrent_Programming_2012-2013_LP1/exercises/1/
+In this example we will consider a display of the kind commonly found in airports, where information about upcoming flights is given:
+diaplay
+We will study the programming of such a display in Java. This will enable us to study simple situations where concurrent
+threads interfere in their use of a shared data structure. The Java exercise should also be possible to do on any platform, given that Java 1.5 is available.
+First download the file displayJava.zip to a suitable working directory. Then decompress:
+$ unzip displayJava.zip
+Archive:  displayJava.zip
+   creating: java/
+  inflating: java/HighLevelDisplay.java
+  inflating: java/HWDisplay.java
+  inflating: java/JDisplay.java
+  inflating: java/JDisplay2.java
+  inflating: java/Main1.java
+  inflating: java/Main2.java
+  inflating: java/Main3.java
+$ ls java
+HWDisplay.java          JDisplay2.java          Main3.java
+HighLevelDisplay.java   Main1.java
+JDisplay.java           Main2.java
+$
+Unfortunately, we do not have access to a real 10 square meter hardware display, so we have here instead a complete Java implementation,
+ where the display is visualized using the Java Swing library. However, we should think of this as a simulation of the programming of a hardware device in the following way.
+The hardware is accessed using the following simple API, found in the file HWDisplay.java:
+public interface HWDisplay {
+    public int getRows();
+    public int getCols();
+    public void write(int row, int col, char c);
+}
+The two first methods return the number of rows and columns, respectively, in the display (presumably the device comes in different sizes).
+The third is used to write one character in the specified row and column. Following Java practice, we start counting rows and columns from 0.
+The file JDisplay.java contains an implementation of this API using Swing. You do not need to look into this file for this exercise. It contains a lot
+ of low-level detail specific to Java's GUI libraries, which are not essential for this course. Instead, look at Main1.java for a simple main program that
+  writes an A and a B at different positions in the display, then waits for three seconds and finally removes the A. After that, the program just waits for further input
+  and you have to kill it using Ctrl-C. To see this in action, do as follows:
+$ javac *.java
+$ java Main1
+You may note the convenient function nap for future use.
+However, it is clear that the interface HWDisplay is much too low-level for actually programming the display. Therefore, the manufacturer provides also HighLevelDisplay.java,
+which is much more convenient to use:
+public interface HighLevelDisplay {
+
+    public void clear();
+    public void addRow(String str);
+    public void deleteRow(int row);
+
+}
+The method clear removes all text from the display. addRow(str) adds the string str as the new last row, after the last existing line. Finally, deleteRow(r) deletes row r, shifting all
+rows below up one slot. Also, the intention is that one can add rows also when the display is fully used; this row will not be visible on screen until enough rows above has been deleted.
+Finally, the last visible change is highlighted by flashing a few times. All this should of course be more fully documented, preferrably using javadoc, but we have intentionally left
+this out so as not to clutter the code.
+The display manufacturer also provides an implementation of this interface in the file JDisplay2.java. You should study and understand this class, but first you may want to run a simple demo:
+$ java Main2
+We will not have time to try to think of a full-fledged program for the airport administration using this API, but just note that it is conceivable that the display will be accessed from a
+ multi-threaded program, with several airport officials concurrently updating the display. To test the class JDisplay2 under such conditions, your task now is to write a simple multi-threaded program. A skeleton is found in the file Main3.java, which shows the structure of a simple main program that creates a display d and starts two threads, one executing the static procedure addProc(d), the other executing deleteProc(d). You must complete the bodies of these two procedures. Fill addProc with a sequence of addRow commands, interspersed with suitable naps. Similarly, fill deleteProc with calls to deleteRow(0). To allow for a not too boring simulation, naps should be in the order of seconds (or fractions of seconds) and not minutes as in a real airport.
+If you do this and run your program, you will probably see some un-intended behaviour. You should make sure that you understand how these problems can occur. In fact, the class JDisplay2 is not thread safe; it does not guarantee correct behaviour when its methods are accessed by concurrent threads.
+We will now fix this problem in two different ways:
+The airport IT department, developing the application Main3, does not have access to JDisplay2, but only to the interface and an object file. Thus they have to solve the problem without
+ modifying JDisplay2. One way to do this is to identify the critical sections in Main3 and protect them using a semaphore. Do this!
+You should use an instance of java.util.concurrent.Semaphore for this purpose. (java.util.concurrent is a new package from Java 1.5.) Note that the method acquire() may throw an
+InterruptedException, so you will have to use a try/catch construction.
+Test your program again to see that it seems to behave correctly. We say "seems", since you should now have an initial feeling for the difficulties in testing a concurrent program.
+The IT department has also complained to the display manufacturer, requesting a thread safe implementation of JDisplay2. Fulfill this request. It is easy: just add the modifier synchronized
+to the header of each method. We will explain this later in the course, but for the moment you should just check that your initial Main3 (without the semaphore) together with your thread safe
+ JDisplay2 gives a correct program.
+As a final remark, we just note that it is an important but non-trivial design decision whether to make a class thread safe. For multi-threaded use it is essential, but it does imply a
+performance penalty. An example of a large library that is not thread safe is the Swing library for GUI's. One possibility, used in the Collections framework, is to provide both
+unsynchronized base implementations and synchronized wrapper classes. You may want to think of still another fix to the original program: instead of using semaphores, the IT
+ department could have produced a simple synchronized wrapper class for JDisplay2.java.

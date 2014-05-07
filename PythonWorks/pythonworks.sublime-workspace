@@ -1,0 +1,234 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/com/googlecode/webserg/pythonWorks/oop/usingpoint.py",
+			"settings":
+			{
+				"buffer_size": 370,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/com/googlecode/webserg/pythonWorks/oop/Shape/Point.py",
+			"settings":
+			{
+				"buffer_size": 358,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/Python/Python.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": true,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/collections/functionsForCollections.py",
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/collections/tupels.py",
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/collections/useList.py",
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/functions/lambdas.py",
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/oop/Shape/Point.py",
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/oop/Shape/__init__.py",
+		"/D/devel/webserg-common/PythonWorks/src/com/googlecode/webserg/pythonWorks/hello.py",
+		"/D/devel/webserg-common/PythonWorks/py.bat",
+		"/D/devel/webserg-common/ScalaWork/src/sc.bat",
+		"/D/devel/webserg-common/PythonWorks/src/hello.py",
+		"/D/devel/ScalaWork/src/HelloWorld.scala",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/User/sc.sublime-build",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/functions/AllAboutFunction.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/ReadLines.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseSets.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseMap.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseLists.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/Sorting.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseArray.scala",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/User/scala.sublime-build",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/User/scalaR.sublime-build",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/Java/Java.sublime-settings",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/Java/Ant.sublime-build",
+		"/C/Users/serg/AppData/Roaming/Sublime Text 2/Packages/User/scalaR.sublime-build",
+		"/C/Users/serg/AppData/Roaming/Sublime Text 2/Packages/User/scala.sublime-build",
+		"/C/devel/workspace/ScalaWork/src/HelloWorld.scala",
+		"/C/devel/workspace/ScalaWork/src/com/google/webserg/scala/Factorial.scala",
+		"/C/devel/workspace/ScalaWork/src/com/google/webserg/scala/collections/UseArray.scala",
+		"/C/devel/workspace/ScalaWork/src/com/google/webserg/scala/collections/UseLists.scala"
+	],
+	"find":
+	{
+		"height": 0.0
+	},
+	"find_in_files":
+	{
+		"height": 85.0,
+		"include_history":
+		[
+		],
+		"location_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 0,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/com/googlecode/webserg/pythonWorks/oop/usingpoint.py",
+					"settings":
+					{
+						"buffer_size": 370,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								29,
+								29
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/com/googlecode/webserg/pythonWorks/oop/Shape/Point.py",
+					"settings":
+					{
+						"buffer_size": 358,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Python/Python.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 226.0,
+	"status_bar_visible": true
+}

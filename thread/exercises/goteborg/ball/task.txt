@@ -1,0 +1,56 @@
+Exercise 2: Introduction to resource and barrier synchronization
+
+In this exercise you will practice creating threads and using semaphores to synchronize their behaviour.
+We will start from a program that opens a window in which a couple of "balls" start moving, bouncing against the walls.
+Initial Program
+
+Download the program to your working directory and unzip the file. You will find three classes:
+Ball.java
+An instance of this class is a ball, that lives in a BallWorld. The class is a subclass of Thread and its run is an infinite
+loop where the ball repeatedly makes a move that updates its position, calls forces the world to repaint and sleeps for a short while (30 ms). The ball also has the ability to draw itself, given a graphics context. Furthermore, upon creation (i.e. in its constructor), the ball registers itself with the world it lives in by calling the world's addBall method.
+BallWorld.java
+An instance of this is a world, that may contain several balls, stored in an ArrayList. A world is a subclass of JPanel,
+the Swing class used as a drawing surface. Consequently, the world can draw itself, which it does in the paintComponent method by asking all its contained balls to draw themselves. The details of Swing painting are of less importance to the exercises, but the serious Java programmer must know more, in particular about the reasons for the complications in BallWorld.addBall.
+Balls.java
+This class contains the main method, which creates a world and a couple of balls and adds the world to a Swing window.
+Please note that the (concurent) control flow in this example is rather subtle. The moving of balls and repainting is initiated
+independently by each of the balls, as each of them is running a separate thread of control. Because of that, different balls may execute doMove() and world.repaint() concurrently. Calling world.repaint() concurrently is OK, as stated in the Swing documentation. But calling repaint() also triggers calling the draw() method of all the balls registered with the world. This is again OK, because both draw() and doMove() methods are synchronized, which means that they will not be called concurrently for a given object.
+As you can see, this very simple program already has complicated concurrency. It is acceptable to have a design like this for
+simple programs, but for anything larger its concurrent behaviour must be designed in a structurred way, or else it will be extremely complicated.
+Now back to the exercise. Compile and run the program:
+$ javac *.java
+$ java Balls
+Look at the classes and make sure that you understand them.
+Problem 1: Killing the balls
+
+Your first task is to add still another thread to your program that kills the balls at random times (i.e. with short random delays inbetween). But the balls should be killed in random order. Killing a ball means that its run method must terminate. This should be achieved by making the loop terminate normally and NOT by calling the deprecated method to stop a thread. Further, the ball must be removed from the world (in a thread-safe way similar to addBalls). After this has been done the garbage collector in the run-time system will eventually reclaim the space allocated for the ball object.
+To solve the problem you can make use of a semaphore that the balls try to acquire in order to "get permission to die". The semaphore is initially zero and then released a number of times in a thread started in main. Note that it is very useful to try to acquire the semaphore, using its tryAcquire method.
+Implement this and test your program. Make sure that you understand how the design makes the killing order unpredictable.
+If you want, you can change the behaviour of the program further so that killed balls are reborn after some (random) time.
+Problem 2:Freezing the balls
+
+Now return to the original version of the program (make a new directory and download the program again).
+You must now modify the program to achieve the following behaviour: When a bouncing ball after one of its moves finds itself in the diagonal area of the world (i.e. where x is very close to y), it will "freeze", i.e. stop moving. Note that a ball may jump over the diagonal area in one move; this will not cause it to freeze. When all balls have frozen at the diagonal, they will all wake up and continue bouncing until they freeze again on the diagonal. This bouncing/freezing continues forever.
+You should recognize this as a form of barrier synchronization that can be achieved using N+1 semaphores: one common barrier semaphore, which ball threads release when they reach the synchronization point, and an array of "continue" semaphores, indexed by thread, which threads acquire in order to continue beyond the barrier.
+A special barrier synchronization process is also needed, which repeatedly acquire the barrier semaphore N times, followed by releasing all the continue semaphors.
+Problem 3: Freezing revisited
+
+The package java.util.concurrent includes the class CyclicBarrier, which provides more convenient means to achieve barrier synchronization. Rewrite the program from the previous exercise using this class instead of semaphores.
+Problem 4: Your own CyclicBarrier
+
+Now for a harder exercise: Implement the body of your own class CyclicBarrier which provides similar features as the Java class of the same name. But we are content with a simpler version with the following spec:
+public class CyclicBarrier {
+
+   public CyclicBarrier(int parties);
+
+   public void await();
+}
+The parameter parties is the number of threads that need to reach the barrier before they are all allowed to continue. Write the whole
+class and then use it to solve the ball-freezing problem again.
+Hint: We cannot follow the array-of-semaphores approach directly, since that would require await to have a parameter i indicating the index
+ of the semaphore on which to block. Instead, one could try to use a single semaphore on which all processes block and an integer variable counting how many
+ processes have reached the barrier. But this integer variable is shared, so we need to protect updates to it using a second, mutex semaphor.
+ We cannot use the Java synchronized locking instead of the mutex semaphore. Why?
+Note that, however, trying to simply complete this idea, you will get a faulty solution that does not prevent a quick process from "stealing" a
+V from a slower process. You can fix this by using different semaphores for different cycles of the barrier.
+To test your implementation, modify the bouncing balls program to use your new class.

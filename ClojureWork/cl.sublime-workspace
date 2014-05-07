@@ -1,0 +1,265 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+		]
+	},
+	"buffers":
+	[
+		{
+			"file": "src/HelloWorld.clj",
+			"settings":
+			{
+				"buffer_size": 66,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/HelloWorld2.clj",
+			"settings":
+			{
+				"buffer_size": 69,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "Packages/User/cl.sublime-build",
+	"command_palette":
+	{
+		"height": 392.0,
+		"selected_items":
+		[
+		],
+		"width": 392.0
+	},
+	"console":
+	{
+		"height": 0.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": true,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/D/affinion/tmp/batch_log/nordiconline.log2011-10-18",
+		"/D/affinion/tmp/batch_log/nordiconline.log2011-10-10",
+		"/D/affinion/tmp/batch_log/nordiconline.log2011-10-07",
+		"/D/affinion/tmp/batch_log/logger-1317956405655/CIMS_NO_81200_20111006_000DL1.TXT",
+		"/D/affinion/tmp/batch_log/nordiconline.log2011-10-12",
+		"/D/affinion/tmp/batch_log/nordiconline.log2011-10-09",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseMap.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/Person.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/TrafficLightColor.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseEnums.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/Employee.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/CounterObj.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/PersonObject.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/EmployeeOld.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/EmployeeObj.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/functions/MethodSyntax.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/ArrayElement.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/UsingSuper.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/oop/Counter.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/functions/LongLinesLocal.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/useTraitSuper/useTraitSuperApp.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/UsingSuper",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/collectionsPowerTools.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseLists.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/Animal.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/ui/button-callbacks.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/patternMatching/patternMatchingUsing.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/Rational.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/useTraitSuper/useTraitSuper.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/useTrait/useTraitSuper/useTraitSuper",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/JavaScala.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/expressions/ForEx.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/functions/FindLongLines.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/functions/AllAboutFunction.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/expressions/IfExample.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/expressions/Switch.scala",
+		"/D/devel/ScalaWork/src/HelloWorld.scala",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/User/sc.sublime-build",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/ReadLines.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseSets.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/Sorting.scala",
+		"/D/devel/ScalaWork/src/com/google/webserg/scala/collections/UseArray.scala",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/User/scala.sublime-build",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/User/scalaR.sublime-build",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/Java/Java.sublime-settings",
+		"/C/Users/Sergiy.Doroshenko/AppData/Roaming/Sublime Text 2/Packages/Java/Ant.sublime-build",
+		"/C/Users/serg/AppData/Roaming/Sublime Text 2/Packages/User/scalaR.sublime-build",
+		"/C/Users/serg/AppData/Roaming/Sublime Text 2/Packages/User/scala.sublime-build",
+		"/C/devel/workspace/ScalaWork/src/HelloWorld.scala",
+		"/C/devel/workspace/ScalaWork/src/com/google/webserg/scala/Factorial.scala",
+		"/C/devel/workspace/ScalaWork/src/com/google/webserg/scala/collections/UseArray.scala",
+		"/C/devel/workspace/ScalaWork/src/com/google/webserg/scala/collections/UseLists.scala"
+	],
+	"find":
+	{
+		"height": 32.0
+	},
+	"find_in_files":
+	{
+		"height": 85.0,
+		"include_history":
+		[
+		],
+		"location_history":
+		[
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"14308308",
+			"legacyMemberId=14308308",
+			"legacy",
+			"31122099kjmyhrva@online.no",
+			"14308308"
+		],
+		"highlight": false,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 1,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "src/HelloWorld.clj",
+					"settings":
+					{
+						"buffer_size": 66,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Clojure/Clojure.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "src/HelloWorld2.clj",
+					"settings":
+					{
+						"buffer_size": 69,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								28,
+								28
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Clojure/Clojure.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 29.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.exec":
+	{
+		"height": 104.0
+	},
+	"replace":
+	{
+		"height": 0.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": true,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 109.0,
+	"status_bar_visible": true
+}
