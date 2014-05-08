@@ -1,4 +1,4 @@
-package thread.barberShopProblem;
+package thread.barberShopProblem.semafores;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
