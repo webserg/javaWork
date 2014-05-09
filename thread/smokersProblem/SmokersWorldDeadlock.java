@@ -20,7 +20,7 @@ import java.util.concurrent.Semaphore;
  * matches should pick up both ingredients, make a cigarette, and then signal the
  * agent.
  */
-public class SmokersWorld {
+public class SmokersWorldDeadlock {
     //    final Semaphore[] tobacco = {new Semaphore(1),new Semaphore(1),new Semaphore(1)};
 //    final Semaphore[] paper = {new Semaphore(1),new Semaphore(1),new Semaphore(1)};
 //    final Semaphore[] matches = {new Semaphore(1),new Semaphore(1),new Semaphore(1)};
@@ -33,7 +33,7 @@ public class SmokersWorld {
 
 
     public static void main(String[] args) {
-        final SmokersWorld obj = new SmokersWorld();
+        final SmokersWorldDeadlock obj = new SmokersWorldDeadlock();
         Runnable agent = () -> {
             Random randomGenerator = new Random();
             while (true) {
