@@ -26,12 +26,34 @@ public class SinglyLinkedList<K> {
 
     }
 
-    public void search(K k) {
-
+    public boolean search(K k) {
+        Node<K> cur = head;
+        while (cur != null) {
+            if(cur.k == k) return true;
+            cur = cur.link;
+        }
+        return false;
     }
 
-    public void delete(K k) {
-
+    public boolean delete(K k) {
+        Node<K> cur = head;
+        Node<K> prev = null;
+        while (cur != null) {
+            if(cur.k == k) {
+                if(prev == null){
+                    head = cur.link;
+                }else{
+                    if(cur == tail){
+                        tail = prev;
+                    }
+                    prev.link = cur.link;
+                }
+                return true;
+            }
+            prev = cur;
+            cur = cur.link;
+        }
+        return false;
     }
 
     public String toString() {
