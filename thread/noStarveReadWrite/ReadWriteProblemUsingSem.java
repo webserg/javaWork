@@ -46,7 +46,6 @@ class ReadWriteProblemUsingSem {
 
     final Semaphore write = new Semaphore(1);
     final Semaphore read = new Semaphore(1);
-    final Semaphore counterSem = new Semaphore(1);
 
     AtomicInteger counter = new AtomicInteger(0);
 
