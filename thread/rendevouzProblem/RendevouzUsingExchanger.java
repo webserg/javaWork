@@ -1,6 +1,5 @@
-package thread.queueProblem;
+package thread.rendevouzProblem;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
@@ -18,20 +17,45 @@ import java.util.concurrent.Semaphore;
  * Puzzle: write code for leaders and followers that enforces these constraints.
  * Created by webserg on 13.05.2014.
  */
-public class QueueUsingSemafore {
+public class RendevouzUsingExchanger {
     Semaphore leaderQueue = new Semaphore(0);
     Semaphore followerQueue = new Semaphore(0);
+    Semaphore mutex = new Semaphore(1);
+    Semaphore rendevouz = new Semaphore(1);
+    int leaders = 0;
+    int followers = 0;
+
     public static void main(String[] args) {
-        QueueUsingSemafore obj = new QueueUsingSemafore();
+        RendevouzUsingExchanger obj = new RendevouzUsingExchanger();
         Runnable leaders = () -> {
-            while(true) {
-                obj.followerQueue.release();
+            while (true) {
                 try {
-                    obj.leaderQueue.acquire();
-                }catch (InterruptedException e){
+                    obj.mutex.acquire();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+
+                if (obj.followers > 0) {
+                    obj.followers--;
+                    obj.followerQueue.release();
+                } else {
+                    obj.leaders++;
+                    obj.mutex.release();
+                    try {
+                        obj.leaderQueue.acquire();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
                 System.out.println("dance leader");
+                try {
+                    obj.rendevouz.acquire();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+
+                obj.mutex.release();
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -41,14 +65,28 @@ public class QueueUsingSemafore {
         };
 
         Runnable followers = () -> {
-            while(true) {
-                obj.leaderQueue.release();
+            while (true) {
                 try {
-                    obj.followerQueue.acquire();
-                }catch (InterruptedException e){
+                    obj.mutex.acquire();
+                } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
+                if (obj.leaders > 0) {
+                    obj.leaders--;
+                    obj.leaderQueue.release();
+                } else {
+                    obj.followers++;
+                    obj.mutex.release();
+                    try {
+                        obj.followerQueue.acquire();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+
                 System.out.println("dance followers");
+                obj.rendevouz.release();
                 try {
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
@@ -56,8 +94,8 @@ public class QueueUsingSemafore {
             }
 
         };
-        ExecutorService leaderS = Executors.newFixedThreadPool(1);
-        ExecutorService followerS = Executors.newFixedThreadPool(1);
+        ExecutorService leaderS = Executors.newFixedThreadPool(5);
+        ExecutorService followerS = Executors.newFixedThreadPool(5);
         leaderS.submit(leaders);
         followerS.submit(followers);
     }

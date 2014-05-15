@@ -1,0 +1,33 @@
+Java has no primitive support for message passing but must be implemented in the language. When doing such an implementation you stumble across
+the problem of having the need for waiting on several events.
+The setting is identical to that described above. We want to create a ticker that repeatedly wakes a sleeping thread up and an alarm timer
+that sends a signal after a given time. In the final version of
+the exercise the program should terminate in an orderly manner when the alarm has gone off.
+We provide an initial java program, consisting of six files:
+EventType.java defining an enumeration type with three values NONE, TICK and TIMEOUT. (If you are unfamiliar with enumerations as introduced in Java 1.5,
+you may prefer to change this file to a class defining three static integer constants and then change occurrences of the type
+EventType in the other files to int.
+However, enumerations are not complicated and by seeing it used here you may learn to use them yourself.)
+MainThread5.java. An instance of this class is the main thread in the analogy with the JR program. The run method repeatedly
+waits for calls to its update method.
+ This class uses a blocking implementation of queues that is provided with the standard library in Java 5. All the synchronization
+ is hidden inside the BlockingQueue.
+ Please, read the Java 5 API to understand how BlockingQueues can be used.
+MainThread.java. This class is provided as a alternative to MainThread5 to show how to explicitly implement the synchronization.
+ To use it you need to modify the
+Main class. Again, an instance of this class is the main thread in the analogy with the MPD program. The run method repeatedly waits for calls to its update method.
+ All methods are synchronized; thus the object acts as a monitor.
+Ticker.java. This should be recognizable as a Java version of the JR ticker. Note that run must be synchronized, since it uses a (timed) wait. Note also that the
+ticker cannot be terminated cleanly at the moment.
+Timer.java. A simple timer.
+Main.java. Contains just the main routine, which created the three thread objects, sets up listening and starts the threads.
+The communiation between the Ticker, and the Timer is implemented using the Observer pattern, which is provided in the Java standard
+ library as a
+ class Observable, and an interface Observer. Each class that extends Observable can then be used as a source of events, and all classes
+  implementing
+ Observer can receive updates from Observables. Observers have to register with an Observable to receive updates using method addObserver.
+Unzip, compile and run the program. You will see that the main thread reports ticks indefinitely; obviously the timer does not work properly.
+Correct the timer, so that its alarm is signalled as intended.
+Finally, you should instead change the Ticker so that we can terminate it. One nice possibility is to make the Ticker an observer of the
+Timer.
+Do this and change the rest of the program so that it terminates cleanly without using daemon threads. Should your new method be synchronized?

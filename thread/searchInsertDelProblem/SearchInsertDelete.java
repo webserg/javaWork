@@ -3,6 +3,7 @@ package thread.searchInsertDelProblem;
 import collections.lists.SinglyLinkedList;
 
 import java.util.Random;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -50,7 +51,7 @@ public class SearchInsertDelete {
                     }
                 }
                 obj.searcherCounter.getAndIncrement();
-                int k = random.nextInt(10);
+                int k = random.nextInt(11);
                 boolean res = singlyLinkedList.search(k);
 
                 System.out.println("search " + k + "res = " + res);
@@ -68,7 +69,7 @@ public class SearchInsertDelete {
             while (true) {
                 try {
                     obj.insertMutex.acquire();
-                    int k = random.nextInt(10);
+                    int k = random.nextInt(11);
                     singlyLinkedList.insert(k);
                     System.out.println("inserter " + k);
                 } catch (InterruptedException e) {
@@ -87,7 +88,7 @@ public class SearchInsertDelete {
                     obj.insertMutex.acquire();
                     obj.searcherMutex.acquire();
                     System.out.println(singlyLinkedList.toString());
-                    int k = random.nextInt(10);
+                    int k = random.nextInt(11);
                     boolean res = singlyLinkedList.delete(k);
                     System.out.println("delete " + k + "res = " + res);
                 } catch (InterruptedException e) {
@@ -100,27 +101,14 @@ public class SearchInsertDelete {
                 nap();
             }
         };
-        new Thread(inserter).start();
-        new Thread(searcher).start();
-//        new Thread(searcher).run();
-//        new Thread(searcher).run();
-//        new Thread(searcher).run();
-//        new Thread(searcher).run();
-//        new Thread(searcher).run();
-//        new Thread(searcher).run();
-//        new Thread(inserter).run();
-//        new Thread(inserter).run();
-//        new Thread(deleter).run();
-//        new Thread(deleter).run();
-        Executors.newSingleThreadExecutor().execute(searcher);
-        Executors.newSingleThreadExecutor().execute(searcher);
-        Executors.newSingleThreadExecutor().execute(searcher);
-        Executors.newSingleThreadExecutor().execute(searcher);
-        Executors.newSingleThreadExecutor().execute(searcher);
-        Executors.newSingleThreadExecutor().execute(inserter);
-        Executors.newSingleThreadExecutor().execute(inserter);
-        Executors.newSingleThreadExecutor().execute(inserter);
-        Executors.newSingleThreadExecutor().execute(deleter);
-        Executors.newSingleThreadExecutor().execute(deleter);
+        ExecutorService sSearcher = Executors.newFixedThreadPool(7);
+        for (int i = 0; i <= 6; i++)
+            sSearcher.submit(searcher);
+        ExecutorService sInserter = Executors.newFixedThreadPool(5);
+        for (int i = 0; i <= 4; i++)
+            sInserter.submit(inserter);
+        ExecutorService sDeleter = Executors.newFixedThreadPool(3);
+        for (int i = 0; i <= 2; i++)
+            sDeleter.submit(deleter);
     }
 }

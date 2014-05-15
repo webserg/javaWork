@@ -1,5 +1,7 @@
 package thread.exercises.goteborg.timer;
 
+import thread.concurrencyCookbook.chapter6.recipe04.Event;
+
 import java.util.*;
 
 public class Timer extends Observable implements Runnable {
@@ -19,6 +21,9 @@ public class Timer extends Observable implements Runnable {
     public void run() {
 	try {
 	    Thread.sleep(ms);
+        System.out.println("timeout ms");
+        setChanged();
+        this.notifyObservers(EventType.TIMEOUT);
 	} catch (InterruptedException e) {}
     }
 
