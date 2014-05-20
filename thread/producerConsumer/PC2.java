@@ -49,7 +49,7 @@ class PC2 {
 
 class Buffer2 {
     private char[] buffer;
-    private int count = 0, in = 0, out = 0;
+    volatile private int count = 0, in = 0, out = 0;
 
     Buffer2(int size) {
         buffer = new char[size];
@@ -60,7 +60,7 @@ class Buffer2 {
             try {
                 wait();
             } catch (InterruptedException e) {
-            } finally {
+                e.printStackTrace();
             }
         }
         System.out.println("Producing " + c + " ...");

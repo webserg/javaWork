@@ -2,6 +2,7 @@ package thread.reentrancy;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -25,6 +26,7 @@ public class ReentrancyLockUsing {
 
     public void first(String name) {
         Lock lock = RLock;
+        lock.unlock();
         lock.lock();
         try {
             System.out.println("first enter = " + name);
@@ -33,7 +35,12 @@ public class ReentrancyLockUsing {
                 i++;
             }
             System.out.println("first exit = "  + name);
+            lock.lock();
+            lock.lock();
+            lock.lock();
+            System.out.println("first exit2 = "  + name);
         } finally {
+            lock.unlock();
             lock.unlock();
         }
     }
@@ -53,13 +60,16 @@ public class ReentrancyLockUsing {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception{
         final ReentrancyLockUsing object = new ReentrancyLockUsing();
 
         Runnable t1 = new Runnable() {
             @Override
             public void run() {
                 object.first("A");
+                try {
+                    Thread.sleep(500);
+                }catch (Exception e){e.printStackTrace();}
                 object.second("A");
             }
         };
@@ -67,6 +77,9 @@ public class ReentrancyLockUsing {
             @Override
             public void run() {
                 object.second("B");
+                try {
+                    Thread.sleep(500);
+                }catch (Exception e){e.printStackTrace();}
                 object.first("B");
             }
         };
@@ -83,9 +96,11 @@ public class ReentrancyLockUsing {
         another thread can't enter into another synchr method on the same class
          */
         ExecutorService ex = Executors.newFixedThreadPool(2);
-        ex.execute(t2);
-        ex.execute(t1);
+        Future f1 = ex.submit(t1);
+        Future f2 = ex.submit(t2);
         ex.shutdown();
+        System.out.println("f1=" +  f1.get());
+        System.out.println("f2=" + f2.get());
 
     }
 
