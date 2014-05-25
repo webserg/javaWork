@@ -49,6 +49,7 @@ public class H2OBuilder {
                 System.out.println("oxy bond");
                 b.barrier.await();
                 b.mutex.release();
+                System.out.println("oxy bonded");
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
@@ -86,6 +87,7 @@ public class H2OBuilder {
                 b.hydroQueue.acquire();
                 System.out.println("hyd bond");
                 b.barrier.await();
+                System.out.println("hyd bonded");
             } catch (InterruptedException | BrokenBarrierException e) {
                 e.printStackTrace();
             }
@@ -93,10 +95,14 @@ public class H2OBuilder {
         };
 
         ExecutorService s = Executors.newCachedThreadPool();
-        for (int i = 0; i < 5; i++)
-            s.submit(oxygen);
+        ScheduledExecutorService timer = Executors.newScheduledThreadPool(1);
+        for (int i = 0; i < 5; i++) {
+
+            timer.schedule(oxygen,5*i,TimeUnit.SECONDS);
+        }
         for (int i = 0; i < 10; i++)
             s.submit(hydrogen);
         s.shutdown();
+        timer.shutdown();
     }
 }
