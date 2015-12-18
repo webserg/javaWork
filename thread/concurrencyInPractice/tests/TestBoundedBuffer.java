@@ -2,6 +2,8 @@ package thread.concurrencyInPractice.tests;
 
 import junit.framework.TestCase;
 
+import java.util.concurrent.*;
+
 /**
  * TestBoundedBuffer
  * <p/>
@@ -56,6 +58,67 @@ public class TestBoundedBuffer extends TestCase {
             fail();
         }
     }
+
+    public void testTakeBlocksWhenEmptyUsingFutureBlocks() {
+        final SemaphoreBoundedBuffer<Integer> bb = new SemaphoreBoundedBuffer<Integer>(10);
+        Callable<Boolean> taker = () -> {
+            try {
+                int unused = bb.take();
+                return true;
+
+            } catch (InterruptedException success) {
+            }
+            return false;
+        };
+        try {
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            Future<Boolean> future = executorService.submit(taker);
+            Thread.sleep(LOCKUP_DETECT_TIMEOUT);
+            try {
+                assertFalse(future.get(1, TimeUnit.SECONDS));
+                future.cancel(true);
+            } catch (TimeoutException e) {
+                assertTrue(true);
+            } finally {
+                executorService.shutdown();
+            }
+
+        } catch (Exception unexpected) {
+            fail();
+        }
+
+    }
+
+    public void testTakeBlocksWhenEmptyUsingFutureSuccess() {
+        final SemaphoreBoundedBuffer<Integer> bb = new SemaphoreBoundedBuffer<Integer>(10);
+        Callable<Integer> taker = () -> {
+            try {
+                int unused = bb.take();
+                return 1;
+
+            } catch (InterruptedException success) {
+            }
+            return 0;
+        };
+        try {
+            bb.put(1);
+            ExecutorService executorService = Executors.newSingleThreadExecutor();
+            Future<Integer> future = executorService.submit(taker);
+            Thread.sleep(LOCKUP_DETECT_TIMEOUT);
+            try {
+                assertEquals(future.get(1, TimeUnit.SECONDS), new Integer(1));
+                future.cancel(true);
+            } catch (TimeoutException e) {
+                assertTrue(true);
+            } finally {
+                executorService.shutdown();
+            }
+
+        } catch (Exception unexpected) {
+            fail();
+        }
+    }
+
 
     class Big {
         double[] data = new double[1000];

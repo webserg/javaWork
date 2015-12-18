@@ -15,3 +15,10 @@ print(y[2:5])
 
 def useThis():
     return 1
+
+
+def reverse(llist):
+    return llist[::-1]
+
+
+print(reverse(y))

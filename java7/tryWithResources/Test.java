@@ -117,6 +117,8 @@ public class Test {
     static String readFirstLineFromFile(String path) throws IOException {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
             return br.readLine();
+        } finally {
+            System.out.println("not such file in finally");
         }
 
     }
@@ -132,7 +134,8 @@ public class Test {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         System.out.println("fg");
+        System.out.println(readFirstLineFromFile("c:/tmp/test.txt"));
     }
 }

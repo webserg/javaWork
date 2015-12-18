@@ -73,7 +73,7 @@ class ReadWriteProblemUsingSem {
                 tmp = obj.counter.decrementAndGet();
                 if (tmp == 0)
                     obj.read.release();
-                 System.out.println(tmp);
+                System.out.println(tmp);
 //                try {
 //                    Thread.sleep(50); // avoid starvation
 //                } catch (InterruptedException e) {

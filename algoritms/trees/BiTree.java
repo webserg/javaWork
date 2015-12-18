@@ -2,6 +2,10 @@ package algoritms.trees;
 
 import org.junit.Assert;
 
+import java.util.Deque;
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * Created by webserg on 22.05.2014.
  */
@@ -19,6 +23,10 @@ public class BiTree {
         treeInsert(tree, new Node(6));
         treeInsert(tree, new Node(7));
         inOrderTreeWalk(tree.root);
+        System.out.println("++++++++++++");
+        inOrderTreeWalkHeap(tree.root);
+        System.out.println("++++++++++++");
+        preOrderTreeWalkHeap(tree.root);
         Node n = treeSearch(tree.root, 7);
         printNode(n);
         n = iterativeTreeSearch(tree.root, 7);
@@ -119,6 +127,40 @@ public class BiTree {
             inOrderTreeWalk(x.left);
             System.out.println(x.value);
             inOrderTreeWalk(x.right);
+        }
+    }
+
+    public static void preOrderTreeWalkHeap(Node x) {
+        Queue<Node> queue = new LinkedList<>();
+        while (x != null) {
+            queue.offer(x);
+            x = x.left;
+        }
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            System.out.println(cur.key);
+            Node rightCur = cur.right;
+            while (rightCur != null) {
+                queue.offer(rightCur);
+                rightCur = rightCur.left;
+            }
+        }
+    }
+
+    public static void inOrderTreeWalkHeap(Node x) {
+        Deque<Node> queue = new LinkedList<>();
+        while (x != null) {
+            queue.addFirst(x);
+            x = x.left;
+        }
+        while (!queue.isEmpty()) {
+            Node cur = queue.poll();
+            System.out.println(cur.key);
+            Node rightCur = cur.right;
+            while (rightCur != null) {
+                queue.addFirst(rightCur);
+                rightCur = rightCur.left;
+            }
         }
     }
 

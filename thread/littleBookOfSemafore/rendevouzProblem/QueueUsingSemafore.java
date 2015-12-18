@@ -31,36 +31,21 @@ public class QueueUsingSemafore {
             while (true) {
                 try {
                     obj.mutex.acquire();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                if (obj.followers > 0) {
-                    obj.followers--;
-                    obj.followerQueue.release();
-                } else {
-                    obj.leaders++;
-                    obj.mutex.release();
-                    try {
+                    if (obj.followers > 0) {
+                        obj.followers--;
+                        obj.followerQueue.release();
+                    } else {
+                        obj.leaders++;
+                        obj.mutex.release();
                         obj.leaderQueue.acquire();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
                     }
-                }
-
-                System.out.println("dance leader");
-                try {
                     obj.rendevouz.acquire();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-
-                obj.mutex.release();
-                try {
+                    System.out.println("dance leader");
+                    obj.mutex.release();
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
+                    e.printStackTrace();
                 }
-                System.out.println("=============================");
             }
         };
 
@@ -68,35 +53,33 @@ public class QueueUsingSemafore {
             while (true) {
                 try {
                     obj.mutex.acquire();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                if (obj.leaders > 0) {
-                    obj.leaders--;
-                    obj.leaderQueue.release();
-                } else {
-                    obj.followers++;
-                    obj.mutex.release();
-                    try {
+                    if (obj.leaders > 0) {
+                        obj.leaders--;
+                        obj.leaderQueue.release();
+                    } else {
+                        obj.followers++;
+                        obj.mutex.release();
                         obj.followerQueue.acquire();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+
                     }
-
-                }
-
-                System.out.println("dance followers");
-                obj.rendevouz.release();
-                try {
+                    System.out.println("dance followers");
+                    System.out.println("---------------------------");
+                    obj.rendevouz.release();
                     Thread.sleep(500);
                 } catch (InterruptedException e) {
                 }
             }
 
         };
-        ExecutorService leaderS = Executors.newFixedThreadPool(5);
-        ExecutorService followerS = Executors.newFixedThreadPool(5);
+        ExecutorService leaderS = Executors.newFixedThreadPool(4);
+        ExecutorService followerS = Executors.newFixedThreadPool(1);
+        leaderS.submit(leaders);
+        leaderS.submit(leaders);
+        leaderS.submit(leaders);
         leaderS.submit(leaders);
         followerS.submit(followers);
+//        followerS.submit(followers);
+//        followerS.submit(followers);
+//        followerS.submit(followers);
     }
 }

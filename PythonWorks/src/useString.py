@@ -13,3 +13,6 @@ pi = 3.14
 # text = 'The value of pi is ' + pi      ## NO, does not work
 text = 'The value of pi is ' + str(pi)  # # yes
 print(text)
+a_string = 'My alphabet starts where your alphabet ends.'
+print(a_string[3:6])
+print(a_string)
