@@ -17,7 +17,7 @@ public class TestLongCounterExperiments {
         });
         Thread t2 = new Thread(() -> {
             for (int i = 0; i < counts; i++)
-                lc.decrement();
+                lc.increment();
         }
         );
         t1.start();
@@ -28,7 +28,7 @@ public class TestLongCounterExperiments {
         } catch (InterruptedException exn) {
             System.out.println("Some thread was interrupted");
         }
-        System.out.println("Count is " + lc.get() + " and should be " + 0);
+        System.out.println("Count is " + lc.get() + " and should be " + 2 * counts);
     }
 }
 
