@@ -29,7 +29,7 @@ package thread.immutability;
  * 4.Only one field refers to an object, and that object is itself immutable. Therefore, no safeguards against
  * changing the state of "contained" mutable objects are necessary.
  */
-public class ImmutableRGB {
+public final class ImmutableRGB {
     //Values must be between 0 and 255.
     final private int red;
     final private int green;

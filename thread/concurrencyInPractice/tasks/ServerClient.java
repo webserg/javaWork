@@ -20,7 +20,7 @@ public class ServerClient {
             }
         };
         for (; count.i <= N; count.i++) {
-            new Thread(client,"" + count.i).start();
+            new Thread(client, "" + count.i).start();
         }
     }
 
@@ -38,13 +38,13 @@ public class ServerClient {
             while ((fromServer = in.readLine()) != null) {
                 if (fromServer.equals("privet")) {
                     System.out.println("from server : privet");
-                    if (Thread.currentThread().getName().equals(""+N)){
+                    if (Thread.currentThread().getName().equals("" + N)) {
                         System.out.println("to server : stop!!!!!!!!!!!!");
-                       out.println("stop");
+                        out.println("stop");
                         break;
-                    }else{
-                        out.println("good by = "+ i);
-                    }    
+                    } else {
+                        out.println("good by = " + i);
+                    }
                 } else if (fromServer.equals("by")) {
                     System.out.println("from server : by");
                     break;
