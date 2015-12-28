@@ -27,7 +27,7 @@ public class ThreadPerTaskWebServer {
             Runnable task = new Runnable() {
                 public void run() {
                     try {
-                        Strategy.handleRequest(connection);
+                        HandleRequestStrategy.handleRequest(connection);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }

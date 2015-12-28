@@ -44,7 +44,7 @@ public class LifeCycleWebserver {
 
     void handleRequest(Socket connection) {
         try {
-            if (Strategy.handleRequest(connection)) {
+            if (HandleRequestStrategy.handleRequest(connection)) {
                 System.out.println("stop-----------------------");
                 stop();
             }

@@ -3,7 +3,8 @@ package thread.concurrencyInPractice.tasks;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
-import java.util.concurrent.*;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -38,7 +39,7 @@ public class TaskExecutionWebServerWithExit {
                 Runnable task = new Runnable() {  // need boolean to find out when to stop
                     public void run() {
                         try {
-                            exit.compareAndSet(false, Strategy.handleRequest(connection));
+                            exit.compareAndSet(false, HandleRequestStrategy.handleRequest(connection));
                             if (exit.get()) {
                                 socket.close();
                                 exec.shutdown();

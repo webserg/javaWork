@@ -29,13 +29,12 @@ public class SingleThreadWebServer {
 
             while (true) {
                 Socket connection = socket.accept();
-                Strategy.handleRequest(connection);
+                HandleRequestStrategy.handleRequest(connection);
             }
         } catch (IOException e) {
             try {
                 socket.close();
             } catch (IOException e1) {
-                // TODO Auto-generated catch block
                 e1.printStackTrace();
             }
             System.exit(0);

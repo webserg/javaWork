@@ -36,7 +36,7 @@ public class TaskExecutionWebServer {
             Runnable task = new Runnable() {
                 public void run() {
                     try {
-                        Strategy.handleRequest(connection);
+                        HandleRequestStrategy.handleRequest(connection);
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
