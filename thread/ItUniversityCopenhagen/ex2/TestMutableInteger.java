@@ -1,5 +1,4 @@
-package thread.ItUniversityCopenhagen.ex2;// For week 2
-// sestoft@itu.dk * 2014-08-25
+package thread.ItUniversityCopenhagen.ex2;
 
 import java.io.IOException;
 

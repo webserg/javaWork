@@ -26,6 +26,7 @@ public class TestCountPrimes {
     }
 
     public static boolean isPrimeNumber(int number) {
+        if (number < 2) return false;
         if (number == 2 || number == 3) {
             return true;
         }

@@ -1,6 +1,4 @@
-package thread.ItUniversityCopenhagen.ex2;// For week 2
-// sestoft@itu.dk * 2014-08-28
-
+package thread.ItUniversityCopenhagen.ex2;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
