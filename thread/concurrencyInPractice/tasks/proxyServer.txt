@@ -1,0 +1,140 @@
+Assignment #1 - Multi-threaded Web Proxy Server
+
+Due by 11:59pm, Tuesday, September 24.
+
+In this assignment you are asked to build a multi-threaded Web proxy server that is capable of delivering Web content
+on behalf of a remote Web server. When a user's browser is configured to connect via a proxy server, her browser establishes
+a connection to the proxy server's machine and forwards its complete request to the proxy server rather than the "real" Web
+ server. The proxy server accepts user's HTTP requests and forwards them to their final destinations---essentially it introduces
+  an extra "hop" between the user's browser (or the client) and the Web server. There are several reasons why people want
+  to use a proxy server instead of connecting to the remote Web server directly: 1) users want to anonymize themselves from
+  the Web server; 2) a corporation might want to monitor or restrict employees' Web surfing; 3) a proxy can be used to locally
+  cache data in order to reduce the amount of global traffic. Multi-threading is not crucial to the functionality of a Web
+  proxy server, but it is important to allow the server to process multiple simultaneous requests in parallel, a must-have
+  feature for a practical server.
+
+This is an individual assignment, so each person should turn in his/her own.
+
+Requirements in detail:
+
+The proxy server acts as an HTTP server to client browsers while it acts as an HTTP client to the "real" Web server.
+The protocol specification for version 1.1 of HTTP is defined in RFC 2616. You will find that this document is quite
+long and you may not be able to read it through. For your relief, you are asked to implement a very small part of the
+complete protocol, which will be explained below. We do try to be as specific as possible in this assignment description
+ in order to reduce your need to refer to the lengthy protocol specification. But you should be prepared to do so occasionally.
+An HTTP-compliant Web server supports HEAD, POST, and GET methods. Your proxy server only needs to support GET method.
+ To serve each request, we first need to parse the request line and headers sent by the client. Since we will only support
+ GET method, we only care about Web page name in request line. A request for the proxy server may look like this:
+
+ GET http://www.foo.com/mumbo.html HTTP/1.1
+ Connection: close
+ ... ...
+
+The requested Web page name contains the Web server name www.foo.com and the requested file on that server /mumbo.html.
+In this case, your proxy server should make a TCP connection to Web server www.foo.com at the default port 80 and ask for
+file /mumbo.html by sending the following request:
+GET /mumbo.html HTTP/1.1\r\nConnection: close\r\n\r\n
+After sending a request to the "real" Web server, an HTTP response including the requested file will be received at the
+proxy server. The proxy server should then forward the content to the client. There are three parts in an HTTP response
+ message: the status line, the response headers, and the entity body. The status line and response headers are terminated
+ by an empty line (or an extra "\r\n"). In short, an HTTP response message may look like the following:
+
+ HTTP/1.1 200 OK
+ Date: Thu, 24 Jan 2013 15:29:52 GMT
+ Content-Type: text/html
+ Server: Joe's Web proxy server
+ Connection: close
+
+ ... ... <content of the main.html>
+
+The status line and most of the header fields should be forwarded to the client without modification.
+The server should be able to handle multiple simultaneous service requests in parallel. This means that the Web proxy
+server is multi-threaded. In the main thread, the server listens at a fixed port. When it receives a TCP connection
+request, it sets up a TCP connection socket and services the request in a separate thread.
+
+The "Connection: close" setting in the above examples serves an important role---disabling the persistent connection
+feature in HTTP 1.1. A persistent connection allows multiple Web requests to flow through a single TCP connection.
+ In later classes we will learn about the rationale behind it. However, the support for persistent connections is somewhat
+ challenging and it is not required for this assignment. Note that when you test your proxy server through a standard Web
+ browser, the "Connection: close" setting will likely not be in the HTTP request. Your proxy server can insert this setting
+ into the request before forwarding it to the Web server so that the persistent connection is turned off.
+
+Program skeleton:
+
+Here we provide a hint on what the program skeleton may look like. You are, however, not required to design your program
+this way.
+ Main routine {
+     Parse the command line input (server port number);
+     Create a server socket listening on the specified port;
+     For each incoming client socket connection {
+         Spawn a worker thread to handle the connection;
+         Loop back to wait for/handle the next connection;
+     }
+ }
+
+ Worker thread routine {
+     Read the request line and header fields until two consecutive new lines;
+     (Note that a new line can be a single "\n" or a character pair "\r\n".)
+     Examine the first line (request line);
+     If the request method is not "GET" {
+         Return an error HTTP response with the status code "HTTP_BAD_METHOD";
+     }
+     Make TCP connection to the "real" Web server;
+     Send over an HTTP request;
+     Receive the server's response;
+     Close the TCP connection to the server;
+     Send the server's response back to the client;
+     Close the connection socket to the client.
+ }
+
+Testing:
+
+If you develop your program at your home computer, it is imperative to test it in school network before turn-in. Below
+ we provide some information about how to test your program.
+For testing, you can configure a Web browser to use your proxy server. For Firefox 17.0.1, you can configure it in the
+ following way: 1) Choose "Edit" in the Menu; 2) Click "Preferences"'; 3) Choose "Advanced" Tab; 4) Choose "Network" Sub-Tab; 5)
+  Click "Settings" for Connection; 6) Click "Manual proxy configuration" and fill the server name as well as its port number for
+   "HTTP Proxy". Make sure your proxy server is running and now all HTTP requests from your browser are served via the proxy
+   server!
+
+You can also test your server using the telnet utility. If your proxy server runs at port 8080 of cycle1.csug.rochester.edu,
+ you can do
+
+ [yourself@foobar] telnet cycle1.csug.rochester.edu 8080<enter>
+ GET http://www.google.com HTTP/1.1<enter>
+ Connection: close<enter>
+ <enter>
+ ... ... <response from your server, including status line, header, and the requested file>
+ [yourself@foobar]
+
+You can also try this with the Web server directly, then you will need to specify the default port number 80. For instance, you can do
+ [yourself@foobar] telnet www.google.com 80<enter>
+ GET / HTTP/1.1<enter>
+ Connection: close<enter>
+ <enter>
+ ... ...
+ [yourself@foobar]
+
+Persistent connection (extra credit work):
+
+While we recommended that you disable HTTP 1.1's persistent connection for an easier implementation of the proxy server, you can choose to add this support and we may reward you with some extra credit. We are not going to provide much information about how to do this. If you elect to take up this challenge, you are expected to solve some new problems on your own. One such problem, for instance, is to figure out how to determine the end of a response message in a persistent connection. This is very easy for non-persistent connections (with Connection: close setting)---a response message ends when the server closes the TCP connection.
+Turn-in:
+
+You are asked to turn in your source files, a makefile if needed, and a README file. No matter what programming language
+you choose to use, your program should take a single parameter (its port number) on startup. You should also name your
+executable to be ProxyServer. If your program is written in Java, you should be able to launch your server using "java ProxyServer <port-number>". If your program is written in C/C++, you should be able to launch your server using "ProxyServer <port-number>".
+The README file should be in plain text format. It should contain a description of your design. What is and what is not
+ realized in your implementation. If your program requires any special compilation flag to build, you need to specify the full build command in the README file. You are strongly recommended to provide us a makefile.
+
+You should electronically turn in the required files. Instructions for electronic turn-in can be found on the course Web site.
+
+Grading guideline:
+
+70%: properly forward Web pages from remote servers to browsers.
+20%: multi-threading that allows the server to service multiple client connections simultaneously.
+10%: a clear README file, clarity of your source code and completeness of your comments.
+20% extra credit: support persistent HTTP connections. Please explain your implementation in the README file.
+Late turn-in policy:
+
+Late turn-ins will be accepted for up to three days, with 10% penalty for each late day. No turn-ins more than three-day
+late will be accepted.

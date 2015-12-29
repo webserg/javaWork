@@ -10,7 +10,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 /**
  * Tasks are logical units of work, and threads are a
  * mechanism by which tasks can run asynchronously.
- * <p/>
+ * <p>
  * Switching from a thread-per-task policy to a pool-based
  * policy has a big effect on application stability: the web
  * server will no longer fail under heavy load.[5] It also
@@ -22,8 +22,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
  * other possibilities that would have been far more
  * difficult to add without a task execution framework.
  *
- * @author Sergiy Doroshenko webserg@gmail.com Feb 11, 2009
- *         6:06:13 PM
+ * @author Sergiy Doroshenko webserg@gmail.com
  */
 public class TaskExecutionWebServerWithExit {
 
@@ -32,24 +31,22 @@ public class TaskExecutionWebServerWithExit {
     private static AtomicBoolean exit = new AtomicBoolean(false);
 
     public static void main(String[] args) throws IOException {
+        HandleRequestStrategy strategy = new HandleExitStrategy();
         final ServerSocket socket = new ServerSocket(8083);
         try {
             while (!exec.isShutdown() && !socket.isClosed()) {
                 final Socket connection = socket.accept();
-                Runnable task = new Runnable() {  // need boolean to find out when to stop
-                    public void run() {
-                        try {
-                            exit.compareAndSet(false, HandleRequestStrategy.handleRequest(connection));
-                            if (exit.get()) {
-                                socket.close();
-                                exec.shutdown();
-                            } else {
-                                System.out.println(exit.get());
-                            }
-                        } catch (IOException e) {
-                            e.printStackTrace();
+                Runnable task = () -> {  // need boolean to find out when to stop
+                    try {
+                        exit.compareAndSet(false, strategy.handleRequest(connection));
+                        if (exit.get()) {
+                            socket.close();
+                            exec.shutdown();
+                        } else {
+                            System.out.println(exit.get());
                         }
-
+                    } catch (IOException e) {
+                        e.printStackTrace();
                     }
                 };
                 exec.submit(task);

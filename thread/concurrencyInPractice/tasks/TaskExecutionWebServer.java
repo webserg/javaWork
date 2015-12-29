@@ -9,7 +9,7 @@ import java.util.concurrent.Executors;
 /**
  * Tasks are logical units of work, and threads are a
  * mechanism by which tasks can run asynchronously.
- * 
+ * <p>
  * Switching from a thread-per-task policy to a pool-based
  * policy has a big effect on application stability: the web
  * server will no longer fail under heavy load.[5] It also
@@ -20,9 +20,8 @@ import java.util.concurrent.Executors;
  * management, monitoring, logging, error reporting, and
  * other possibilities that would have been far more
  * difficult to add without a task execution framework.
- * 
- * @author Sergiy Doroshenko webserg@gmail.com Feb 11, 2009
- *         6:06:13 PM
+ *
+ * @author Sergiy Doroshenko webserg@gmail.com
  */
 public class TaskExecutionWebServer {
 
@@ -30,16 +29,15 @@ public class TaskExecutionWebServer {
     private static final Executor exec = Executors.newFixedThreadPool(NTHREADS);
 
     public static void main(String[] args) throws IOException {
+        HandleRequestStrategy strategy = new HandleExitStrategy();
         ServerSocket socket = new ServerSocket(8083);
         while (true) {
             final Socket connection = socket.accept();
-            Runnable task = new Runnable() {
-                public void run() {
-                    try {
-                        HandleRequestStrategy.handleRequest(connection);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+            Runnable task = () -> {
+                try {
+                    strategy.handleRequest(connection);
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             };
             exec.execute(task);

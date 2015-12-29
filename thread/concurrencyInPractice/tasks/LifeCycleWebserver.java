@@ -12,13 +12,18 @@ public class LifeCycleWebserver {
     private final ExecutorService exec = Executors.newFixedThreadPool(NTHREADS);
 
     public void start() throws IOException {
+        HandleRequestStrategy strategy = new HandleExitStrategy();
         ServerSocket socket = new ServerSocket(8083);
         while (!exec.isShutdown()) {
             try {
                 final Socket conn = socket.accept();
                 exec.execute(new Runnable() {
                     public void run() {
-                        handleRequest(conn);
+                        try {
+                            strategy.handleRequest(conn);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                         System.out.println("stop run");
                     }
                 });
@@ -42,19 +47,6 @@ public class LifeCycleWebserver {
         exec.shutdown();
     }
 
-    void handleRequest(Socket connection) {
-        try {
-            if (HandleRequestStrategy.handleRequest(connection)) {
-                System.out.println("stop-----------------------");
-                stop();
-            }
-            // else
-            // dispatchRequest(req);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
 
     /**
      * @param args

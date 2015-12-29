@@ -23,13 +23,14 @@ public class SingleThreadWebServer {
      * @throws IOException
      */
     public static void main(String[] args) {
+        HandleRequestStrategy strategy = new HandleExitStrategy();
         ServerSocket socket = null;
         try {
             socket = new ServerSocket(8083);
 
             while (true) {
                 Socket connection = socket.accept();
-                HandleRequestStrategy.handleRequest(connection);
+                strategy.handleRequest(connection);
             }
         } catch (IOException e) {
             try {
