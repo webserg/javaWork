@@ -9,4 +9,6 @@ public interface Histogram {
     int getCount(int item);
 
     int getSpan();
+
+    int[] getBuckets();
 }

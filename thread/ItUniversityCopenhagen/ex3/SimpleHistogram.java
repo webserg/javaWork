@@ -18,25 +18,16 @@ public class SimpleHistogram {
         }
         System.out.printf("      %9d%n", totalCount);
     }
-}
 
-class Histogram1 implements Histogram {
-    private int[] counts;
-
-    public Histogram1(int span) {
-        this.counts = new int[span];
-    }
-
-    public synchronized void increment(int item) {
-//    System.out.println("increment:" + item);
-        counts[item] = counts[item] + 1;
-    }
-
-    public int getCount(int item) {
-        return counts[item];
-    }
-
-    public int getSpan() {
-        return counts.length;
+    public static String dumpToString(Histogram histogram) {
+        int totalCount = 0;
+        StringBuilder stringBuffer = new StringBuilder();
+        for (int item = 0; item < histogram.getSpan(); item++) {
+            stringBuffer.append(String.format("%4d: %9d%n", item, histogram.getCount(item)));
+            totalCount += histogram.getCount(item);
+        }
+        stringBuffer.append(String.format("      %9d%n", totalCount));
+        return stringBuffer.toString();
     }
 }
+
