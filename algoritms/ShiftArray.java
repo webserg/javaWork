@@ -73,7 +73,7 @@ public class ShiftArray extends TestCase {
         int j = 0;
         int k = 0;
         int n = s.length;
-        for (int i = 0; i < GeneralCommonDel.gcd(shift, n); i++) {
+        for (int i = 0; i < GeneralCommonDel.gcd2(shift, n); i++) {
             t = s[i];
             j = i;
             while (true) {
