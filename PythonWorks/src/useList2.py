@@ -15,3 +15,9 @@ print(sum)
 lst = ['larry', 'curly', 'moe']
 if 'curly' in lst:
     print('yey')
+extlist = ["-1", "0"]
+extlist.extend(["1", "2"])
+print(extlist)
+applist = ["-1", "0"]
+applist.append(["1", "2"])
+print(applist)
