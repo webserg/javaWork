@@ -8,16 +8,15 @@ print(a_list)
 a_list.pop(1)
 print(a_list)
 squares = [1, 4, 9, 16]
-sum = 0
+mySum = 0
 for num in squares:
-    sum += num
-print(sum)
+    mySum += num
+print(mySum)
 lst = ['larry', 'curly', 'moe']
 if 'curly' in lst:
     print('yey')
 extlist = ["-1", "0"]
 extlist.extend(["1", "2"])
 print(extlist)
-applist = ["-1", "0"]
-applist.append(["1", "2"])
+applist = ["-1", "0", ["1", "2"]]
 print(applist)

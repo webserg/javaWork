@@ -22,3 +22,4 @@ def reverse(llist):
 
 
 print(reverse(y))
+print(reverse("abba"))
