@@ -40,7 +40,7 @@ public class Waiter {
 	}
 
 	class User implements Runnable {
-		//Foo foo = new Foo();
+		//Moo foo = new Moo();
 
 		public void run() {
 			synchronized (foo) {
