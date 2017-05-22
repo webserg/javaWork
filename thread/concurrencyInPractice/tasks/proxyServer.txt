@@ -26,12 +26,12 @@ An HTTP-compliant Web server supports HEAD, POST, and GET methods. Your proxy se
  To serve each request, we first need to parse the request line and headers sent by the client. Since we will only support
  GET method, we only care about Web page name in request line. A request for the proxy server may look like this:
 
- GET http://www.foo.com/mumbo.html HTTP/1.1
+ GET http://www.moo.com/mumbo.html HTTP/1.1
  Connection: close
  ... ...
 
-The requested Web page name contains the Web server name www.foo.com and the requested file on that server /mumbo.html.
-In this case, your proxy server should make a TCP connection to Web server www.foo.com at the default port 80 and ask for
+The requested Web page name contains the Web server name www.moo.com and the requested file on that server /mumbo.html.
+In this case, your proxy server should make a TCP connection to Web server www.moo.com at the default port 80 and ask for
 file /mumbo.html by sending the following request:
 GET /mumbo.html HTTP/1.1\r\nConnection: close\r\n\r\n
 After sending a request to the "real" Web server, an HTTP response including the requested file will be received at the

@@ -74,14 +74,14 @@ class Foo{
         return "name=" + name + ";secret=" + secret;
     }
 
-    public boolean equals(Foo obj) {
+    public boolean equals(Moo obj) {
         return equals((Object)obj);
     }
 
 	@Override
 	public boolean equals(Object obj) {
-		if (obj instanceof Foo) {
-			return name.equals(((Foo)obj).getName());
+		if (obj instanceof Moo) {
+			return name.equals(((Moo)obj).getName());
 		}
 		return false;
 	}
