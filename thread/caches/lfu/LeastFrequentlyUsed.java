@@ -15,10 +15,9 @@ import java.util.*;
  * is really needed and discard the ones that aren’t needed for the longest period based
  * on the access pattern or in other words the request pattern)
  *
- *
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/13/11 9:16 PM
+ * email:webserg@gmail.com
+ * Date: 1/13/11 9:16 PM
  */
 public class LeastFrequentlyUsed<K, V> implements Cache<K, V> {
 
@@ -39,11 +38,11 @@ public class LeastFrequentlyUsed<K, V> implements Cache<K, V> {
     public V put(K key, V value) {
         if (keys.size() < CAPASITY) {
 
-            addKey(key,value);
+            addKey(key, value);
 
         } else {
 
-            replaceKey(key,value);
+            replaceKey(key, value);
         }
         return null;
     }
@@ -57,14 +56,15 @@ public class LeastFrequentlyUsed<K, V> implements Cache<K, V> {
 
     /**
      * //replacement policy
-     * @param key key
-     * @param value  value
+     *
+     * @param key   key
+     * @param value value
      */
     private void replaceKey(K key, V value) {
         CountKey<K> countKey = queue.poll();
         keys.remove(countKey.getKey());
         map.remove(countKey.getKey());
-        addKey(key,value);
+        addKey(key, value);
     }
 
     @Override

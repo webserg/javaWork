@@ -8,7 +8,7 @@ import java.util.concurrent.*;
  * TestBoundedBuffer
  * <p/>
  * Basic unit tests for BoundedBuffer
- * 
+ *
  * @author Brian Goetz and Tim Peierls
  */
 public class TestBoundedBuffer extends TestCase {
@@ -119,11 +119,6 @@ public class TestBoundedBuffer extends TestCase {
         }
     }
 
-
-    class Big {
-        double[] data = new double[1000];
-    }
-
     /*
      * The testLeak method inserts several large objects into a
      * bounded buffer and then removes them; memory usage at heap
@@ -146,10 +141,14 @@ public class TestBoundedBuffer extends TestCase {
         assertTrue(Math.abs(heapSize1 - heapSize2) < THRESHOLD);
     }
 
-    private long snapshotHeap() {    
-        Runtime s_runtime = Runtime.getRuntime ();
-        long Used_memory = s_runtime.totalMemory () - s_runtime.freeMemory ();
+    private long snapshotHeap() {
+        Runtime s_runtime = Runtime.getRuntime();
+        long Used_memory = s_runtime.totalMemory() - s_runtime.freeMemory();
         return 0;
+    }
+
+    class Big {
+        double[] data = new double[1000];
     }
 
 }

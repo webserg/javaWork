@@ -19,8 +19,8 @@ import java.util.*;
  * I am also adoptive to access patterns.
  *
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/20/11 11:30 AM
+ * email:webserg@gmail.com
+ * Date: 1/20/11 11:30 AM
  */
 public class LeastRecentlyUsed2<K, V> implements Cache<K, V> {
     private final int CAPASITY = 10;
@@ -30,7 +30,7 @@ public class LeastRecentlyUsed2<K, V> implements Cache<K, V> {
 
     @Override
     public V put(K key, V value) {
-        if(key == null || value == null ) throw new IllegalArgumentException();
+        if (key == null || value == null) throw new IllegalArgumentException();
         if (queue2.size() < CAPASITY) {
 
             addKey(key, value);
@@ -57,9 +57,9 @@ public class LeastRecentlyUsed2<K, V> implements Cache<K, V> {
     }
 
     private void replacementPolicyForFirstEntryQueue(K key) {
-        if(firstEntryQueue.size() < CAPASITY){
+        if (firstEntryQueue.size() < CAPASITY) {
             firstEntryQueue.offer(key);
-        }else{
+        } else {
             firstEntryQueue.poll();   //replacement policy for first entry queue
             firstEntryQueue.offer(key);
         }
@@ -81,18 +81,17 @@ public class LeastRecentlyUsed2<K, V> implements Cache<K, V> {
      * @param value value
      */
     private void replaceKey(K key, V value) {
-        if(firstEntryQueue.contains(key)){
+        if (firstEntryQueue.contains(key)) {
             //replacement policy second level queue
             K oldKey = queue2.poll();
             map.remove(oldKey);
             queue2.offer(key);
             map.put(key, value);
             firstEntryQueue.remove(key);
-        }else{
+        } else {
             replacementPolicyForFirstEntryQueue(key);
         }
     }
-
 
 
     @Override

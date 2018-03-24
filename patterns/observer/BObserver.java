@@ -2,16 +2,18 @@ package patterns.observer;
 
 import java.util.Observable;
 
-public class BObserver implements java.util.Observer{
-	private String name;
-	private int point;
-	public void update(Observable o, Object arg){
-		name = ((State)arg).getName();
-		point = ((State)arg).getPoint();
-	}
-	public String getState() {
-		return getClass() + " "+  name + " " + point;
-	}
+public class BObserver implements java.util.Observer {
+    private String name;
+    private int point;
+
+    public void update(Observable o, Object arg) {
+        name = ((State) arg).getName();
+        point = ((State) arg).getPoint();
+    }
+
+    public String getState() {
+        return getClass() + " " + name + " " + point;
+    }
 }
 
 

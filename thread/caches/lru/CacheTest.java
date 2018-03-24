@@ -7,8 +7,8 @@ import thread.caches.ValueObject;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 2:52 PM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 2:52 PM
  */
 public class CacheTest extends AbstractLinkedListLRUCacheTest {
     @Before

@@ -1,10 +1,10 @@
 package collections.googleCollections;
 
-import java.util.Map;
-
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+
+import java.util.Map;
 
 /**
  * Author: Sergiy Doroshenko

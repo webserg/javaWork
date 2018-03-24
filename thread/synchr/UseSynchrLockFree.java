@@ -3,7 +3,6 @@ package thread.synchr;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * Created by webserg on 12.04.2014.
@@ -13,39 +12,6 @@ public class UseSynchrLockFree {
     volatile Res res = new Res();
 
     List<String> list = new ArrayList<>();
-
-    private void writer() {
-        final Res resWriter = new Res();
-        resWriter.setFname("fname" + Thread.currentThread().getName());
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        resWriter.setSname("sname" + Thread.currentThread().getName());
-        res = resWriter;
-        try {
-            Thread.sleep(500);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void reader() {
-        String r = res.getFullName();
-        System.out.println(r);
-        list.add(r);
-        if(!check(r)) throw new ConcurrentModificationException("faile " + r);
-        try {
-            Thread.sleep(200);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private boolean check(String r){
-        return r.charAt(9) == r.charAt(9+9+1);
-    }
 
     public static void main(String[] args) {
         UseSynchrLockFree useSynchr = new UseSynchrLockFree();
@@ -82,5 +48,38 @@ public class UseSynchrLockFree {
         }
         new Thread(thread1, "name4").start();
         new Thread(thread3, "name3").start();
+    }
+
+    private void writer() {
+        final Res resWriter = new Res();
+        resWriter.setFname("fname" + Thread.currentThread().getName());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        resWriter.setSname("sname" + Thread.currentThread().getName());
+        res = resWriter;
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void reader() {
+        String r = res.getFullName();
+        System.out.println(r);
+        list.add(r);
+        if (!check(r)) throw new ConcurrentModificationException("faile " + r);
+        try {
+            Thread.sleep(200);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private boolean check(String r) {
+        return r.charAt(9) == r.charAt(9 + 9 + 1);
     }
 }

@@ -4,18 +4,16 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class UseVolatileJMM {
     static Map<String, String> configOptions = new TreeMap<>();
     static char[] configText;
-    private static boolean initialized = false;
     static int j = 0;
+    private static boolean initialized = false;
     private static int k = 0;
 
     public static void methodA() {

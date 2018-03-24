@@ -1,9 +1,7 @@
 package java8.lambda;
 
-import java.io.File;
 import java.util.*;
 import java.util.function.Supplier;
-import java.util.function.UnaryOperator;
 
 /**
  * Any lambda expression may be thought of as an anonymous representation of a function descriptor of a functional
@@ -29,7 +27,7 @@ public class MethodReferencesUsing {
     }
 
     public static void main(String[] args) {
-        Integer[] iss = new Integer[]{1,2,3,4,7,8,0};
+        Integer[] iss = new Integer[]{1, 2, 3, 4, 7, 8, 0};
         Arrays.sort(iss, Integer::compare);
 
         //UnaryOperator<Integer> factorial = i -> { return i == 0 ? 1 : i * factorial.apply( i - 1 ); };
@@ -81,12 +79,14 @@ public class MethodReferencesUsing {
         // Reference to an instance method
         // of an arbitrary object of a particular type
 
-        String[] stringArray = { "Barbara", "James", "Mary", "John",
-                "Patricia", "Robert", "Michael", "Linda" };
+        String[] stringArray = {"Barbara", "James", "Mary", "John",
+                "Patricia", "Robert", "Michael", "Linda"};
         Arrays.sort(stringArray, String::compareToIgnoreCase);
 
         Set<Person> rosterSetLambda =
-                transferElements(roster, () -> { return new HashSet<>(); });
+                transferElements(roster, () -> {
+                    return new HashSet<>();
+                });
 
         Set<Person> rosterSet = transferElements(
                 roster, HashSet::new);

@@ -16,11 +16,11 @@ import java.util.concurrent.Semaphore;
  * The Little Book of Semaphores Allen B. Downey
  */
 public class BarberShop {
+    final int limit = 3;
     Semaphore mutex = new Semaphore(1);
     Semaphore customerSem = new Semaphore(0);
     Semaphore barberSem = new Semaphore(0);
     volatile int customerCount = 0;
-    final int limit = 3;
 
     public static void main(String[] args) {
         final BarberShop shop = new BarberShop();

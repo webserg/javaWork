@@ -73,9 +73,10 @@ public class Reverse {
         }
         return new StringBuilder().append(strArray).toString();
     }
+
     /*
-    * XOR - one or another, never neither or both
-    * */
+     * XOR - one or another, never neither or both
+     * */
     public static String reverseByXor(String str) {
         // convert the string to char array
         char[] charArray = str.toCharArray();

@@ -5,7 +5,7 @@ package algoritms.sedgewick;
  * Date: 18.11.12
  */
 
-import java.io.*;
+import java.io.IOException;
 
 public class In {
     private static int c;

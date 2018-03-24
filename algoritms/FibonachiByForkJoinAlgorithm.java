@@ -1,11 +1,12 @@
 package algoritms;
 
-import java.util.concurrent.*;
+import java.util.concurrent.ForkJoinPool;
+import java.util.concurrent.RecursiveAction;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 3/12/11 7:02 PM
+ * email:webserg@gmail.com
+ * Date: 3/12/11 7:02 PM
  */
 public class FibonachiByForkJoinAlgorithm extends RecursiveAction {
 
@@ -14,6 +15,16 @@ public class FibonachiByForkJoinAlgorithm extends RecursiveAction {
 
     FibonachiByForkJoinAlgorithm(int n) {
         number = n;
+    }
+
+    public static void main(String[] args) {
+        int groupSize = 2; // for example
+        ForkJoinPool group = new ForkJoinPool(groupSize);
+        FibonachiByForkJoinAlgorithm f = new FibonachiByForkJoinAlgorithm(35); // for example
+        group.invoke(f);
+        int result = f.getAnswer();
+        System.out.println("Answer: " + result);
+
     }
 
     int getAnswer() {
@@ -27,25 +38,15 @@ public class FibonachiByForkJoinAlgorithm extends RecursiveAction {
         if (n <= threshold) // granularity ctl
             number = seqFib(n);
         else {
-            FibonachiByForkJoinAlgorithm f1 = new FibonachiByForkJoinAlgorithm(n-1);
-            FibonachiByForkJoinAlgorithm f2 = new FibonachiByForkJoinAlgorithm(n-2);
+            FibonachiByForkJoinAlgorithm f1 = new FibonachiByForkJoinAlgorithm(n - 1);
+            FibonachiByForkJoinAlgorithm f2 = new FibonachiByForkJoinAlgorithm(n - 2);
             invokeAll(f1, f2);
             number = f1.number + f2.number;
         }
     }
 
-    public static void main(String[] args) {
-            int groupSize = 2; // for example
-            ForkJoinPool group = new ForkJoinPool(groupSize);
-            FibonachiByForkJoinAlgorithm f = new FibonachiByForkJoinAlgorithm(35); // for example
-            group.invoke(f);
-            int result = f.getAnswer();
-            System.out.println("Answer: " +       result);
-
-    }
-
     int seqFib(int n) {
         if (n <= 1) return n;
-        else return seqFib(n-1) + seqFib(n-2);
+        else return seqFib(n - 1) + seqFib(n - 2);
     }
 }

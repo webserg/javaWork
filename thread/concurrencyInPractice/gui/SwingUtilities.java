@@ -1,11 +1,7 @@
 package net.jcip.examples;
 
 import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.ThreadFactory;
+import java.util.concurrent.*;
 
 /**
  * SwingUtilities
@@ -18,13 +14,6 @@ public class SwingUtilities {
     private static final ExecutorService exec =
             Executors.newSingleThreadExecutor(new SwingThreadFactory());
     private static volatile Thread swingThread;
-
-    private static class SwingThreadFactory implements ThreadFactory {
-        public Thread newThread(Runnable r) {
-            swingThread = new Thread(r);
-            return swingThread;
-        }
-    }
 
     public static boolean isEventDispatchThread() {
         return Thread.currentThread() == swingThread;
@@ -41,6 +30,13 @@ public class SwingUtilities {
             f.get();
         } catch (ExecutionException e) {
             throw new InvocationTargetException(e);
+        }
+    }
+
+    private static class SwingThreadFactory implements ThreadFactory {
+        public Thread newThread(Runnable r) {
+            swingThread = new Thread(r);
+            return swingThread;
         }
     }
 }

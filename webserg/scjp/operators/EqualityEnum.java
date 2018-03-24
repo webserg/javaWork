@@ -1,8 +1,6 @@
 package webserg.scjp.operators;
 
 public class EqualityEnum {
-    enum Color {Red, Green}
-
     /**
      * @param args
      */
@@ -14,5 +12,7 @@ public class EqualityEnum {
         if (c1 == c2) System.out.println("==");
         if (c1.equals(c2)) System.out.println("equals");
     }
+
+    enum Color {Red, Green}
 
 }

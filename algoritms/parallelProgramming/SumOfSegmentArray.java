@@ -11,7 +11,7 @@ public class SumOfSegmentArray {
     private static ExecutorService executorService = Executors.newCachedThreadPool();
     private static int threashold = 10;
 
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         int[] array = new int[100];
         int s = 5;
         int t = 10;

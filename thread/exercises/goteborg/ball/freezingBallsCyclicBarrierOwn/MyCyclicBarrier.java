@@ -6,10 +6,10 @@ import java.util.concurrent.Semaphore;
  * Created by webserg on 05.05.2014.
  */
 public class MyCyclicBarrier implements MyCyclicBarrierI {
-    private int counter;
     private final int p;
     private final Semaphore mutex = new Semaphore(1);
     private final Semaphore barrier;
+    private int counter;
 
     public MyCyclicBarrier(int parties) {
         p = parties;
@@ -26,8 +26,8 @@ public class MyCyclicBarrier implements MyCyclicBarrierI {
         try {
             mutex.acquire();
             counter = counter + 1;
-            if(counter == p) {
-                counter=0;
+            if (counter == p) {
+                counter = 0;
                 Balls.nap((int) (1000 * Math.random()));
                 barrier.release(p);
             }

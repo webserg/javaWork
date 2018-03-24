@@ -12,18 +12,19 @@ package patterns.headFirstDesignPatterns.singleton.threadsafe;
  * for every invocation of the method, even though it is only required on the first invocation.
  */
 public class Singleton {
-	private static Singleton uniqueInstance;
- 
-	// other useful instance variables here
- 
-	private Singleton() {}
- 
-	public static synchronized Singleton getInstance() {
-		if (uniqueInstance == null) {
-			uniqueInstance = new Singleton();
-		}
-		return uniqueInstance;
-	}
- 
-	// other useful methods here
+    private static Singleton uniqueInstance;
+
+    // other useful instance variables here
+
+    private Singleton() {
+    }
+
+    public static synchronized Singleton getInstance() {
+        if (uniqueInstance == null) {
+            uniqueInstance = new Singleton();
+        }
+        return uniqueInstance;
+    }
+
+    // other useful methods here
 }

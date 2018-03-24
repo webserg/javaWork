@@ -2,10 +2,9 @@ package collections.lists;
 
 /**
  * Created by webserg on 11.05.2014.
- *
- *
+ * <p>
+ * <p>
  * klkl
- *
  */
 public class SinglyLinkedList<K> {
     private Node<K> head;
@@ -29,7 +28,7 @@ public class SinglyLinkedList<K> {
     public boolean search(K k) {
         Node<K> cur = head;
         while (cur != null) {
-            if(cur.k == k) return true;
+            if (cur.k == k) return true;
             cur = cur.link;
         }
         return false;
@@ -39,11 +38,11 @@ public class SinglyLinkedList<K> {
         Node<K> cur = head;
         Node<K> prev = null;
         while (cur != null) {
-            if(cur.k == k) {
-                if(prev == null){
+            if (cur.k == k) {
+                if (prev == null) {
                     head = cur.link;
-                }else{
-                    if(cur == tail){
+                } else {
+                    if (cur == tail) {
                         tail = prev;
                     }
                     prev.link = cur.link;

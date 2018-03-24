@@ -57,8 +57,8 @@ public class WildCardExtends {
         for (T t : src) {
             dist.add(t);
         }
-            System.out.println("inside" + dist.get(0));
-            System.out.println("inside" + dist.get(1));
+        System.out.println("inside" + dist.get(0));
+        System.out.println("inside" + dist.get(1));
 
 
     }
@@ -69,8 +69,8 @@ public class WildCardExtends {
 //        }
 //    }
 
-    static void printList(List<? extends LiveBeen> list){
-        for(LiveBeen t : list){
+    static void printList(List<? extends LiveBeen> list) {
+        for (LiveBeen t : list) {
             System.out.println(t);
         }
     }

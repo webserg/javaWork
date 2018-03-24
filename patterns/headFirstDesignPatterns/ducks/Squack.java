@@ -1,9 +1,9 @@
 package patterns.headFirstDesignPatterns.ducks;
 
-public class Squack implements QuackBehavior{
+public class Squack implements QuackBehavior {
 
     public void quack() {
-	System.out.println("squack");
+        System.out.println("squack");
     }
 
 }

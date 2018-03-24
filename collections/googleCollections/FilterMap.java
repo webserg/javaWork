@@ -1,11 +1,5 @@
 package collections.googleCollections;
 
-import java.util.Map;
-
-import com.google.common.base.Predicates;
-import com.google.common.collect.ImmutableMap;
-import com.google.common.collect.Maps;
-
 /**
  * Author: Sergiy Doroshenko
  * Date: Feb 22, 2010

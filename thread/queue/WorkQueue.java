@@ -5,8 +5,8 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author Sergiy Doroshenko 
- * 
+ * @author Sergiy Doroshenko
+ * <p>
  * Effective java first edition Item 50
  */
 public abstract class WorkQueue {
@@ -24,10 +24,10 @@ public abstract class WorkQueue {
             System.out.println("added" + workItem);
             queue.add(workItem);
             queue.notify();
-            
+
         }
     }
-    
+
     public final void enqueue(Collection<Runnable> workItems) {
         synchronized (queue) {
             queue.addAll(workItems);
@@ -51,10 +51,10 @@ public abstract class WorkQueue {
             while (true) { // PeriodictskExecution loop
                 synchronized (queue) {
                     try {
-                        while (queue.isEmpty() && !stopped){
+                        while (queue.isEmpty() && !stopped) {
                             queue.wait();
                             System.out.println("wait...");
-                        }    
+                        }
                     } catch (InterruptedException e) {
                         return;
                     }

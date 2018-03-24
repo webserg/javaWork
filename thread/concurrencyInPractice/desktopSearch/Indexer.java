@@ -3,11 +3,11 @@ package thread.concurrencyInPractice.desktopSearch;
 import java.io.File;
 import java.util.concurrent.BlockingQueue;
 
-public class Indexer implements Runnable{
+public class Indexer implements Runnable {
     private final Dao dao;
     private final BlockingQueue<File> queue;
 
-    public Indexer(BlockingQueue<File> queue,Dao dao) {
+    public Indexer(BlockingQueue<File> queue, Dao dao) {
         this.queue = queue;
         this.dao = dao;
     }

@@ -105,13 +105,13 @@ class MyArrayBlockingQueueWithLock {
             queue[putIdx++] = t;
             cond.signalAll();
         } finally {
-           lock.unlock();
+            lock.unlock();
         }
 
     }
 
     Integer get() {
-       lock.lock();
+        lock.lock();
         try {
             while (countN == 0) {
                 try {
@@ -126,7 +126,7 @@ class MyArrayBlockingQueueWithLock {
             cond.signalAll();
             return t;
         } finally {
-           lock.unlock();
+            lock.unlock();
         }
     }
 }

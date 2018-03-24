@@ -26,6 +26,6 @@ public class TestSer {
 }
 
 class SpecialSerial implements Serializable {
-    transient int y = 7;
     static int z = 9;
+    transient int y = 7;
 }

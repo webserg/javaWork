@@ -2,10 +2,10 @@ package thread.caches.lfu;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/18/11 12:34 PM
+ * email:webserg@gmail.com
+ * Date: 1/18/11 12:34 PM
  */
-public class CountKey<K> implements Comparable<CountKey>{
+public class CountKey<K> implements Comparable<CountKey> {
     private K key;
     private Integer count = 0;
 
@@ -21,7 +21,7 @@ public class CountKey<K> implements Comparable<CountKey>{
         this.count = count;
     }
 
-    public void incrementCount(){
+    public void incrementCount() {
         count++;
     }
 

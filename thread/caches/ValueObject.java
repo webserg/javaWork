@@ -2,8 +2,8 @@ package thread.caches;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 2:56 PM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 2:56 PM
  */
 public class ValueObject {
     private KeyObject key;

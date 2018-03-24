@@ -1,7 +1,5 @@
 package thread.artOfMultiprocessorProgr.lists;
 
-import webserg.scjp.arrays.Arrays;
-
 /**
  * Traditionally balanced trees have been used to efficiently implement Set and HashMap style data structures.
  * Balanced tree algorithms are characterized by the need to continually rebalance the tree as operations are performed.
@@ -41,23 +39,27 @@ public class SkipList<T extends Comparable> implements IList<T> {
     final Node<T> head = new Node<>(MAX_LEVEL, null);
     private int level = 0;//hightes level exists in skip list
 
-    private static final class Node<T extends Comparable> {
-        final T item;
-        final Node<T>[] next;
-        //  private int level;
+    public static int randomLevel() {
+        int lvl = (int) (Math.log(1. - Math.random()) / Math.log(1. - P));
+        return Math.min(lvl, MAX_LEVEL);
+    }
 
-        public Node(int level, T t) { // sentinel node constructor
-            this.item = t;
-            //@SuppressWarnings("Unchecked")
-            next = new Node[level + 1];
-        }
+    public static void main(String[] args) {
 
-        @Override
-        public String toString() {
-            return "Node{" +
-                    "item=" + item +
-                    '}';
-        }
+        SkipList<Integer> ss = new SkipList<>();
+
+        ss.add(5);
+        ss.add(10);
+        ss.add(7);
+        ss.add(7);
+        ss.add(6);
+        System.out.println(ss);
+        //assert ss.toString().equals("{5,6,7,10}");
+        assert ss.contains(7);
+        assert !ss.contains(17);
+        ss.remove(7);
+        assert ss.contains(7);
+
     }
 
     /*8
@@ -128,7 +130,7 @@ public class SkipList<T extends Comparable> implements IList<T> {
             update[lev] = curr;
         }
 
-        if(curr.item.compareTo(item) == 0){
+        if (curr.item.compareTo(item) == 0) {
             System.out.println(java.util.Arrays.toString(update));
         }
 
@@ -148,11 +150,6 @@ public class SkipList<T extends Comparable> implements IList<T> {
         return false;
     }
 
-    public static int randomLevel() {
-        int lvl = (int) (Math.log(1. - Math.random()) / Math.log(1. - P));
-        return Math.min(lvl, MAX_LEVEL);
-    }
-
     public String toString() {
         Node cur = head;
         StringBuilder str = new StringBuilder("[");
@@ -164,22 +161,22 @@ public class SkipList<T extends Comparable> implements IList<T> {
         return str.toString();
     }
 
+    private static final class Node<T extends Comparable> {
+        final T item;
+        final Node<T>[] next;
+        //  private int level;
 
-    public static void main(String[] args) {
+        public Node(int level, T t) { // sentinel node constructor
+            this.item = t;
+            //@SuppressWarnings("Unchecked")
+            next = new Node[level + 1];
+        }
 
-        SkipList<Integer> ss = new SkipList<>();
-
-        ss.add(5);
-        ss.add(10);
-        ss.add(7);
-        ss.add(7);
-        ss.add(6);
-        System.out.println(ss);
-        //assert ss.toString().equals("{5,6,7,10}");
-        assert ss.contains(7);
-        assert !ss.contains(17);
-        ss.remove(7)  ;
-        assert ss.contains(7);
-
+        @Override
+        public String toString() {
+            return "Node{" +
+                    "item=" + item +
+                    '}';
+        }
     }
 }

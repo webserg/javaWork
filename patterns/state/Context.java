@@ -7,7 +7,9 @@ import java.nio.ByteBuffer;
  * Date: 7/10/11
  */
 interface Context {
-     ByteBuffer buffer();
+    ByteBuffer buffer();
+
     State state();
+
     void state(State state);
 }

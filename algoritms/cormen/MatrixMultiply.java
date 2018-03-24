@@ -22,7 +22,7 @@ public class MatrixMultiply {
     }
 
     private static int[][] matrixMultiply(int[][] a, int[][] b) {
-        if(a[0].length != b.length) throw new IllegalArgumentException("matrix incompatible");
+        if (a[0].length != b.length) throw new IllegalArgumentException("matrix incompatible");
         int c[][] = new int[a.length][b[0].length];
         for (int i = 0; i < a.length; i++) {
             for (int j = 0; j < b[i].length; j++) {
@@ -30,14 +30,14 @@ public class MatrixMultiply {
                 for (int k = 0; k < b.length; k++) {
                     sum += a[i][k] * b[k][j];
                 }
-                 c[i][j] = sum;
+                c[i][j] = sum;
             }
         }
         return c;
     }
 
     private static int[][] squareMatrixMultiply(int[][] a, int[][] b) {
-        if(a.length != b.length) throw new IllegalArgumentException("matrix incompatible");
+        if (a.length != b.length) throw new IllegalArgumentException("matrix incompatible");
         int len = a.length;
         int c[][] = new int[len][len];
         for (int i = 0; i < len; i++) {

@@ -4,9 +4,8 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Created by webserg on 05.05.2014.
- *
+ * <p>
  * if process pick up left fork then right is't lead to deadlock
- *
  */
 public class Philosopher implements Runnable {
 
@@ -16,6 +15,18 @@ public class Philosopher implements Runnable {
 
     public Philosopher(int i) {
         positionAtTable = i;
+    }
+
+    public static void nap(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            //
+            //  Print out the positionAtTable of the tread that caused this.
+            //
+            System.err.println("Thread " + Thread.currentThread().getName() +
+                    " throwed exception " + e.getMessage());
+        }
     }
 
     @Override
@@ -41,9 +52,9 @@ public class Philosopher implements Runnable {
     private int[] getForkIdx() {
         int leftFork = positionAtTable;
         int rightFork;
-        if (positionAtTable == 4) rightFork=0;
+        if (positionAtTable == 4) rightFork = 0;
         else rightFork = positionAtTable + 1;
-        return new int[]{leftFork,rightFork};
+        return new int[]{leftFork, rightFork};
     }
 
     public void eat() {
@@ -54,17 +65,5 @@ public class Philosopher implements Runnable {
     public void think() {
         System.out.println("think = " + positionAtTable);
         nap((int) (100 * Math.random()));
-    }
-
-    public static void nap(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            //
-            //  Print out the positionAtTable of the tread that caused this.
-            //
-            System.err.println("Thread " + Thread.currentThread().getName() +
-                    " throwed exception " + e.getMessage());
-        }
     }
 }

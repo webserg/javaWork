@@ -3,11 +3,6 @@ package webserg.scjp.ch1;
 import java.util.Formatter;
 
 public class VarArgsSimple {
-    void testVarArgs(String a, String... b) {
-        System.out.println(b.length);
-
-    }
-
     public static void main(String[] argv) {
         VarArgsSimple v = new VarArgsSimple();
         v.testVarArgs("a", "b", "c");
@@ -26,6 +21,11 @@ public class VarArgsSimple {
         //java.lang.AssertionError
         String s = "sdfs sdfsd sdf";
         String[] ss = s.split(s);
+    }
+
+    void testVarArgs(String a, String... b) {
+        System.out.println(b.length);
+
     }
 
 }

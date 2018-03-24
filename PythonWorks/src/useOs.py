@@ -1,6 +1,6 @@
 __author__ = 'webserg'
-import os
 import glob
+import os
 
 print(os.getcwd())
 pathname = '/Users/pilgrim/diveintopython3/examples/humansize.py'

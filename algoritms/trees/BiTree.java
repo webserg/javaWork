@@ -45,7 +45,7 @@ public class BiTree {
         treeInsert(tree2, new Node(48));
         treeInsert(tree2, new Node(60));
 
-        treeDelete(tree2,treeSearch(tree2.root, 40));
+        treeDelete(tree2, treeSearch(tree2.root, 40));
         Assert.assertNull(treeSearch(tree2.root, 40));
         inOrderTreeWalk(tree2.root);
 
@@ -104,21 +104,21 @@ public class BiTree {
         if (v != null) v.p = u.p;
     }
 
-    public  static void treeDelete(BiTree tree,Node z){
-        if(z.left==null){
-            transplant(tree,z,z.right);
-        }else if(z.right==null){
-            transplant(tree,z,z.left);
-        }else{
+    public static void treeDelete(BiTree tree, Node z) {
+        if (z.left == null) {
+            transplant(tree, z, z.right);
+        } else if (z.right == null) {
+            transplant(tree, z, z.left);
+        } else {
             Node y = treeMin(z.right);
-            if(y.p != z){
-                transplant(tree,y,null);
-                y.right=z.right;
-                y.right.p=y;
+            if (y.p != z) {
+                transplant(tree, y, null);
+                y.right = z.right;
+                y.right.p = y;
             }
-            transplant(tree,z,y);
-            y.left=z.left;
-            y.left.p=y;
+            transplant(tree, z, y);
+            y.left = z.left;
+            y.left.p = y;
         }
     }
 

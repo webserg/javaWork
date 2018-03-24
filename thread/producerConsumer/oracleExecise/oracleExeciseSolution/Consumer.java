@@ -5,8 +5,8 @@ import java.util.concurrent.BlockingQueue;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/16/11 1:53 PM
+ * email:webserg@gmail.com
+ * Date: 1/16/11 1:53 PM
  */
 class Consumer implements Runnable {
     private BlockingQueue<String> drop;

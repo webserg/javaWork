@@ -12,10 +12,10 @@ public class TreeSetComparator {
     public static void main(String[] args) {
         TreeSet treeSet = new TreeSet<>(new Comp1());
         Date date = GregorianCalendar.getInstance().getTime();
-        treeSet.add(new Moo("1",date));
-        treeSet.add(new Moo("2",date));
-        treeSet.add(new Moo("3",date));
-        treeSet.add(new Moo("4",date));
+        treeSet.add(new Moo("1", date));
+        treeSet.add(new Moo("2", date));
+        treeSet.add(new Moo("3", date));
+        treeSet.add(new Moo("4", date));
         treeSet.forEach(e -> System.out.println(e));
 
     }
@@ -64,10 +64,11 @@ class Moo {
         return result;
     }
 }
-class Comp1 implements Comparator<Moo>{
+
+class Comp1 implements Comparator<Moo> {
     @Override
     public int compare(Moo o1, Moo o2) {
-        if(o2.getDate().after(o1.getDate())) return 1;
+        if (o2.getDate().after(o1.getDate())) return 1;
         else return -1;
     }
 }

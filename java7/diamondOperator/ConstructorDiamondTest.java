@@ -1,7 +1,5 @@
 package java7.diamondOperator;
 
-import webserg.scjp.mock.T;
-
 /**
  * Bluegarden
  * User: sedo
@@ -9,8 +7,8 @@ import webserg.scjp.mock.T;
  */
 public class ConstructorDiamondTest {
     public static void main(String[] args) {
-        MyClassGenClass<Integer> myObject = new MyClassGenClass< >("");
-        MyClassGenClass<Integer> myObject2 = new MyClassGenClass< >(""); //  ??? must work
+        MyClassGenClass<Integer> myObject = new MyClassGenClass<>("");
+        MyClassGenClass<Integer> myObject2 = new MyClassGenClass<>(""); //  ??? must work
     }
 
 }

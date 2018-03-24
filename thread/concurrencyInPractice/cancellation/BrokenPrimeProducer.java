@@ -1,10 +1,10 @@
 package thread.concurrencyInPractice.cancellation;
 
-import static java.util.concurrent.TimeUnit.SECONDS;
-
 import java.math.BigInteger;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
+
+import static java.util.concurrent.TimeUnit.SECONDS;
 
 /**
  * The cancellation mechanism in PrimeGenerator will eventually cause
@@ -23,7 +23,7 @@ import java.util.concurrent.LinkedBlockingQueue;
  * the consumer has stopped retrieving primes from the queue).
  *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 24, 2009 12:35:09
- *         PM
+ * PM
  */
 public class BrokenPrimeProducer extends Thread {
     private final BlockingQueue<BigInteger> queue;
@@ -31,20 +31,6 @@ public class BrokenPrimeProducer extends Thread {
 
     BrokenPrimeProducer(BlockingQueue<BigInteger> queue) {
         this.queue = queue;
-    }
-
-    public void run() {
-        try {
-            BigInteger p = BigInteger.ONE;
-            while (!cancelled)    //never checked because put blocked (queue full and waiting for take method)
-                queue.put(p = p.nextProbablePrime());
-        } catch (InterruptedException consumed) {
-        }
-    }
-
-    public void cancel() {
-        System.out.println("cancel");
-        cancelled = true;
     }
 
     static void consumePrimes() throws InterruptedException {
@@ -68,5 +54,19 @@ public class BrokenPrimeProducer extends Thread {
 
     public static void main(String[] args) throws InterruptedException {
         consumePrimes();
+    }
+
+    public void run() {
+        try {
+            BigInteger p = BigInteger.ONE;
+            while (!cancelled)    //never checked because put blocked (queue full and waiting for take method)
+                queue.put(p = p.nextProbablePrime());
+        } catch (InterruptedException consumed) {
+        }
+    }
+
+    public void cancel() {
+        System.out.println("cancel");
+        cancelled = true;
     }
 }

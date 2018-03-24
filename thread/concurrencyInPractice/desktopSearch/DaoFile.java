@@ -2,7 +2,7 @@ package thread.concurrencyInPractice.desktopSearch;
 
 import java.io.File;
 
-public class DaoFile implements Dao{
+public class DaoFile implements Dao {
 
     @Override
     public boolean alreadyIndexed(File entry) {
@@ -20,7 +20,7 @@ public class DaoFile implements Dao{
             e.printStackTrace();
         }
         // TODO Auto-generated method stub
-        
+
     }
 
 }

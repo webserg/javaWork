@@ -14,10 +14,9 @@ public final class Cell {
 
     }
 
-    public static Cell cell(int x, int y){
-        return new Cell(x,y);
+    public static Cell cell(int x, int y) {
+        return new Cell(x, y);
     }
-
 
 
     @Override

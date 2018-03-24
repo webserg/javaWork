@@ -11,8 +11,8 @@ import java.util.concurrent.FutureTask;
  * calling run method of future task, will not allow running the thread. Find the example.
  */
 public class FutureTaskTest {
-    public static void main(String... args)throws Exception{
-        FutureTask<String> ft= new FutureTask< >(new DemoTask());
+    public static void main(String... args) throws Exception {
+        FutureTask<String> ft = new FutureTask<>(new DemoTask());
 //        boolean b=ft.cancel(true);
         ft.run();
         System.out.println(ft.get());

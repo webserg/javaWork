@@ -8,9 +8,9 @@ import java.util.concurrent.ConcurrentMap;
  * caching. Reusing the results of a previous computation
  * can reduce latency and increase throughput, at the cost
  * of some additional memory usage.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 10, 2009
- *         4:41:41 PM
+ * 4:41:41 PM
  */
 public class Memoizer2<A, V> {
     private final ConcurrentMap<A, V> cache = new ConcurrentHashMap<A, V>();
@@ -27,12 +27,12 @@ public class Memoizer2<A, V> {
      * still has some defects as a cachethere is a window of
      * vulnerability in which two threads calling compute at
      * the same time could end up computing the same value.
-     * 
+     * <p>
      * The problem with Memoizer2 is that if one thread
      * starts an expensive computation, other threads are
      * not aware that the computation is in progress and so
      * may start the same computation
-     * 
+     *
      * @param arg
      * @return
      * @throws InterruptedException

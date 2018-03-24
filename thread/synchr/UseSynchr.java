@@ -3,7 +3,6 @@ package thread.synchr;
 import java.util.ArrayList;
 import java.util.ConcurrentModificationException;
 import java.util.List;
-import java.util.concurrent.Executors;
 
 /**
  * Created by webserg on 12.04.2014.
@@ -11,7 +10,33 @@ import java.util.concurrent.Executors;
 public class UseSynchr {
     final Res res = new Res();
     List<String> list = new ArrayList<>();
-    private void writer(){
+
+    public static void main(String[] args) {
+        UseSynchr useSynchr = new UseSynchr();
+
+        Runnable thread1 = () -> {
+            while (true) {
+                useSynchr.writer();
+            }
+        };
+
+        Runnable thread3 = () -> {
+            while (true) {
+                useSynchr.reader();
+            }
+        };
+
+        new Thread(thread1, "name1").start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(thread1, "name2").start();
+        new Thread(thread3, "name3").start();
+    }
+
+    private void writer() {
         synchronized (res) {
             res.setFname("fname" + Thread.currentThread().getName());
             try {
@@ -42,39 +67,14 @@ public class UseSynchr {
         }
     }
 
-    private boolean check(String r){
-        return r.charAt(9) == r.charAt(9+9+1);
-    }
-
-    public static void main(String[] args) {
-        UseSynchr useSynchr = new UseSynchr();
-
-        Runnable thread1 = () -> {
-            while (true) {
-                useSynchr.writer();
-            }
-        };
-
-        Runnable thread3 = () -> {
-            while (true) {
-                useSynchr.reader();
-            }
-        };
-
-       new Thread(thread1,"name1").start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-       new Thread(thread1,"name2").start();
-       new Thread(thread3,"name3").start();
+    private boolean check(String r) {
+        return r.charAt(9) == r.charAt(9 + 9 + 1);
     }
 }
 
 class Res {
-    private String fname ="";
-    private String sname ="";
+    private String fname = "";
+    private String sname = "";
 
 
     public void setFname(String fname) {

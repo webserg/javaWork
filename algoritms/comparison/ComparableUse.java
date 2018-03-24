@@ -29,7 +29,7 @@ public class ComparableUse {
      * omitted in the next section.
      *
      * @param coll collection
-     * @param <T> param
+     * @param <T>  param
      * @return max
      */
     public static <T extends Comparable<? super T>> T max3(Collection<? extends T> coll) {
@@ -66,19 +66,19 @@ public class ComparableUse {
 
         List<? extends Fruit> fruits = Arrays.asList(
 
-                new Apple("apple500",500.0d),
-                new Apple("apple5",5.0d),
-                new Orange("orange6",6.0d),
-                new Apple("apple2",2.0d),
-                new Orange("orange88",88.0d)
+                new Apple("apple500", 500.0d),
+                new Apple("apple5", 5.0d),
+                new Orange("orange6", 6.0d),
+                new Apple("apple2", 2.0d),
+                new Orange("orange88", 88.0d)
 
         );
         //Incorrect
-       // assert max(fruits).equals(new Apple("apple500",500.0d));  //<T>max(java.util.Collection<T>) in algoritms.comparison.ComparableUse cannot be applied to (java.util.List<capture#309 of ? extends algoritms.comparison.Fruit>)
+        // assert max(fruits).equals(new Apple("apple500",500.0d));  //<T>max(java.util.Collection<T>) in algoritms.comparison.ComparableUse cannot be applied to (java.util.List<capture#309 of ? extends algoritms.comparison.Fruit>)
 
-        assert max3(fruits).equals(new Apple("apple500",500.0d));   // so we need use wild cards!!!!
+        assert max3(fruits).equals(new Apple("apple500", 500.0d));   // so we need use wild cards!!!!
 
         System.out.println(max3(fruits));
     }
-    
+
 }

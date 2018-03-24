@@ -12,7 +12,7 @@ package webserg.pazzlers.ch5;
  * a statement or block occurs when it throws an exception, executes a break or continue to an enclosing statement,
  * or executes a return from the method as in this program. These are called abrupt completions because they prevent
  * the program from executing the next statement in sequence.
- *
+ * <p>
  * In summary, every finally block should complete normally, barring an unchecked exception.
  * Never exit a finally block with a return, break, continue, or tHRow, and never allow a checked
  * exception to propagate out of a finally block.

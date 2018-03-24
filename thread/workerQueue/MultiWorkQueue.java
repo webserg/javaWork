@@ -43,9 +43,9 @@ public class MultiWorkQueue {
         }
 
         /*
-        * Method to retrieve task from worker queue and start executing it.
-        * This thread will wait for a task if there is no task in the queue.
-        */
+         * Method to retrieve task from worker queue and start executing it.
+         * This thread will wait for a task if there is no task in the queue.
+         */
         public void run() {
             while (!stopNow) {
                 try {

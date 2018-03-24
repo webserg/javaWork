@@ -32,9 +32,6 @@ public class RestrictionsOfWildCards {
         List<List<?>> l = RestrictionsOfWildCards.<List<?>>factory();  // ok
 
 
-
-
-
     }
     //If a generic method call includes explicit type parameters, those type parameters must not be wildcards. 
 

@@ -3,8 +3,8 @@ package java8.lambda;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Stream;
-import static java.util.stream.Collectors.toList;
 
+import static java.util.stream.Collectors.toList;
 import static junit.framework.Assert.assertEquals;
 
 /**

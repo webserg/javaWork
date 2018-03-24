@@ -30,7 +30,7 @@ public class ConcurrentHashMapUsing {
 
         // put-if-absent idiom -- contains a race condition
         // may require external synchronization
-        Object key  = new Object();
+        Object key = new Object();
         String value = "";
         if (!map.containsKey(key))
             map.put(key, value);
@@ -43,7 +43,7 @@ public class ConcurrentHashMapUsing {
 
         // normal iteration -- can throw ConcurrentModificationException
         // may require external synchronization
-        for (Iterator i = list.iterator(); i.hasNext();) {
+        for (Iterator i = list.iterator(); i.hasNext(); ) {
             doSomething(i.next());
         }
 
@@ -67,7 +67,7 @@ public class ConcurrentHashMapUsing {
         // or removals that occurred since the iterator was constructed
     }
 
-    public  static void doSomething(Object o){
+    public static void doSomething(Object o) {
 
     }
 

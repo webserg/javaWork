@@ -17,14 +17,6 @@ public class Folder {
         this.documents = documents;
     }
 
-    List<Folder> getSubFolders() {
-        return this.subFolders;
-    }
-
-    List<Document> getDocuments() {
-        return this.documents;
-    }
-
     static Folder fromDirectory(File dir) throws IOException {
         List<Document> documents = new LinkedList<>();
         List<Folder> subFolders = new LinkedList<>();
@@ -37,5 +29,13 @@ public class Folder {
             }
         }
         return new Folder(subFolders, documents);
+    }
+
+    List<Folder> getSubFolders() {
+        return this.subFolders;
+    }
+
+    List<Document> getDocuments() {
+        return this.documents;
     }
 }

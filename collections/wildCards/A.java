@@ -5,4 +5,5 @@ package collections.wildCards;
  * Date: Sep 15, 2010
  * Time: 1:44:31 PM
  */
-class A{}
+class A {
+}

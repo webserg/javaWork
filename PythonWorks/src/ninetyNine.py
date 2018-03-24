@@ -1,7 +1,6 @@
 __author__ = 'webserg'
 import unittest
 
-
 # class NinetyNineProblemsFixture(unittest.TestCase):
 y = [1, 'two', 3, 4, 5, 6.0, 6.5, 7.0, 8]
 
@@ -16,6 +15,7 @@ def isPolydrome(llist):
 
 print(reverse(y))
 print(isPolydrome([1, 2, 1]))
+
 
 # ?- my_flatten([a, [b, [c, d], e]], X).
 # X = [a, b, c, d, e]
@@ -42,4 +42,3 @@ class NinetyNineProblemsFixture(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-

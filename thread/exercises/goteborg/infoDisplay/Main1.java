@@ -1,7 +1,8 @@
 package thread.exercises.goteborg.infoDisplay;
+
 /*
-* http://www.cse.chalmers.se/edu/year/2012/course/TDA382_Concurrent_Programming_2012-2013_LP1/exercises/1/
-* */
+ * http://www.cse.chalmers.se/edu/year/2012/course/TDA382_Concurrent_Programming_2012-2013_LP1/exercises/1/
+ * */
 public class Main1 {
 
     private static void nap(int millisecs) {

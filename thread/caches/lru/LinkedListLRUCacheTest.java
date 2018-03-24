@@ -6,13 +6,10 @@ import thread.caches.KeyObject;
 import thread.caches.UserOfCache;
 import thread.caches.ValueObject;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
-
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 2:52 PM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 2:52 PM
  */
 public class LinkedListLRUCacheTest extends AbstractLinkedListLRUCacheTest {
 

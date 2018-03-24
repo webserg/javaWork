@@ -1,7 +1,6 @@
 package thread.artOfMultiprocessorProgr.lists;
 
 import junit.framework.TestCase;
-import thread.concurrencyInPractice.tests.SemaphoreBoundedBuffer;
 
 /**
  * User: webserg

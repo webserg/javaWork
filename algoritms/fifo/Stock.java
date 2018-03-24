@@ -2,5 +2,5 @@ package algoritms.fifo;
 
 
 public interface Stock {
-	public void accept(VisitorExchange v);
+    public void accept(VisitorExchange v);
 }

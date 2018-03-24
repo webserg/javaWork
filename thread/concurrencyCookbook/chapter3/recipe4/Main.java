@@ -14,12 +14,12 @@ public class Main {
      */
     public static void main(String[] args) {
 
-		/*
+        /*
          * Initializes the bi-dimensional array of data
-		 * 		10000 rows
-		 * 		1000 numbers in each row
-		 * 		Looking for number 5
-		 */
+         * 		10000 rows
+         * 		1000 numbers in each row
+         * 		Looking for number 5
+         */
         final int ROWS = 10000;
         final int NUMBERS = 1000;
         final int SEARCH = 5;

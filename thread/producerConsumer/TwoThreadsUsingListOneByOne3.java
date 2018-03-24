@@ -7,7 +7,6 @@ package thread.producerConsumer;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Semaphore;
 

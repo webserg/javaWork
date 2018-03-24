@@ -94,7 +94,7 @@ public class PossibleReordering {
         Thread one = new Thread(new Runnable() {
             public void run() {
                 a = 1;
-                x =  1 /b; //can be exaption because reordering
+                x = 1 / b; //can be exaption because reordering
             }
         });
         Thread other = new Thread(new Runnable() {

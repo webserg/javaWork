@@ -1,5 +1,5 @@
 class FirstClass:
-    def __init__(self,max):
+    def __init__(self, max):
         print("first")
         self.max = max + "123"
 

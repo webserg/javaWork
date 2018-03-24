@@ -8,9 +8,9 @@ import java.util.Map;
  * caching. Reusing the results of a previous computation
  * can reduce latency and increase throughput, at the cost
  * of some additional memory usage.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 10, 2009
- *         4:41:41 PM
+ * 4:41:41 PM
  */
 public class Memoizer1<A, V> {
     private final Map<A, V> cache = new HashMap<A, V>();
@@ -27,10 +27,10 @@ public class Memoizer1<A, V> {
      * synchronizing the entire compute method. This ensures
      * thread safety but has an obvious scalability problem:
      * only one thread at a time can execute compute at all.
-     * (for example: if two different threads get two different 
-     * value, second thread will be wait for first thread for 
+     * (for example: if two different threads get two different
+     * value, second thread will be wait for first thread for
      * compute value)
-     * 
+     *
      * @param arg
      * @return
      * @throws InterruptedException

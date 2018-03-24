@@ -11,18 +11,19 @@ import java.util.concurrent.Executors;
  * Time: 10:38:20 PM
  */
 public class ThreadPoolExecution {
-    private final static int N = 5;
     final static Counter c = new Counter();
+    private final static int N = 5;
     private final static ExecutorService exec = Executors.newFixedThreadPool(N);
 
     public static void main(String[] args) throws IOException {
-	for (int i = 1; i < 100; i++) {
-	    System.out.println(i);
-	    exec.execute(new TaskFib(c,i,30));
-	}
-	exec.shutdown();
+        for (int i = 1; i < 100; i++) {
+            System.out.println(i);
+            exec.execute(new TaskFib(c, i, 30));
+        }
+        exec.shutdown();
     }
 }
-class Counter{
+
+class Counter {
     public volatile int c = 0;
 }

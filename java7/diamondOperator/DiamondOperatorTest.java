@@ -13,9 +13,9 @@ import java.util.Map;
 public class DiamondOperatorTest {
     public static void main(String[] args) {
         // instead of this Map<String, List<String>> myMap = new HashMap<String, List<String>>(); use following
-        Map<String, List<String>> myMap = new HashMap< >();
+        Map<String, List<String>> myMap = new HashMap<>();
 
-        List<String> list = new ArrayList< >();
+        List<String> list = new ArrayList<>();
         list.add("A");
 
         // The following statement should fail since addAll expects
@@ -25,7 +25,7 @@ public class DiamondOperatorTest {
 
         // The following statements compile:
 
-        List<? extends String> list2 = new ArrayList< >();
+        List<? extends String> list2 = new ArrayList<>();
         list.addAll(list2);
     }
 }

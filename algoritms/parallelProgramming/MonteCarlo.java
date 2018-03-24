@@ -34,7 +34,7 @@ public class MonteCarlo {
         int hit = 0, i = 0;
         Random randomX = new Random();
         Random randomY = new Random();
-        while (i++ < iter){
+        while (i++ < iter) {
             if (isInCircle(randomX.nextDouble(), randomY.nextDouble(), 1)) {
                 hit++;
             }

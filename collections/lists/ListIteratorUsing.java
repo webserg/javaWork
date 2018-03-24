@@ -1,11 +1,12 @@
 package collections.lists;
 
 
-
-
 import org.junit.Assert;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.ListIterator;
 
 /**
  * Note the argument to listIterator in the preceding idiom.
@@ -29,12 +30,12 @@ public class ListIteratorUsing {
              it.hasPrevious(); ) {
             listBack.add(it.previous());
         }
-        Assert.assertEquals(list.toString(),listBack.toString());
+        Assert.assertEquals(list.toString(), listBack.toString());
 
         List<Integer> list2 = Collections.unmodifiableList(Lists.toList(1, 2, 3, 4, 10, 6, 7, 8, 9));
-        List<Integer> listReplaced = replace(Lists.toList(1, 2, 3, 4, 5, 6, 7, 8, 9),5,10);
+        List<Integer> listReplaced = replace(Lists.toList(1, 2, 3, 4, 5, 6, 7, 8, 9), 5, 10);
 
-        Assert.assertEquals(list2.toString(),listReplaced.toString());
+        Assert.assertEquals(list2.toString(), listReplaced.toString());
 
 
     }

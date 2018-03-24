@@ -95,8 +95,8 @@ public class PossibleReorderingFixed {
         Thread one = new Thread(new Runnable() {
             public void run() {
                 a = 1;
-                if(bool)
-                x =  1 /b; //guarantie b  will be 1
+                if (bool)
+                    x = 1 / b; //guarantie b  will be 1
             }
         });
         Thread other = new Thread(new Runnable() {

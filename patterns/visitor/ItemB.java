@@ -5,7 +5,7 @@ package patterns.visitor;
  * Date: Sep 18, 2010
  * Time: 4:28:19 PM
  */
-public class ItemB implements Item{
+public class ItemB implements Item {
     String result;
 
     public String getResult() {

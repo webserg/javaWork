@@ -8,7 +8,7 @@ import java.util.function.Predicate;
  * Date: 20.12.12
  */
 public class CollectionsStudentUtils<T> {
-    public Collection<Student> filter(Predicate<T> p){
+    public Collection<Student> filter(Predicate<T> p) {
         //  for()
         return null;
     }

@@ -8,14 +8,6 @@ public class TestAnimal {
     Integer i1 = new Integer(10);
     Integer i2 = 10;
 
-    void doStaff(Animal a) {
-        System.out.println("animal");
-    }
-
-    void doStaff(Horse h) {
-        System.out.println("horse");
-    }
-
     public static void main(String[] argv) {
 
         TestAnimal use = new TestAnimal();
@@ -53,5 +45,13 @@ public class TestAnimal {
             e.printStackTrace();
         }
 
+    }
+
+    void doStaff(Animal a) {
+        System.out.println("animal");
+    }
+
+    void doStaff(Horse h) {
+        System.out.println("horse");
     }
 }

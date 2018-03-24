@@ -10,25 +10,6 @@ package thread.pazzels;
 public class ThreadsLimits extends Thread {
     static volatile int x;
 
-    public void run() {
-        for (int i = 0; i < 10; i++) {
-            int temp = x;
-            try{
-                Thread.sleep(1000);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-            temp++;
-            x = temp;
-            System.out.println(Thread.currentThread().getName() + " " + x);
-            try{
-                Thread.sleep(1000);
-            }catch (InterruptedException e){
-                e.printStackTrace();
-            }
-        }
-    }
-
     public static void main(String[] args) {
         Thread t1 = new ThreadsLimits();
         Thread t2 = new ThreadsLimits();
@@ -36,6 +17,25 @@ public class ThreadsLimits extends Thread {
         t1.start();
         t2.start();
 
+    }
+
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            int temp = x;
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+            temp++;
+            x = temp;
+            System.out.println(Thread.currentThread().getName() + " " + x);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }

@@ -73,7 +73,7 @@ public class AdaptiveReplacementUsed<K, V> implements Cache<K, V> {
     private void replaceKey(K key, V value) {
         CountKey<K> countKey = queue1.poll();
 
-        if(countKey == null){  //if first queue is empty(there is no key with 1 hit at all)
+        if (countKey == null) {  //if first queue is empty(there is no key with 1 hit at all)
             countKey = queue2.poll();
         }
 

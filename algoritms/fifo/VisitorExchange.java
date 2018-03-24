@@ -1,5 +1,5 @@
 package algoritms.fifo;
 
 interface VisitorExchange {
-	public void visit(Stock stock);
+    public void visit(Stock stock);
 }

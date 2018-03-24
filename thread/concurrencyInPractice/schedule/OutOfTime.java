@@ -8,9 +8,9 @@ import java.util.TimerTask;
  * TimerTask throws an unchecked exception. The Timer thread
  * doesn't catch the exception, so an unchecked exception
  * thrown from a TimerTask terminates the timer thread.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 13, 2009
- *         6:16:19 PM
+ * 6:16:19 PM
  */
 public class OutOfTime {
     public static void main(String[] args) throws Exception {

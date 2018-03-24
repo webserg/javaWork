@@ -6,11 +6,12 @@ package thread.exercises.goteborg.ball.freezingBallsCyclicBarrierOwn;
 public class MyCyclicBarrier2 {
     int counter;
     int p;
-    public MyCyclicBarrier2(int parties){
+
+    public MyCyclicBarrier2(int parties) {
         p = parties;
     }
 
-    public void await(){
+    public void await() {
         counter = counter + 1;
     }
 }

@@ -1,14 +1,7 @@
 package thread.concurrencyInPractice.tasks.executors;
 
 import java.util.List;
-import java.util.concurrent.Callable;
-import java.util.concurrent.CompletionService;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import java.util.concurrent.*;
 
 /**
  * We can create a separate task for downloading each image and
@@ -17,7 +10,7 @@ import java.util.concurrent.TimeoutException;
  * images. And by fetching results from the CompletionService and
  * rendering each image as soon as it is available, we can give the
  * user a more dynamic and responsive user interface.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 18, 2009 4:39:58 PM
  */
 public class RenderComplationService {
@@ -60,12 +53,12 @@ public class RenderComplationService {
      * if an activity does not complete within a certain amount of
      * time, the result is no longer needed and the activity can be
      * abandoned.
-     * 
+     * <p>
      * The timed version of Future.get supports this requirement: it
      * returns as soon as the result is ready, but throws
      * TimeoutException if the result is not ready within the timeout
      * period.
-     * 
+     *
      * @return
      * @throws InterruptedException
      */
@@ -82,7 +75,7 @@ public class RenderComplationService {
         try {
             // Only wait for the remaining time budget
             long timeLeft = endNanos - System.nanoTime();
-            ad = f.get(timeLeft,TimeUnit.NANOSECONDS);
+            ad = f.get(timeLeft, TimeUnit.NANOSECONDS);
         } catch (ExecutionException e) {
             ad = DEFAULT_AD;
         } catch (TimeoutException e) {

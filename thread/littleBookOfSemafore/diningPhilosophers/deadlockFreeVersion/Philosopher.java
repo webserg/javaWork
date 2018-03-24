@@ -4,10 +4,10 @@ import java.util.concurrent.Semaphore;
 
 /**
  * Created by webserg on 05.05.2014.
- *  * if process pick up left fork then right is't lead to deadlock
- *  to avoid this avoid circular waiting
- *  for example odd-number philosopher pick up fork in one order
- *  even-number  philosopher pick up in another order
+ * * if process pick up left fork then right is't lead to deadlock
+ * to avoid this avoid circular waiting
+ * for example odd-number philosopher pick up fork in one order
+ * even-number  philosopher pick up in another order
  */
 public class Philosopher implements Runnable {
 
@@ -17,6 +17,18 @@ public class Philosopher implements Runnable {
 
     public Philosopher(int i) {
         positionAtTable = i;
+    }
+
+    public static void nap(int ms) {
+        try {
+            Thread.sleep(ms);
+        } catch (InterruptedException e) {
+            //
+            //  Print out the positionAtTable of the tread that caused this.
+            //
+            System.err.println("Thread " + Thread.currentThread().getName() +
+                    " throwed exception " + e.getMessage());
+        }
     }
 
     @Override
@@ -68,17 +80,5 @@ public class Philosopher implements Runnable {
     public void think() {
         System.out.println("think = " + positionAtTable);
         nap((int) (100 * Math.random()));
-    }
-
-    public static void nap(int ms) {
-        try {
-            Thread.sleep(ms);
-        } catch (InterruptedException e) {
-            //
-            //  Print out the positionAtTable of the tread that caused this.
-            //
-            System.err.println("Thread " + Thread.currentThread().getName() +
-                    " throwed exception " + e.getMessage());
-        }
     }
 }

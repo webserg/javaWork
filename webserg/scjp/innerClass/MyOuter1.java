@@ -1,17 +1,8 @@
 package webserg.scjp.innerClass;
 
 public class MyOuter1 {
-    private String x = "out";
-
-    final class MyInner {
-        void seeOut() {
-            System.out.println(x);
-            System.out.println(this);
-            System.out.println(MyOuter1.this);
-        }
-    }
-
     MyInner in = new MyInner();
+    private String x = "out";
 
     /**
      * @param args
@@ -23,6 +14,14 @@ public class MyOuter1 {
         MyOuter1 outer = new MyOuter1();
         MyInner inner3 = outer.new MyInner();
 
+    }
+
+    final class MyInner {
+        void seeOut() {
+            System.out.println(x);
+            System.out.println(this);
+            System.out.println(MyOuter1.this);
+        }
     }
 
 }

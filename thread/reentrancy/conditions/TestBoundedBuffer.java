@@ -2,13 +2,12 @@ package thread.reentrancy.conditions;
 
 import junit.framework.TestCase;
 import org.junit.Test;
-import thread.reentrancy.conditions.BoundedBuffer;
 
 /**
  * TestBoundedBuffer
  * <p/>
  * Basic unit tests for BoundedBuffer
- * 
+ *
  * @author Brian Goetz and Tim Peierls
  */
 public class TestBoundedBuffer extends TestCase {
@@ -16,7 +15,7 @@ public class TestBoundedBuffer extends TestCase {
 
     @Test
     public void testTakeBlocksWhenEmpty() {
-        final   BoundedBuffer bb = new BoundedBuffer();
+        final BoundedBuffer bb = new BoundedBuffer();
         Thread taker = new Thread() {
             public void run() {
                 try {
@@ -27,7 +26,7 @@ public class TestBoundedBuffer extends TestCase {
             }
         };
         try {
-             bb.put(1);
+            bb.put(1);
             taker.start();
             Thread.sleep(LOCKUP_DETECT_TIMEOUT);
             taker.interrupt();

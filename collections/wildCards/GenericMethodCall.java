@@ -9,7 +9,10 @@ import java.util.List;
  * Time: 2:14:24 PM
  */
 public class GenericMethodCall {
-    public static <T> List<T> factory() { return new ArrayList<T>(); }
+    public static <T> List<T> factory() {
+        return new ArrayList<T>();
+    }
+
     public static void main(String[] args) {
         List<?> list1 = GenericMethodCall.factory();
         List<?> list2 = GenericMethodCall.<Object>factory();

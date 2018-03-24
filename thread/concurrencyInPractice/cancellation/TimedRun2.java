@@ -1,10 +1,10 @@
 package thread.concurrencyInPractice.cancellation;
 
-import static java.util.concurrent.Executors.newScheduledThreadPool;
-import static thread.concurrencyInPractice.LaunderThrowable.launderThrowable;
-
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+
+import static java.util.concurrent.Executors.newScheduledThreadPool;
+import static thread.concurrencyInPractice.LaunderThrowable.launderThrowable;
 
 /**
  * TimedRun2

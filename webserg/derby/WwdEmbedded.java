@@ -1,12 +1,8 @@
 package webserg.derby;
 
 // Include the java SQL classes
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+
+import java.sql.*;
 
 public class WwdEmbedded {
     public static void main(String[] args) {
@@ -101,8 +97,8 @@ public class WwdEmbedded {
                 // Check if it is time to EXIT, if so end
                 // the loop
             } while (!answer.equals("exit")); // End of
-                                              // do-while
-                                              // loop
+            // do-while
+            // loop
 
             // Release the resources (clean up )
             psInsert.close();
@@ -146,6 +142,7 @@ public class WwdEmbedded {
     }
 
     // ## DERBY EXCEPTION REPORTING CLASSES ##
+
     /***
      * Exception reporting methods with special handling of
      * SQLExceptions

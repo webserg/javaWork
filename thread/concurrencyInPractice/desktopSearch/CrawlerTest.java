@@ -15,10 +15,11 @@ public class CrawlerTest {
             }
         };
         for (File root : roots)
-            new Thread(new FileCrawler(queue, filter, root,dao)).start();
+            new Thread(new FileCrawler(queue, filter, root, dao)).start();
         for (int i = 0; i < 10; i++)
-            new Thread(new Indexer(queue,dao)).start();
+            new Thread(new Indexer(queue, dao)).start();
     }
+
     public static void main(String[] args) {
         startIndexing(new File[]{new File("c:/books")});
     }

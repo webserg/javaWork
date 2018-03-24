@@ -1,5 +1,6 @@
 __author__ = 'webserg'
-import fractions, math
+import fractions
+import math
 
 x = fractions.Fraction(1, 3)
 print(x * 2)

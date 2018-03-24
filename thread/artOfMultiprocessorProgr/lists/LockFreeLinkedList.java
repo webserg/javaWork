@@ -1,7 +1,6 @@
 package thread.artOfMultiprocessorProgr.lists;
 
 import java.util.concurrent.atomic.AtomicMarkableReference;
-import java.util.concurrent.atomic.AtomicReference;
 
 /**
  * User: webserg
@@ -12,27 +11,22 @@ public class LockFreeLinkedList<T> implements IList<T> {
     Node tail;
 
     public LockFreeLinkedList() {
-        this.head = new Node(Integer.MIN_VALUE );
-        this.tail = new Node(Integer.MAX_VALUE );
-       //this.head.next = new AtomicMarkableReference<>(tail, false);
-         while (!head.next.compareAndSet(null, tail, false, false)) ;
+        this.head = new Node(Integer.MIN_VALUE);
+        this.tail = new Node(Integer.MAX_VALUE);
+        //this.head.next = new AtomicMarkableReference<>(tail, false);
+        while (!head.next.compareAndSet(null, tail, false, false)) ;
     }
 
-    private class Node {
-        int key;
-        AtomicMarkableReference<Node> next;
+    public static void main(String[] args) {
 
-        Node(T k, Node n) {
-            key = k.hashCode();
-            next = new AtomicMarkableReference<>(n, false);
-        }
+        IList<String> ss = new LockFreeLinkedList();
 
-        Node(int k) {
-            key = k;
-            next = new AtomicMarkableReference<>(null, false);
-        }
-
-
+        ss.add("5");
+        ss.add("10");
+        ss.add("7");
+        ss.add("7");
+        ss.add("6");
+        System.out.println(ss);
     }
 
     /**
@@ -58,7 +52,7 @@ public class LockFreeLinkedList<T> implements IList<T> {
      */
     @Override
     public boolean add(T item) {
-          int key = item.hashCode();
+        int key = item.hashCode();
         Node newNode = new Node(key);
         Node left = null, right;
         do {
@@ -116,7 +110,8 @@ public class LockFreeLinkedList<T> implements IList<T> {
     public boolean contains(T item) {
         return false;
     }
- public String toString() {
+
+    public String toString() {
         Node cur = head;
         StringBuilder str = new StringBuilder("[");
         while (cur != null) {
@@ -127,16 +122,20 @@ public class LockFreeLinkedList<T> implements IList<T> {
         return str.toString();
     }
 
+    private class Node {
+        int key;
+        AtomicMarkableReference<Node> next;
 
-    public static void main(String[] args) {
+        Node(T k, Node n) {
+            key = k.hashCode();
+            next = new AtomicMarkableReference<>(n, false);
+        }
 
-        IList<String> ss = new LockFreeLinkedList();
+        Node(int k) {
+            key = k;
+            next = new AtomicMarkableReference<>(null, false);
+        }
 
-        ss.add("5");
-        ss.add("10");
-        ss.add("7");
-        ss.add("7");
-        ss.add("6");
-        System.out.println(ss);
+
     }
 }

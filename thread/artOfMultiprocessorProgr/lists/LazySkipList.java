@@ -9,20 +9,19 @@ import java.util.concurrent.locks.ReentrantLock;
  * Date: 03.01.12
  */
 public class LazySkipList<T> {
-    /**
-     * Seed for simple random number generator.  Not volatile since it
-     * doesn't matter too much if different threads don't see updates.
-     */
-    private transient int randomSeed;
+    static final int MAX_LEVEL = 5;
     /**
      * Generates the initial random seed for the cheaper per-instance
      * random number generators used in randomLevel.
      */
     private static final Random seedGenerator = new Random();
-
-    static final int MAX_LEVEL = 5;
     final Node<T> head = new Node<T>(Integer.MIN_VALUE);
     final Node<T> tail = new Node<T>(Integer.MAX_VALUE);
+    /**
+     * Seed for simple random number generator.  Not volatile since it
+     * doesn't matter too much if different threads don't see updates.
+     */
+    private transient int randomSeed;
 
     public LazySkipList() {
         randomSeed = seedGenerator.nextInt() | 0x0100; // ensure nonzero;

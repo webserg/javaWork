@@ -6,7 +6,11 @@ package webserg.init;
  */
 public class RunInstanceInitBeforeStaticInit {
     private static RunInstanceInitBeforeStaticInit instance = new RunInstanceInitBeforeStaticInit();
-    static { System.out.println("static second");}
+
+    static {
+        System.out.println("static second");
+    }
+
     {
         System.out.println("instance first");
     }

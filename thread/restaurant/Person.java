@@ -1,6 +1,7 @@
 package thread.restaurant;
 
-interface Person{
-	Restaurant r = null;
-	public void run();
+interface Person {
+    Restaurant r = null;
+
+    public void run();
 }

@@ -22,9 +22,9 @@ import java.util.concurrent.Semaphore;
  * operation releases a permit, enabling more elements to be
  * added. The underlying Set implementation knows nothing
  * about the bound; this is handled by BoundedHashSet.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 9, 2009
- *         1:27:37 PM
+ * 1:27:37 PM
  */
 public class BoundedHashSet<T> {
     private final Set<T> set;
@@ -64,7 +64,6 @@ public class BoundedHashSet<T> {
     }
 
     /**
-     * 
      * @throws InterruptedException
      */
     @Test(timeout = 2000)
@@ -77,7 +76,7 @@ public class BoundedHashSet<T> {
          * proceed and run event
          */
         final CyclicBarrier barrier = new CyclicBarrier(2, () -> {
-                Assert.assertEquals(10, bset.getSize());
+            Assert.assertEquals(10, bset.getSize());
         });
 
         Thread write = new Thread() {
@@ -110,8 +109,8 @@ public class BoundedHashSet<T> {
                     bset.remove("" + i);
 
                 }
-              //Threads call await when they reach the barrier point, and await blocks
-              //until all the threads have reached the barrier point
+                //Threads call await when they reach the barrier point, and await blocks
+                //until all the threads have reached the barrier point
                 try {
                     barrier.await();
                 } catch (InterruptedException ex) {

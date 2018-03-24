@@ -6,7 +6,6 @@ package thread.workerQueue;
  */
 public class Task implements Runnable {
     private static final int Matrix_size = 100;
-    private String name;
     static int[][] matrix_A = null;
     static int[][] matrix_B = null;
 
@@ -16,8 +15,22 @@ public class Task implements Runnable {
         matrix_B = fillupMatrix();
     }
 
-    public Task(String name){
-       this.name = name;
+    private String name;
+
+    public Task(String name) {
+        this.name = name;
+    }
+
+    private static int[][] fillupMatrix() {
+        int index = 0;
+        int[][] matrix = new int[Matrix_size][Matrix_size];
+
+        for (int i = 0; i < Matrix_size; i++) {
+            for (int j = 0; j < Matrix_size; j++) {
+                matrix[i][j] = index++;
+            }
+        }
+        return matrix;
     }
 
     @Override
@@ -38,19 +51,7 @@ public class Task implements Runnable {
         }
     }
 
-    private static int[][] fillupMatrix() {
-        int index = 0;
-        int[][] matrix = new int[Matrix_size][Matrix_size];
-
-        for (int i = 0; i < Matrix_size; i++) {
-            for (int j = 0; j < Matrix_size; j++) {
-                matrix[i][j] = index++;
-            }
-        }
-        return matrix;
-    }
-
-    public String  getName(){
+    public String getName() {
         return name;
     }
 }

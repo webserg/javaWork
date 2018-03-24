@@ -1,55 +1,55 @@
 package patterns.builder;
 
 public class ContactImpl implements Contact {
-	private String firstName;
+    private String firstName;
 
-	private String lastName;
+    private String lastName;
 
-	private String title;
+    private String title;
 
-	private String organization;
+    private String organization;
 
-	public ContactImpl(String newFirstName, String newLastName,
-			String newTitle, String newOrganization) {
-		firstName = newFirstName;
-		lastName = newLastName;
-		title = newTitle;
-		organization = newOrganization;
-	}
+    public ContactImpl(String newFirstName, String newLastName,
+                       String newTitle, String newOrganization) {
+        firstName = newFirstName;
+        lastName = newLastName;
+        title = newTitle;
+        organization = newOrganization;
+    }
 
-	public String getFirstName() {
-		return firstName;
-	}
+    public String getFirstName() {
+        return firstName;
+    }
 
-	public String getLastName() {
-		return lastName;
-	}
+    public void setFirstName(String newFirstName) {
+        firstName = newFirstName;
+    }
 
-	public String getTitle() {
-		return title;
-	}
+    public String getLastName() {
+        return lastName;
+    }
 
-	public String getOrganization() {
-		return organization;
-	}
+    public void setLastName(String newLastName) {
+        lastName = newLastName;
+    }
 
-	public void setFirstName(String newFirstName) {
-		firstName = newFirstName;
-	}
+    public String getTitle() {
+        return title;
+    }
 
-	public void setLastName(String newLastName) {
-		lastName = newLastName;
-	}
+    public void setTitle(String newTitle) {
+        title = newTitle;
+    }
 
-	public void setTitle(String newTitle) {
-		title = newTitle;
-	}
+    public String getOrganization() {
+        return organization;
+    }
 
-	public void setOrganization(String newOrganization) {
-		organization = newOrganization;
-	}
+    public void setOrganization(String newOrganization) {
+        organization = newOrganization;
+    }
 
-	public String toString() {
-		return firstName + SPACE + lastName;
-	}
+    public String toString() {
+        return firstName + SPACE + lastName;
+    }
 }

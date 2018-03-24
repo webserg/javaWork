@@ -4,21 +4,17 @@ import thread.exercises.goteborg.ball.init.BallI;
 import thread.exercises.goteborg.ball.init.BallWorld;
 
 import java.awt.*;
-import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.Semaphore;
 
 public class Ball extends Thread implements BallI {
 
-    BallWorld<Ball> world;
-
-    private int xpos, ypos, xinc, yinc;
-
-    private final Color col;
-
     private final static int ballw = 10;
     private final static int ballh = 10;
+    private final Color col;
     private final Semaphore mutex = new Semaphore(0);
     private final MyCyclicBarrierI barrier;
+    BallWorld<Ball> world;
+    private int xpos, ypos, xinc, yinc;
 
     public Ball(BallWorld world, int xpos, int ypos,
                 int xinc, int yinc, Color col, MyCyclicBarrierI _barrier) {
@@ -39,14 +35,14 @@ public class Ball extends Thread implements BallI {
     }
 
     public void run() {
-            while (true) {
-                if (xpos == ypos) {
-                    System.out.println("freez" + col.toString() + " " + xpos + " " + ypos);
-                    world.repaint();
-                    barrier.await();
-                }
-                move();
+        while (true) {
+            if (xpos == ypos) {
+                System.out.println("freez" + col.toString() + " " + xpos + " " + ypos);
+                world.repaint();
+                barrier.await();
             }
+            move();
+        }
 
     }
 

@@ -1,8 +1,6 @@
 package webserg.scjp.arrays;
 
 
-import webserg.scjp.mock.IntegerGen;
-
 public class Arrays {
 
     /**
@@ -34,8 +32,8 @@ public class Arrays {
         int[] aa = {1, 2, 3, 4, 5, 6};
         int[] bb = {1, 2, 3};
 
-       assert check(aa,bb);
-       assert !check(aa,new int[]{2,5});
+        assert check(aa, bb);
+        assert !check(aa, new int[]{2, 5});
 
     }
 
@@ -47,7 +45,7 @@ public class Arrays {
         return args[0];
     }
 
-   static boolean check(int[] aa, int[] bb) {
+    static boolean check(int[] aa, int[] bb) {
         for (
                 int p = 0;
                 p <= bb.length; p++)

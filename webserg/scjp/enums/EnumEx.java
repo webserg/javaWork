@@ -29,12 +29,12 @@ class Enumeration {
 
         private int k;
 
-        int getK() {
-            return k;
-        }
-
         Letters(int k) {
             this.k = k;
+        }
+
+        int getK() {
+            return k;
         }
     }
 }

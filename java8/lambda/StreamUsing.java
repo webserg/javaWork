@@ -52,7 +52,7 @@ public class StreamUsing {
 
         int count = Stream.of(1, 2, 3).reduce(0, (acc, element) -> acc + element);
         assertEquals(6, count);
-        System.out.println(Lists.newArrayList(1,1,2,3,4,5).stream().reduce(0,(accumulator, e) -> accumulator+=e ));
+        System.out.println(Lists.newArrayList(1, 1, 2, 3, 4, 5).stream().reduce(0, (accumulator, e) -> accumulator += e));
     }
 
     @SafeVarargs

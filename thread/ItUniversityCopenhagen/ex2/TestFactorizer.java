@@ -1,7 +1,14 @@
 package thread.ItUniversityCopenhagen.ex2;
+
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.concurrent.atomic.AtomicReference;
+
+interface Factorizer {
+    public long[] getFactors(long p);
+
+    public long getCount();
+}
 
 class TestFactorizer {
     public static void main(String[] args) {
@@ -63,12 +70,6 @@ class PrimeFactors {
             prod *= factors[i];
         return p == prod;
     }
-}
-
-interface Factorizer {
-    public long[] getFactors(long p);
-
-    public long getCount();
 }
 
 // Like Goetz p. 18

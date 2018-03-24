@@ -48,14 +48,12 @@ public class SavingsAccount {
 }
 
 class Account {
+    Lock lock = new ReentrantLock();
+    Condition conAmount = lock.newCondition();
     private int amount;
-
     Account(int amount) {
         this.amount = amount;
     }
-
-    Lock lock = new ReentrantLock();
-    Condition conAmount = lock.newCondition();
 
     public void deposit(int s) {
         try {

@@ -17,10 +17,6 @@ public class Document {
         this.lines = lines;
     }
 
-    List<String> getLines() {
-        return this.lines;
-    }
-
     static Document fromFile(File file) throws IOException {
         List<String> lines = new LinkedList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
@@ -31,5 +27,9 @@ public class Document {
             }
         }
         return new Document(lines);
+    }
+
+    List<String> getLines() {
+        return this.lines;
     }
 }

@@ -75,10 +75,10 @@ class MyException extends Exception {
 class My2Exception extends MyException {
 }
 /**
- *  child A
- child A
- child A
- equals(Object obj)
- equals(Object obj)
- child
+ * child A
+ * child A
+ * child A
+ * equals(Object obj)
+ * equals(Object obj)
+ * child
  */

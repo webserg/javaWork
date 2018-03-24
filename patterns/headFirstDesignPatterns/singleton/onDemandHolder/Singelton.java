@@ -10,19 +10,19 @@ public class Singelton {
 
     }
 
-    private static class Holder {
-        private static final Singelton instance = new Singelton();
-    }
-
     public static Singelton getInstance() {
         return Holder.instance;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(Singelton.getInstance().getName());
     }
 
     public String getName() {
         return name;
     }
 
-    public static void main(String[] args) {
-        System.out.println(Singelton.getInstance().getName());
+    private static class Holder {
+        private static final Singelton instance = new Singelton();
     }
 }

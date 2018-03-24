@@ -1,19 +1,30 @@
 package algoritms;
 
-import java.util.Arrays;
-
 import junit.framework.TestCase;
+
+import java.util.Arrays;
 
 /**
  * Shift array
- * 
+ *
  * @author Sergiy Doroshenko
  */
 public class ShiftArray extends TestCase {
 
-    private static String[] source = { "a", "b", "c", "d", "e", "f", "g", "h" };
+    private static String[] source = {"a", "b", "c", "d", "e", "f", "g", "h"};
 
-    private static String[] result = { "d", "e", "f", "g", "h", "a", "b", "c" };
+    private static String[] result = {"d", "e", "f", "g", "h", "a", "b", "c"};
+
+    private static void swap(String s[], int i, int j) {
+        String t;
+        while (i < j) {
+            t = s[i];
+            s[i] = s[j];
+            s[j] = t;
+            i++;
+            j--;
+        }
+    }
 
     public void testRotate() {
         int shift = 3;
@@ -24,6 +35,15 @@ public class ShiftArray extends TestCase {
         assertTrue(Arrays.deepEquals(result, s));
     }
 
+    /*
+     * The Idea:
+     * Change AB to BA
+     * If A is shorter, divide B into B1  and B2 .
+     * where B2 has as many elements as A
+     * Swap A and B2 to change AB1B2 into B2B1A.
+     * Recur on pieces of b.
+     */
+
     public void testSwapShift() {
         int shift = 3;
         System.out.println(Arrays.toString(source));
@@ -31,15 +51,6 @@ public class ShiftArray extends TestCase {
         System.out.println(Arrays.toString(s));
         assertTrue(Arrays.deepEquals(result, s));
     }
-
-    /*
-     * The Idea: 
-     * Change AB to BA 
-     * If A is shorter, divide B into B1  and B2 .
-     * where B2 has as many elements as A
-     * Swap A and B2 to change AB1B2 into B2B1A.
-     * Recur on pieces of b.
-     */
 
     // The Code /* rotate abcdefgh left three */
     //                 /* abcdefgh */
@@ -55,17 +66,6 @@ public class ShiftArray extends TestCase {
         swap(s, shift, n - 1);
         swap(s, 0, n - 1);
         return s;
-    }
-
-    private static void swap(String s[], int i, int j) {
-        String t;
-        while (i < j) {
-            t = s[i];
-            s[i] = s[j];
-            s[j] = t;
-            i++;
-            j--;
-        }
     }
 
     private String[] rotate(String[] s, int shift) {

@@ -27,28 +27,6 @@ public class FixReentrancy {
     Object first = new Object();
     Object second = new Object();
 
-    public void first() {
-        synchronized (first) {
-            System.out.println("first enter");
-            int i = 0;
-            while (i < Integer.MAX_VALUE) {
-                i++;
-            }
-            System.out.println("first exit");
-        }
-    }
-
-    public void second() {
-        synchronized (second) {
-            System.out.println("second enter");
-            int i = 0;
-            while (i < Integer.MAX_VALUE) {
-                i++;
-            }
-            System.out.println("second exit");
-        }
-    }
-
     public static void main(String[] args) {
         final FixReentrancy object = new FixReentrancy();
 
@@ -79,6 +57,28 @@ public class FixReentrancy {
         ex.execute(t1);
         ex.shutdown();
 
+    }
+
+    public void first() {
+        synchronized (first) {
+            System.out.println("first enter");
+            int i = 0;
+            while (i < Integer.MAX_VALUE) {
+                i++;
+            }
+            System.out.println("first exit");
+        }
+    }
+
+    public void second() {
+        synchronized (second) {
+            System.out.println("second enter");
+            int i = 0;
+            while (i < Integer.MAX_VALUE) {
+                i++;
+            }
+            System.out.println("second exit");
+        }
     }
 
 }

@@ -9,20 +9,17 @@ import java.util.concurrent.Semaphore;
 
 public class Ball extends Thread implements BallI {
 
-    BallWorld<Ball> world;
-
-    private int xpos, ypos, xinc, yinc;
-
-    private final Color col;
-
     private final static int ballw = 10;
     private final static int ballh = 10;
+    private final Color col;
     private final Semaphore live;
     private final Semaphore die;
     private final Random randomGenerator = new Random();
+    BallWorld<Ball> world;
+    private int xpos, ypos, xinc, yinc;
 
     public Ball(BallWorld<Ball> world, int xpos, int ypos,
-                int xinc, int yinc, Color col,Semaphore live,Semaphore die) {
+                int xinc, int yinc, Color col, Semaphore live, Semaphore die) {
         //
         // Assign a name to this thread for easier debugging
         //
@@ -40,14 +37,15 @@ public class Ball extends Thread implements BallI {
         world.addBall(this);
     }
 
-    public void run(){
+    public void run() {
         try {
             live.acquire();
-        }catch (InterruptedException e){}
+        } catch (InterruptedException e) {
+        }
 
         while (true) {
             move();
-            if(randomGenerator.nextInt(4)==1 && die.tryAcquire()) break;
+            if (randomGenerator.nextInt(4) == 1 && die.tryAcquire()) break;
         }
         Balls.nap(30);
         world.removeBall(this);

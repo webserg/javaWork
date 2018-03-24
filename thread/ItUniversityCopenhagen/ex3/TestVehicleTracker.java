@@ -52,6 +52,13 @@ class MonitorVehicleTracker {
         this.locations = deepCopy(locations);
     }
 
+    private static Map<String, MutablePoint> deepCopy(Map<String, MutablePoint> m) {
+        Map<String, MutablePoint> result = new HashMap<String, MutablePoint>();
+        for (String id : m.keySet())
+            result.put(id, new MutablePoint(m.get(id)));
+        return Collections.unmodifiableMap(result);
+    }
+
     public synchronized Map<String, MutablePoint> getLocations() {
         return deepCopy(locations);
     }
@@ -65,13 +72,6 @@ class MonitorVehicleTracker {
         MutablePoint loc = locations.get(id);
         loc.x = x;
         loc.y = y;
-    }
-
-    private static Map<String, MutablePoint> deepCopy(Map<String, MutablePoint> m) {
-        Map<String, MutablePoint> result = new HashMap<String, MutablePoint>();
-        for (String id : m.keySet())
-            result.put(id, new MutablePoint(m.get(id)));
-        return Collections.unmodifiableMap(result);
     }
 }
 

@@ -1,31 +1,32 @@
 package algoritms.fifo;
 
-public class StockImpl implements Stock{
-private Double price;
-private Double salePrice;
-public StockImpl(Double price) {
-	super();
-	this.price = price;
-}
+public class StockImpl implements Stock {
+    private Double price;
+    private Double salePrice;
 
-public Double getSalePrice() {
-	return salePrice;
-}
+    public StockImpl(Double price) {
+        super();
+        this.price = price;
+    }
 
-public void setSalePrice(Double salePrice) {
-	this.salePrice = salePrice;
-}
+    public Double getSalePrice() {
+        return salePrice;
+    }
 
-public Double getPrice() {
-	return price;
-}
+    public void setSalePrice(Double salePrice) {
+        this.salePrice = salePrice;
+    }
 
-public void setPrice(Double price) {
-	this.price = price;
-}
+    public Double getPrice() {
+        return price;
+    }
 
-public void accept(VisitorExchange v) {
-	v.visit(this);
-	
-}
+    public void setPrice(Double price) {
+        this.price = price;
+    }
+
+    public void accept(VisitorExchange v) {
+        v.visit(this);
+
+    }
 }

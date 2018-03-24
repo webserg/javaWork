@@ -12,9 +12,9 @@ import java.net.Socket;
  * the associated request. While the server is handling a
  * request, new connections must wait until it finishes the
  * current request and calls accept again.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 11, 2009
- *         1:19:27 PM
+ * 1:19:27 PM
  */
 public class SingleThreadWebServer {
 
