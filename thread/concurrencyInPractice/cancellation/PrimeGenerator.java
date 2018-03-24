@@ -35,8 +35,19 @@ public class PrimeGenerator implements Runnable {
     private static ExecutorService exec = Executors.newCachedThreadPool();
 
     @GuardedBy("this")
-    private final List<BigInteger> primes = new ArrayList< >();
+    private final List<BigInteger> primes = new ArrayList<>();
     private volatile boolean cancelled;
+
+    static List<BigInteger> aSecondOfPrimes() throws InterruptedException {
+        PrimeGenerator generator = new PrimeGenerator();
+        exec.execute(generator);
+        try {
+            SECONDS.sleep(1);
+        } finally {
+            generator.cancel();
+        }
+        return generator.get();
+    }
 
     public void run() {
         BigInteger p = BigInteger.ONE;
@@ -53,18 +64,7 @@ public class PrimeGenerator implements Runnable {
     }
 
     public synchronized List<BigInteger> get() {
-        return new ArrayList< >(primes);
-    }
-
-    static List<BigInteger> aSecondOfPrimes() throws InterruptedException {
-        PrimeGenerator generator = new PrimeGenerator();
-        exec.execute(generator);
-        try {
-            SECONDS.sleep(1);
-        } finally {
-            generator.cancel();
-        }
-        return generator.get();
+        return new ArrayList<>(primes);
     }
 
     @Test

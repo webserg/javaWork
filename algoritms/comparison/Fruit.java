@@ -5,7 +5,7 @@ package algoritms.comparison;
  * Date: Sep 15, 2010
  * Time: 4:48:45 PM
  */
-public class Fruit implements Comparable<Fruit>{
+public class Fruit implements Comparable<Fruit> {
     protected String name;
     protected Double size;
 
@@ -16,7 +16,7 @@ public class Fruit implements Comparable<Fruit>{
 
     @Override
     public int compareTo(Fruit o) {
-        return size > o.size ? 1 : size < o.size ? -1 : 0 ;
+        return size > o.size ? 1 : size < o.size ? -1 : 0;
     }
 
     @Override

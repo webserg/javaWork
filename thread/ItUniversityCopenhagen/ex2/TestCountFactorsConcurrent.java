@@ -39,7 +39,7 @@ class TestCountFactorsConcurrent {
         final int num = 30;
         String histogram = getSeqHistogram(range, new Histogram1(num));
         System.out.println(histogram);
-        String histogram2 = getConcurrentHistogram(range,new Histogram2(num));
+        String histogram2 = getConcurrentHistogram(range, new Histogram2(num));
         System.out.println(histogram2);
 //        String histogram3 = getConcurrentHistogram(range, new Histogram3(num));
 //        System.out.println(histogram3);

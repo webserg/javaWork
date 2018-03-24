@@ -1,66 +1,61 @@
 package collections.lists;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 public class ListDemo1 {
-	static final int N = 10000;
+    static final int N = 10000;
 
-	static List values;
+    static List values;
 
-	// make List of increasing Integer values
+    // make List of increasing Integer values
 
-	static {
-		Integer vals[] = new Integer[N];
+    static {
+        Integer vals[] = new Integer[N];
 
-		Random rn = new Random();
+        Random rn = new Random();
 
-		for (int i = 0, currval = 0; i < N; i++) {
-			vals[i] = new Integer(currval);
-			currval += rn.nextInt(100) + 1;
-		}
+        for (int i = 0, currval = 0; i < N; i++) {
+            vals[i] = new Integer(currval);
+            currval += rn.nextInt(100) + 1;
+        }
 
-		values = Arrays.asList(vals);
-	}
+        values = Arrays.asList(vals);
+    }
 
-	// iterate across a list and look up every
-	// value in the list using binary search
+    // iterate across a list and look up every
+    // value in the list using binary search
 
-	static long timeList(List lst) {
-		long start = System.currentTimeMillis();
+    static long timeList(List lst) {
+        long start = System.currentTimeMillis();
 
-		for (int i = 0; i < N; i++) {
+        for (int i = 0; i < N; i++) {
 
-			// look up a value in the list
-			// using binary search
+            // look up a value in the list
+            // using binary search
 
-			int indx = Collections.binarySearch(lst, values.get(i));
+            int indx = Collections.binarySearch(lst, values.get(i));
 
-			// sanity check for result
-			// of binary search
+            // sanity check for result
+            // of binary search
 
-			if (indx != i) {
-				System.out.println("*** error ***\n");
-			}
-		}
+            if (indx != i) {
+                System.out.println("*** error ***\n");
+            }
+        }
 
-		return System.currentTimeMillis() - start;
-	}
+        return System.currentTimeMillis() - start;
+    }
 
-	public static void main(String args[]) {
+    public static void main(String args[]) {
 
-		// do lookups in an ArrayList
+        // do lookups in an ArrayList
 
-		System.out.println("time for ArrayList = "
-				+ timeList(new ArrayList(values)));
+        System.out.println("time for ArrayList = "
+                + timeList(new ArrayList(values)));
 
-		// do lookups in a LinkedList
+        // do lookups in a LinkedList
 
-		System.out.println("time for LinkedList = "
-				+ timeList(new LinkedList(values)));
-	}
+        System.out.println("time for LinkedList = "
+                + timeList(new LinkedList(values)));
+    }
 }

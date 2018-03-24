@@ -1,6 +1,6 @@
 __author__ = 'webserg'
 
-MSGS = ( "attack at dawn" )
+MSGS = ("attack at dawn")
 
 
 def strxor(a, b):  # xor two strings of different lengths
@@ -26,4 +26,3 @@ if __name__ == "__main__":
     print(key)
     ciphertexts = [encrypt(key, msg) for msg in MSGS]
     print(ciphertexts)
-

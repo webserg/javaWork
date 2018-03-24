@@ -2,8 +2,8 @@ package thread.exercises.goteborg.carBridge;
 
 public class TrafficController implements TrafficControllerI {
     private final Object object = new Object();
-    private volatile boolean flag = true;
     private final int starvationLimit = 3;
+    private volatile boolean flag = true;
     private volatile int starvationCounterLeft = 0;
     private volatile int starvationCounterRight = 0;
 
@@ -13,7 +13,7 @@ public class TrafficController implements TrafficControllerI {
             starvationCounterLeft++;
             synchronized (object) {
                 while (!flag) {
-                    if(starvationCounterRight > 0) object.notify();
+                    if (starvationCounterRight > 0) object.notify();
                     object.wait(500);
                 }
                 flag = false;
@@ -29,7 +29,7 @@ public class TrafficController implements TrafficControllerI {
             starvationCounterRight++;
             synchronized (object) {
                 while (!flag) {
-                    if(starvationCounterLeft > 0) object.notify();
+                    if (starvationCounterLeft > 0) object.notify();
                     object.wait(500);
                 }
                 flag = false;

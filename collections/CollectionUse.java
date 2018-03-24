@@ -6,15 +6,15 @@ import java.util.Collections;
 
 public class CollectionUse {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Collection<String> c = new ArrayList<>();
-		c.add("1");
-		c.removeAll(Collections.singleton("1"));
-		
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        Collection<String> c = new ArrayList<>();
+        c.add("1");
+        c.removeAll(Collections.singleton("1"));
 
-	}
+
+    }
 
 }

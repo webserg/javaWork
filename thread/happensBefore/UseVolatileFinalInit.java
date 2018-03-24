@@ -8,17 +8,15 @@ import java.util.Arrays;
  * Эта программа так же может как остановиться, так и не остановиться. Но если остановится,
  * то может напечатать как "[1, 0]" так и "[1, 2]". Это связанно с тем, что запись элемента с индексом
  * 1 происходит позже записи в final-поле.
- *
  */
 public class UseVolatileFinalInit {
+    static UseVolatileFinalInit instance;
     final int[] data;
 
     public UseVolatileFinalInit() {
         this.data = new int[]{1, 0};
         this.data[1] = 2;
     }
-
-    static UseVolatileFinalInit instance;
 
     public static void main(String[] args) {
         new Thread(new Runnable() {

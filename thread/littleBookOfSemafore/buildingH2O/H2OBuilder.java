@@ -74,14 +74,14 @@ public class H2OBuilder {
             try {
                 b.mutex.acquire();
                 System.out.println("hyd");
-                b.hydrogen+=1;
-                if(b.hydrogen >= 2 && b.oxygen >= 1){
+                b.hydrogen += 1;
+                if (b.hydrogen >= 2 && b.oxygen >= 1) {
                     b.hydroQueue.release(2);
-                    b.hydrogen-=2;
+                    b.hydrogen -= 2;
                     b.oxyQueue.release();
-                    b.oxygen-=1;
+                    b.oxygen -= 1;
 
-                }else{
+                } else {
                     b.mutex.release();
                 }
                 b.hydroQueue.acquire();
@@ -98,7 +98,7 @@ public class H2OBuilder {
         ScheduledExecutorService timer = Executors.newScheduledThreadPool(1);
         for (int i = 0; i < 5; i++) {
 
-            timer.schedule(oxygen,5*i,TimeUnit.SECONDS);
+            timer.schedule(oxygen, 5 * i, TimeUnit.SECONDS);
         }
         for (int i = 0; i < 10; i++)
             s.submit(hydrogen);

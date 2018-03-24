@@ -9,6 +9,11 @@ public class GameMain {
     Map<Cell, State> field;
     Role control;
 
+    public static void main(String[] args) {
+        Role first = Role.White;
+
+    }
+
     public void init() {
         field.put(Cell.cell(1, 1), State.B);
         field.put(Cell.cell(1, 2), State.B);
@@ -22,18 +27,18 @@ public class GameMain {
         control = Role.White;
     }
 
-    public int goal(State mark, int x, int y){
-        if(isLine(mark,x,y) && !isLine(State.opposite(mark),x,y))
+    public int goal(State mark, int x, int y) {
+        if (isLine(mark, x, y) && !isLine(State.opposite(mark), x, y))
             return 100;
-        else if(!isLine(mark,x,y) && !isLine(State.opposite(mark),x,y))
+        else if (!isLine(mark, x, y) && !isLine(State.opposite(mark), x, y))
             return 50;
         else return 0;
     }
 
-    public void next(Role role){
-        if(!field.containsValue(State.O) && !field.containsValue(State.X)){
-            mark(role.getState(),2,2);
-        }else{
+    public void next(Role role) {
+        if (!field.containsValue(State.O) && !field.containsValue(State.X)) {
+            mark(role.getState(), 2, 2);
+        } else {
 
         }
     }
@@ -80,17 +85,11 @@ public class GameMain {
         return a == Action.noop && control == w;
     }
 
-    public boolean open(){
-       return field.containsValue(State.B);
+    public boolean open() {
+        return field.containsValue(State.B);
     }
 
-    public void mark(State state,int x,int y){
-        field.put(Cell.cell(x,y),state);
-    }
-
-
-    public static void main(String[] args) {
-        Role first = Role.White;
-
+    public void mark(State state, int x, int y) {
+        field.put(Cell.cell(x, y), state);
     }
 }

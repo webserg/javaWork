@@ -12,14 +12,14 @@ enum CoffeeSize {
         }
     };
 
+    private int ounces; // an instance variable each enum
+
     //	 the arguments after the enum value are "passed"
     //	 as values to the constructor
     CoffeeSize(int ounces) {
         this.ounces = ounces; // assign the value to
         //		 an instance variable
     }
-
-    private int ounces; // an instance variable each enum
     //		 value has
 
     public int getOunces() {

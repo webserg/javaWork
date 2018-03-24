@@ -12,6 +12,11 @@ import java.util.concurrent.atomic.AtomicReference;
 import java.util.function.Function;
 
 
+// Interface that represents a function from A to V
+interface Computable<A, V> {
+    V compute(A arg) throws InterruptedException;
+}
+
 public class TestCache {
     public static void main(String[] args) throws InterruptedException {
         Computable<Long, long[]> factorizer = new Factorizer(),
@@ -40,13 +45,6 @@ public class TestCache {
         System.out.println();
     }
 }
-
-
-// Interface that represents a function from A to V
-interface Computable<A, V> {
-    V compute(A arg) throws InterruptedException;
-}
-
 
 // Prime factorization is a function from Long to long[]
 class Factorizer implements Computable<Long, long[]> {
@@ -148,6 +146,15 @@ class Memoizer3<A, V> implements Computable<A, V> {
         this.c = c;
     }
 
+    public static RuntimeException launderThrowable(Throwable t) {
+        if (t instanceof RuntimeException)
+            return (RuntimeException) t;
+        else if (t instanceof Error)
+            throw (Error) t;
+        else
+            throw new IllegalStateException("Not unchecked", t);
+    }
+
     public V compute(final A arg) throws InterruptedException {
         Future<V> f = cache.get(arg);
         if (f == null) {
@@ -167,15 +174,6 @@ class Memoizer3<A, V> implements Computable<A, V> {
             throw launderThrowable(e.getCause());
         }
     }
-
-    public static RuntimeException launderThrowable(Throwable t) {
-        if (t instanceof RuntimeException)
-            return (RuntimeException) t;
-        else if (t instanceof Error)
-            throw (Error) t;
-        else
-            throw new IllegalStateException("Not unchecked", t);
-    }
 }
 
 
@@ -192,6 +190,15 @@ class Memoizer4<A, V> implements Computable<A, V> {
 
     public Memoizer4(Computable<A, V> c) {
         this.c = c;
+    }
+
+    public static RuntimeException launderThrowable(Throwable t) {
+        if (t instanceof RuntimeException)
+            return (RuntimeException) t;
+        else if (t instanceof Error)
+            throw (Error) t;
+        else
+            throw new IllegalStateException("Not unchecked", t);
     }
 
     public V compute(final A arg) throws InterruptedException {
@@ -215,15 +222,6 @@ class Memoizer4<A, V> implements Computable<A, V> {
             throw launderThrowable(e.getCause());
         }
     }
-
-    public static RuntimeException launderThrowable(Throwable t) {
-        if (t instanceof RuntimeException)
-            return (RuntimeException) t;
-        else if (t instanceof Error)
-            throw (Error) t;
-        else
-            throw new IllegalStateException("Not unchecked", t);
-    }
 }
 
 /**
@@ -239,6 +237,15 @@ class Memoizer5<A, V> implements Computable<A, V> {
 
     public Memoizer5(Computable<A, V> c) {
         this.c = c;
+    }
+
+    public static RuntimeException launderThrowable(Throwable t) {
+        if (t instanceof RuntimeException)
+            return (RuntimeException) t;
+        else if (t instanceof Error)
+            throw (Error) t;
+        else
+            throw new IllegalStateException("Not unchecked", t);
     }
 
     public V compute(final A arg) throws InterruptedException {
@@ -264,15 +271,6 @@ class Memoizer5<A, V> implements Computable<A, V> {
             throw launderThrowable(e.getCause());
         }
     }
-
-    public static RuntimeException launderThrowable(Throwable t) {
-        if (t instanceof RuntimeException)
-            return (RuntimeException) t;
-        else if (t instanceof Error)
-            throw (Error) t;
-        else
-            throw new IllegalStateException("Not unchecked", t);
-    }
 }
 
 
@@ -291,33 +289,6 @@ class Memoizer<A, V> implements Computable<A, V> {
     public Memoizer(Computable<A, V> c) {
         this.c = c;
     }
-
-    public V compute(final A arg) throws InterruptedException {
-        while (true) {
-            Future<V> f = cache.get(arg);
-            if (f == null) {
-                Callable<V> eval = new Callable<V>() {
-                    public V call() throws InterruptedException {
-                        return c.compute(arg);
-                    }
-                };
-                FutureTask<V> ft = new FutureTask<V>(eval);
-                f = cache.putIfAbsent(arg, ft);
-                if (f == null) {
-                    f = ft;
-                    ft.run();
-                }
-            }
-            try {
-                return f.get();
-            } catch (CancellationException e) {
-                cache.remove(arg, f);
-            } catch (ExecutionException e) {
-                throw launderThrowable(e.getCause());
-            }
-        }
-    }
-
 
     /**
      * Coerce a checked Throwable to an unchecked RuntimeException.
@@ -345,5 +316,31 @@ class Memoizer<A, V> implements Computable<A, V> {
             throw (Error) t;
         else
             throw new IllegalStateException("Not unchecked", t);
+    }
+
+    public V compute(final A arg) throws InterruptedException {
+        while (true) {
+            Future<V> f = cache.get(arg);
+            if (f == null) {
+                Callable<V> eval = new Callable<V>() {
+                    public V call() throws InterruptedException {
+                        return c.compute(arg);
+                    }
+                };
+                FutureTask<V> ft = new FutureTask<V>(eval);
+                f = cache.putIfAbsent(arg, ft);
+                if (f == null) {
+                    f = ft;
+                    ft.run();
+                }
+            }
+            try {
+                return f.get();
+            } catch (CancellationException e) {
+                cache.remove(arg, f);
+            } catch (ExecutionException e) {
+                throw launderThrowable(e.getCause());
+            }
+        }
     }
 }

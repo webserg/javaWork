@@ -6,7 +6,7 @@ import java.util.concurrent.Semaphore;
  * Created by webserg on 14.05.2014.
  */
 public class UsingSemafore {
-    public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
         Semaphore semaphore = new Semaphore(2);
         semaphore.acquire();
         semaphore.acquire();

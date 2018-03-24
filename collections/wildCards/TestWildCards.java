@@ -1,7 +1,6 @@
 package collections.wildCards;
 
 
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,16 +11,17 @@ import java.util.List;
  */
 public class TestWildCards {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		List<AA> a = new ArrayList<AA>();
-		a.add(new AA());
-		Bar.doInsert(a);
-		Bar.doInsert(new ArrayList<AA>());
-	}
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        List<AA> a = new ArrayList<AA>();
+        a.add(new AA());
+        Bar.doInsert(a);
+        Bar.doInsert(new ArrayList<AA>());
+    }
 
 }
 
-class DD{}
+class DD {
+}

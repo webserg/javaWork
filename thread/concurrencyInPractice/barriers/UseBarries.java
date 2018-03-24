@@ -44,7 +44,7 @@ class R1 implements Runnable {
             e.printStackTrace();
         }
         System.out.println("after sleep1");
-        
+
         try {
             cyclicBarrier.await();
         } catch (InterruptedException e) {
@@ -53,8 +53,8 @@ class R1 implements Runnable {
         } catch (BrokenBarrierException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } 
-         
+        }
+
 
     }
 
@@ -84,7 +84,7 @@ class R2 implements Runnable {
         } catch (BrokenBarrierException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        } 
+        }
 
     }
 

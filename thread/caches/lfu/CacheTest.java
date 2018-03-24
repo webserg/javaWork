@@ -12,8 +12,8 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 2:52 PM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 2:52 PM
  */
 public class CacheTest {
     List<ValueObject> storage = new ArrayList<ValueObject>();
@@ -27,10 +27,10 @@ public class CacheTest {
             if (i % 3 == 0) {
                 UserOfCache.get(new KeyObject(3 + ""));
                 a++;
-            }else if (i % 5 == 0) {
+            } else if (i % 5 == 0) {
                 UserOfCache.get(new KeyObject(5 + ""));
                 b++;
-            }else if (i % 8 == 0) {
+            } else if (i % 8 == 0) {
                 UserOfCache.get(new KeyObject(8 + ""));
                 c++;
             } else {
@@ -47,9 +47,9 @@ public class CacheTest {
         List<KeyObject> keys = UserOfCache.getAllCache();
         KeyObject[] f = {new KeyObject("3"), new KeyObject("5"), new KeyObject("8")};
         assertEquals(10, keys.size());
-        assertEquals( 3 + "", keys.get(9).getKey());
-        assertEquals( 5 + "", keys.get(8).getKey());
-        assertEquals( 8 + "", keys.get(7).getKey());
+        assertEquals(3 + "", keys.get(9).getKey());
+        assertEquals(5 + "", keys.get(8).getKey());
+        assertEquals(8 + "", keys.get(7).getKey());
         System.out.println(keys);
         assertTrue(keys.containsAll(Arrays.asList(f)));
         Queue<CountKey<KeyObject>> queue = new PriorityQueue<CountKey<KeyObject>>(10);

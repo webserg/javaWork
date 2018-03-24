@@ -19,8 +19,8 @@ package thread.happensBefore;
  */
 public class UsingVolatile {
     /*
-    * Эта программа (data — volatile, run — volatile) гарантированно остановится и напечатает 1 И в старой И в новой моделях памяти
-    * */
+     * Эта программа (data — volatile, run — volatile) гарантированно остановится и напечатает 1 И в старой И в новой моделях памяти
+     * */
     static volatile int data = 0;
     static volatile boolean run = true;
 

@@ -9,6 +9,17 @@ public class MyLinkedList<K> {
     Node top;
     Node tail;
 
+    public static void main(String[] args) {
+        MyLinkedList<String> myLinkedList = new MyLinkedList<>();
+        myLinkedList.addNode("one");
+        myLinkedList.addNode("two");
+        myLinkedList.addNode("three");
+        myLinkedList.addNode("four");
+        myLinkedList.addNode("five");
+
+        myLinkedList.print();
+    }
+
     void addNode(K data) {
         Node<K> node = new Node<>(data);
         if (top == null) {
@@ -36,17 +47,6 @@ public class MyLinkedList<K> {
         }
         str.append("}");
         System.out.println(str);
-    }
-
-    public static void main(String[] args) {
-        MyLinkedList<String> myLinkedList = new MyLinkedList<>();
-        myLinkedList.addNode("one");
-        myLinkedList.addNode("two");
-        myLinkedList.addNode("three");
-        myLinkedList.addNode("four");
-        myLinkedList.addNode("five");
-
-        myLinkedList.print();
     }
 }
 

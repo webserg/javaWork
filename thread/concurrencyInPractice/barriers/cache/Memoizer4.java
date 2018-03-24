@@ -1,20 +1,15 @@
 package thread.concurrencyInPractice.barriers.cache;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 /**
  * Nearly every server application uses some form of
  * caching. Reusing the results of a previous computation
  * can reduce latency and increase throughput, at the cost
  * of some additional memory usage.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 10, 2009
- *         4:41:41 PM
+ * 4:41:41 PM
  */
 public class Memoizer4<A, V> {
     private final ConcurrentMap<A, Future<V>> cache = new ConcurrentHashMap<A, Future<V>>();
@@ -31,7 +26,7 @@ public class Memoizer4<A, V> {
      * advantage of the atomic putIfAbsent method of
      * ConcurrentMap, closing the window of vulnerability in
      * Memoizer3
-     * 
+     *
      * @param arg
      * @return
      * @throws InterruptedException

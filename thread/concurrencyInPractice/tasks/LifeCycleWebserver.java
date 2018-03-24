@@ -11,6 +11,20 @@ public class LifeCycleWebserver {
     private static final int NTHREADS = 100;
     private final ExecutorService exec = Executors.newFixedThreadPool(NTHREADS);
 
+    /**
+     * @param args
+     * @throws IOException
+     * @throws InterruptedException
+     */
+    public static void main(String[] args) throws IOException,
+            InterruptedException {
+        LifeCycleWebserver server = new LifeCycleWebserver();
+        server.start();
+        // Thread.sleep(10000);
+        // server.stop();
+
+    }
+
     public void start() throws IOException {
         HandleRequestStrategy strategy = new HandleExitStrategy();
         ServerSocket socket = new ServerSocket(8083);
@@ -45,21 +59,6 @@ public class LifeCycleWebserver {
     public void stop() {
         System.out.println("shutdown");
         exec.shutdown();
-    }
-
-
-    /**
-     * @param args
-     * @throws IOException
-     * @throws InterruptedException
-     */
-    public static void main(String[] args) throws IOException,
-            InterruptedException {
-        LifeCycleWebserver server = new LifeCycleWebserver();
-        server.start();
-        // Thread.sleep(10000);
-        // server.stop();
-
     }
 
 }

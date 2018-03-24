@@ -2,10 +2,10 @@ package thread.caches;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 2:58 PM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 2:58 PM
  */
-public class KeyObject{
+public class KeyObject {
 
     private String key;
 

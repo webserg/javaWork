@@ -1,4 +1,5 @@
 package java8.lambda;
+
 /**
  * In order to solve  backward compatibility limitation new mechanism was invented.
  * The default methods mechanism works by modifying class loading
@@ -38,7 +39,6 @@ package java8.lambda;
  * class already has a method that       has the same name and signature
  * as a new default method, the   pre-existing implementation will
  * always be used in preference to the default implementation.
- *
  */
 public class DefaultMethodUsing {
     public static void main(String[] args) {

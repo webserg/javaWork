@@ -9,6 +9,7 @@ import java.util.concurrent.BlockingQueue;
  */
 class Producer implements Runnable {
     private final BlockingQueue queue;
+    Random random = new Random();
 
     Producer(BlockingQueue q) {
         queue = q;
@@ -29,8 +30,6 @@ class Producer implements Runnable {
             ex.printStackTrace();
         }
     }
-
-    Random random = new Random();
 
     Object produce() {
         return random.nextInt(100);

@@ -19,15 +19,6 @@ public class SumsUsingComplFuture implements Callable<Long> {
         this.to = to;
     }
 
-    @Override
-    public Long call() throws Exception {
-        long res = 0;
-        for (int i = from; i <= to; i++) {
-            res = +i;
-        }
-        return res;
-    }
-
     public static void main(String[] args) throws Exception {
         ExecutorService executorService = Executors.newCachedThreadPool();
         List<Future<Long>> results = executorService.invokeAll(
@@ -40,5 +31,14 @@ public class SumsUsingComplFuture implements Callable<Long> {
         for (Future<Long> result : results) {
             System.out.println(result.get());// we blocks here, so how
         }
+    }
+
+    @Override
+    public Long call() throws Exception {
+        long res = 0;
+        for (int i = from; i <= to; i++) {
+            res = +i;
+        }
+        return res;
     }
 }

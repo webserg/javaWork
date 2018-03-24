@@ -1,12 +1,12 @@
 package collections.sets;
 
+import junit.framework.TestCase;
+
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.concurrent.ConcurrentSkipListSet;
-
-import junit.framework.TestCase;
 
 public class TreeSetUsing extends TestCase {
 

@@ -1,4 +1,5 @@
 package thread.folkJoinIssue;
+
 public class TestSumArray {
 
     /**

@@ -35,7 +35,7 @@ public class SmokersWorldSolution {
     final Semaphore matchesSem = new Semaphore(0);
     final Semaphore mutex = new Semaphore(1);
 
-    boolean isTobacco,isPaper,isMatches = false;
+    boolean isTobacco, isPaper, isMatches = false;
 
 
     public static void main(String[] args) {
@@ -103,18 +103,18 @@ public class SmokersWorldSolution {
 
         Runnable tobaccoPusher = () -> {
 
-            while(true){
+            while (true) {
                 try {
                     obj.tobacco.acquire();
                     obj.mutex.acquire();
                     System.out.println("tobacco push");
-                    if(obj.isPaper){
+                    if (obj.isPaper) {
                         obj.isPaper = false;
                         obj.matchesSem.release();
-                    }else if(obj.isMatches){
+                    } else if (obj.isMatches) {
                         obj.isMatches = false;
                         obj.paperSem.release();
-                    }else obj.isTobacco = true;
+                    } else obj.isTobacco = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
@@ -124,18 +124,18 @@ public class SmokersWorldSolution {
         };
         Runnable paperPusher = () -> {
 //            final Semaphore mutex = new Semaphore(1);
-            while(true){
+            while (true) {
                 try {
                     obj.paper.acquire();
                     obj.mutex.acquire();
                     System.out.println("paper push");
-                    if(obj.isTobacco){
+                    if (obj.isTobacco) {
                         obj.isTobacco = false;
                         obj.matchesSem.release();
-                    }else if(obj.isMatches){
+                    } else if (obj.isMatches) {
                         obj.isMatches = false;
                         obj.tobaccoSem.release();
-                    }else obj.isPaper = true;
+                    } else obj.isPaper = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
@@ -145,18 +145,18 @@ public class SmokersWorldSolution {
         };
         Runnable matcherPusher = () -> {
 //            final Semaphore mutex = new Semaphore(1);
-            while(true){
+            while (true) {
                 try {
                     obj.matches.acquire();
                     obj.mutex.acquire();
                     System.out.println("matches push");
-                    if(obj.isPaper){
+                    if (obj.isPaper) {
                         obj.isPaper = false;
                         obj.tobaccoSem.release();
-                    }else if(obj.isTobacco){
+                    } else if (obj.isTobacco) {
                         obj.isTobacco = false;
                         obj.paperSem.release();
-                    }else obj.isMatches = true;
+                    } else obj.isMatches = true;
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {

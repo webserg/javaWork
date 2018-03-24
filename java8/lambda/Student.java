@@ -6,17 +6,12 @@ import java.time.LocalDate;
  * User: webserg
  * Date: 20.12.12
  */
-public class  Student {
+public class Student {
     public String name;
     public Integer score;
     public int gradYear;
-    public enum Sex {
-        MALE, FEMALE
-    }
-
     LocalDate birthday;
     Sex gender;
-
     public Student(String name, Integer score) {
         this.name = name;
         this.score = score;
@@ -59,5 +54,9 @@ public class  Student {
 
     public void setGradYear(int gradYear) {
         this.gradYear = gradYear;
+    }
+
+    public enum Sex {
+        MALE, FEMALE
     }
 }

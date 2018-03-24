@@ -1,4 +1,3 @@
-import os
 line_number = 0
 with open('C:/git/algorithmsDesignAndAnalysis/resource/jobsTest1.txt', encoding='utf-8') as a_file:
     for a_line in a_file:

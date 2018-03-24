@@ -10,8 +10,8 @@ import junit.textui.TestRunner;
  * Feel free to add more methods.
  */
 public class CacheMap_UnitTest extends TestCase {
-    CacheMap<Integer, String> cache;
     final static long TIME_TO_LIVE = 1000;
+    CacheMap<Integer, String> cache;
 
     public static void main(String[] args) {
         TestRunner.run(CacheMap_UnitTest.class);

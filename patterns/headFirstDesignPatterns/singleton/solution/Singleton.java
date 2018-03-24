@@ -16,9 +16,9 @@ import java.util.Vector;
  */
 public class Singleton {
 
+    private static Singleton instance = new Singleton();
     private Vector v;
     private boolean inUse;
-    private static Singleton instance = new Singleton();
 
     private Singleton() {
         v = new Vector();

@@ -32,19 +32,19 @@ public class OverloadStaticMethod {
 class A {
     static int _A = 1;
 
-    A() {
-        System.out.println("constr A");
-    }
-
-    public void echo() {
-        System.out.println("A");
-    }
-
     static {
         System.out.println("stat A");
     }
 
+    A() {
+        System.out.println("constr A");
+    }
+
     static public void echo(String s) {
+        System.out.println("A");
+    }
+
+    public void echo() {
         System.out.println("A");
     }
 }
@@ -52,23 +52,23 @@ class A {
 class B extends A {
     static int _B = _A;
 
-    B() {
-        System.out.println("constr B");
+    static {
+        System.out.println("stat B");
     }
 
     {
         System.out.println("instans init");
     }
 
-    static {
-        System.out.println("stat B");
-    }
-
-    public void echo() {
-        System.out.println("B");
+    B() {
+        System.out.println("constr B");
     }
 
     static public void echo(String s) {
+        System.out.println("B");
+    }
+
+    public void echo() {
         System.out.println("B");
     }
 }

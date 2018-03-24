@@ -8,10 +8,10 @@ public class BubbleSort {
      * @param args
      */
     public static void main(String[] args) {
-        int[] intArray = shuffle(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0 });
+        int[] intArray = shuffle(new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 0});
         System.out.println(Arrays.toString(intArray));
         System.out.println(Arrays.toString(bubbleSort(intArray)));
-        intArray =shuffle(intArray);
+        intArray = shuffle(intArray);
         System.out.println(Arrays.toString(intArray));
         System.out.println(Arrays.toString(bubbleSort2(intArray)));
     }

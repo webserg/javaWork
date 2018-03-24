@@ -57,7 +57,7 @@ public class Balls {
         black.start();
         balls.add(black);
         nap((int) (5000 * Math.random()));
-        while(true) {
+        while (true) {
             while (barrier.availablePermits() < 4) {
                 nap((int) (1000 * Math.random()));
             }

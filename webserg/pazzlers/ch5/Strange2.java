@@ -2,20 +2,20 @@ package webserg.pazzlers.ch5;
 
 public class Strange2 {
 
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		Missing m;
+        Missing m;
 
-		try {
+        try {
 
-			m = new Missing();
+            m = new Missing();
 
-		} catch (java.lang.NoClassDefFoundError ex) {
+        } catch (java.lang.NoClassDefFoundError ex) {
 
-			System.out.println("Got it!");
+            System.out.println("Got it!");
 
-		}
+        }
 
-	}
+    }
 
 }

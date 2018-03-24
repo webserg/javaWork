@@ -1,20 +1,15 @@
 package thread.concurrencyInPractice.barriers.cache;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Future;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 /**
  * Nearly every server application uses some form of
  * caching. Reusing the results of a previous computation
  * can reduce latency and increase throughput, at the cost
  * of some additional memory usage.
- * 
+ *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 10, 2009
- *         4:41:41 PM
+ * 4:41:41 PM
  */
 public class Memoizer3<A, V> {
     private final ConcurrentMap<A, Future<V>> cache = new ConcurrentHashMap<A, Future<V>>();
@@ -25,7 +20,6 @@ public class Memoizer3<A, V> {
     }
 
     /**
-     * 
      * Memoizer3 redefines the backing Map for the value
      * cache as a ConcurrentHashMap<A,Future<V>> instead of
      * a ConcurrentHashMap<A,V>. Memoizer3 first checks to
@@ -37,7 +31,7 @@ public class Memoizer3<A, V> {
      * be available immediately or might be in the process
      * of being computedbut this is transparent to the
      * caller of Future.get.
-     * 
+     * <p>
      * The Memoizer3 implementation is almost perfect: it
      * exhibits very good concurrency (mostly derived from
      * the excellent concurrency of ConcurrentHashMap), the
@@ -45,7 +39,7 @@ public class Memoizer3<A, V> {
      * known, and if the computation is in progress by
      * another thread, newly arriving threads wait patiently
      * for the result.
-     * 
+     * <p>
      * It has only one defectthere is still a small window
      * of vulnerability in which two threads might compute
      * the same value. This window is far smaller than in
@@ -55,7 +49,7 @@ public class Memoizer3<A, V> {
      * same value at roughly the same time, both see that
      * the cache does not contain the desired value, and
      * both start the computation
-     * 
+     *
      * @param arg
      * @return
      * @throws InterruptedException

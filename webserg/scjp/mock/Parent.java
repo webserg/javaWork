@@ -3,7 +3,15 @@ package webserg.scjp.mock;
 import java.io.Serializable;
 
 public class Parent {
-    private static class A {
+    public static void main(String[] args) {
+        new Parent().f("");
+        int i = Byte.parseByte("22");
+        final long b = 20;
+        int k = (byte) b + 23;
+        switch (i) {
+            case (byte) b + 23:
+                System.out.println("L");
+        }
     }
 
     void f(String s) {
@@ -18,15 +26,7 @@ public class Parent {
         };
     }
 
-    public static void main(String[] args) {
-        new Parent().f("");
-        int i = Byte.parseByte("22");
-        final long b = 20;
-        int k = (byte) b + 23;
-        switch (i) {
-            case (byte) b + 23:
-                System.out.println("L");
-        }
+    private static class A {
     }
 }
 

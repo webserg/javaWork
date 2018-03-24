@@ -18,80 +18,80 @@ import java.util.Set;
  */
 public class SetUse {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		Collection<String> c = new ArrayList<>();
-		c.add("aa");
-		Set<String> s1 = new HashSet<>(c);
-		s1.add("bb");
-		Set<String> s2 = new HashSet<>(c);
-		s1.retainAll(s2);
-		System.out.println(s1);
-		
-		Set<String> hasNull = new HashSet<String>();
-		hasNull.add(null);
-		hasNull.add(null);
-		hasNull.add(null);
-		hasNull.add(null);
-		hasNull.add(null);
-		hasNull.add(null);
-		hasNull.add(null);
-		System.out.println("hasNull:" + hasNull);
-		Foo f1 = new Foo("1");
-		Foo f2 = new Foo("2");
-		Foo f3 = new Foo("3");
-		Foo f11 = new Foo("1");
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        Collection<String> c = new ArrayList<>();
+        c.add("aa");
+        Set<String> s1 = new HashSet<>(c);
+        s1.add("bb");
+        Set<String> s2 = new HashSet<>(c);
+        s1.retainAll(s2);
+        System.out.println(s1);
 
-		
-		Set<Foo> t = new HashSet<>();
-		System.out.println(t.add(f1));
-		System.out.println(t);
-		System.out.println(t.add(f11));
-		System.out.println(f11);
+        Set<String> hasNull = new HashSet<String>();
+        hasNull.add(null);
+        hasNull.add(null);
+        hasNull.add(null);
+        hasNull.add(null);
+        hasNull.add(null);
+        hasNull.add(null);
+        hasNull.add(null);
+        System.out.println("hasNull:" + hasNull);
+        Foo f1 = new Foo("1");
+        Foo f2 = new Foo("2");
+        Foo f3 = new Foo("3");
+        Foo f11 = new Foo("1");
+
+
+        Set<Foo> t = new HashSet<>();
+        System.out.println(t.add(f1));
+        System.out.println(t);
+        System.out.println(t.add(f11));
+        System.out.println(f11);
         //set remains unchanged if you add element which set already contains
-		System.out.println(t);
+        System.out.println(t);
 
-		
 
-	}
+    }
 
 }
 
-class Foo{
-	static private int i=0;
-	private String name;
-	private String secret;
+class Foo {
+    static private int i = 0;
+    private String name;
+    private String secret;
 
-    public Foo(String n){
-		name = n;
-		secret = name +  i++;
-	}
-	
-	@Override
-	public String toString() {
+    public Foo(String n) {
+        name = n;
+        secret = name + i++;
+    }
+
+    @Override
+    public String toString() {
         return "name=" + name + ";secret=" + secret;
     }
 
     public boolean equals(Moo obj) {
-        return equals((Object)obj);
+        return equals((Object) obj);
     }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (obj instanceof Moo) {
-			return name.equals(((Moo)obj).getName());
-		}
-		return false;
-	}
-	@Override
-	public int hashCode() {
-		// TODO Auto-generated method stub
-		return name.hashCode();
-	}
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Moo) {
+            return name.equals(((Moo) obj).getName());
+        }
+        return false;
+    }
 
-	public String getName() {
-		return name;
-	}
+    @Override
+    public int hashCode() {
+        // TODO Auto-generated method stub
+        return name.hashCode();
+    }
+
+    public String getName() {
+        return name;
+    }
 }

@@ -16,13 +16,12 @@ import java.util.Arrays;
  * (будь instance — volatile, она бы гарантированно остановилась). Но если остановится, то гарантированно напечатает "[1, 2]"
  */
 public class UseVolatileFinal {
+    static UseVolatileFinal instance;
     final int[] data;
 
     public UseVolatileFinal() {
         this.data = new int[]{1, 2};
     }
-
-    static UseVolatileFinal instance;
 
     public static void main(String[] args) {
         new Thread(() -> {

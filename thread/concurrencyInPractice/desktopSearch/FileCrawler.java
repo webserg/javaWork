@@ -4,13 +4,13 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.concurrent.BlockingQueue;
 
-public class FileCrawler implements Runnable{
+public class FileCrawler implements Runnable {
     private final Dao dao;
     private final FileFilter fileFilter;
     private final File root;
     BlockingQueue<File> fileQueue;
-    
-    public FileCrawler(BlockingQueue<File> queue,FileFilter fileFilter, File root,Dao dao) {
+
+    public FileCrawler(BlockingQueue<File> queue, FileFilter fileFilter, File root, Dao dao) {
         super();
         this.fileFilter = fileFilter;
         this.root = root;
@@ -18,7 +18,6 @@ public class FileCrawler implements Runnable{
         this.dao = dao;
     }
 
-   
 
     public void run() {
         try {
@@ -34,7 +33,7 @@ public class FileCrawler implements Runnable{
             for (File entry : entries)
                 if (entry.isDirectory())
                     crawl(entry);
-                else if (!dao.alreadyIndexed(entry)){
+                else if (!dao.alreadyIndexed(entry)) {
                     fileQueue.put(entry);
                     System.out.println("queue size = " + fileQueue.size());
                 }

@@ -24,11 +24,10 @@ import java.util.concurrent.RecursiveAction;
  * RecursiveTask<E> : A recursive ForkJoinTask that return an object of type E
  */
 public class IncrementTask extends RecursiveAction {
+    private static final int THRESHOLD = 5000;
     private final long[] array;
     private final int low;
     private final int high;
-
-    private static final int THRESHOLD = 5000;
 
     public IncrementTask(long[] array, int low, int high) {
         super();

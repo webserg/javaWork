@@ -1,8 +1,8 @@
 package thread.restaurant;
 
 public class WaitPerson1 extends Thread implements Person {
-    Restaurant r;
     public int n;
+    Restaurant r;
 
     public WaitPerson1(Restaurant restaurant, int number) {
         r = restaurant;

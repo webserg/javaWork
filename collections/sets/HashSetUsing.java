@@ -37,7 +37,7 @@ class HashSetUsing {
         }
         try {
             for (Iterator<Boo> it = s.iterator(); it.hasNext(); )
-                if (Objects.equals(it.next(),b2))
+                if (Objects.equals(it.next(), b2))
                     it.remove();
         } catch (ConcurrentModificationException e) {
             System.out.println("it was ConcurrentModificationException iterator");

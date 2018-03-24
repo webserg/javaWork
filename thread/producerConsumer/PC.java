@@ -13,7 +13,7 @@ package thread.producerConsumer;
  * The problem is that the producer waits inside
  * the monitor associated with the buffer, preventing
  * the consumer to execute the synchronized Get method on the buffer
- *
+ * <p>
  * decision remove synchronized before methods
  * OR
  * We really want the Producer

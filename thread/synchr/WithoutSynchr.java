@@ -12,6 +12,31 @@ public class WithoutSynchr {
     final Res res = new Res();
     List<String> list = new ArrayList<>();
 
+    public static void main(String[] args) {
+        WithoutSynchr useSynchr = new WithoutSynchr();
+
+        Runnable thread1 = () -> {
+            while (true) {
+                useSynchr.writer();
+            }
+        };
+
+        Runnable thread3 = () -> {
+            while (true) {
+                useSynchr.reader();
+            }
+        };
+
+        new Thread(thread1, "name1").start();
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        new Thread(thread1, "name2").start();
+        new Thread(thread3, "name3").start();
+    }
+
     private void writer() {
         synchronized (res) {
             res.setFname("fname" + Thread.currentThread().getName());
@@ -43,31 +68,6 @@ public class WithoutSynchr {
 
     private boolean check(String r) {
         return r.charAt(9) == r.charAt(9 + 9 + 1);
-    }
-
-    public static void main(String[] args) {
-        WithoutSynchr useSynchr = new WithoutSynchr();
-
-        Runnable thread1 = () -> {
-            while (true) {
-                useSynchr.writer();
-            }
-        };
-
-        Runnable thread3 = () -> {
-            while (true) {
-                useSynchr.reader();
-            }
-        };
-
-        new Thread(thread1, "name1").start();
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        new Thread(thread1, "name2").start();
-        new Thread(thread3, "name3").start();
     }
 }
 

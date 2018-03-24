@@ -9,8 +9,8 @@ package patterns.state;
  * if there is not enough data available, the state machine can return
  * to retrieve more data. Each transition between states is well defined
  * and the code for all states is together in one enum
- *
- *
+ * <p>
+ * <p>
  * Created by sergiy.doroshenko
  * Date: 7/10/11
  */

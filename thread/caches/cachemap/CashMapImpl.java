@@ -7,7 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * @author Sergiy Doroshenko
- *         Dec 11, 2008 4:44:15 PM
+ * Dec 11, 2008 4:44:15 PM
  */
 public class CashMapImpl<K, V> implements CacheMap<K, V> {
     private Map<K, V> map = new HashMap<K, V>();
@@ -60,6 +60,11 @@ public class CashMapImpl<K, V> implements CacheMap<K, V> {
     }
 
     @Override
+    public void setTimeToLive(long timeToLive) {
+        this.timeToLive = timeToLive;
+    }
+
+    @Override
     public boolean isEmpty() {
         clearExpired();
         return map.isEmpty();
@@ -83,11 +88,6 @@ public class CashMapImpl<K, V> implements CacheMap<K, V> {
         time.remove(key);
         return map.remove(key);
 
-    }
-
-    @Override
-    public void setTimeToLive(long timeToLive) {
-        this.timeToLive = timeToLive;
     }
 
     @Override

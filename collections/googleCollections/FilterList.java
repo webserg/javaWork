@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class FilterList {
     public static void main(String[] args) {
         List<String> list = Arrays.asList("A100", "B100", null, "B200", "B200");
-        List<String> filtered = list.stream().filter((String input) ->  input == null || input.startsWith("B")).collect(Collectors.toList());
+        List<String> filtered = list.stream().filter((String input) -> input == null || input.startsWith("B")).collect(Collectors.toList());
         System.out.println("");
 //        System.out.println(Joiner.on("; ").useForNull("B000").join(filtered));
         System.out.println(filtered);

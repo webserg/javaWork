@@ -14,6 +14,6 @@ public class ContainsMethod {
         List<Integer> ints = Arrays.asList(1, 2, 3, 4);
         assert ints.contains(obj);
         assert ints.containsAll(objs);
-        
+
     }
 }

@@ -5,8 +5,8 @@ import java.util.concurrent.RecursiveAction;
 
 
 public class Solve extends RecursiveAction {
-    private int[] list;
     public long result;
+    private int[] list;
 
     public Solve(int[] array) {
         this.list = array;

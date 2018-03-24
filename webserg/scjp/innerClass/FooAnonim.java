@@ -1,23 +1,6 @@
 package webserg.scjp.innerClass;
 
 public class FooAnonim {
-    /*public FooAnonim() {
-        System.out.print("foo");
-    }*/
-    private abstract static class Ab {
-    }
-
-    class Bar {
-        Bar() {
-            System.out.print("bar");
-        }
-
-        void go() {
-            System.out.println("hi");
-        }
-
-    }
-
     /**
      * @param args
      */
@@ -35,6 +18,23 @@ public class FooAnonim {
     void makeBar() {
         (new Bar() {
         }).go();
+
+    }
+
+    /*public FooAnonim() {
+        System.out.print("foo");
+    }*/
+    private abstract static class Ab {
+    }
+
+    class Bar {
+        Bar() {
+            System.out.print("bar");
+        }
+
+        void go() {
+            System.out.println("hi");
+        }
 
     }
 

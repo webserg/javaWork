@@ -16,7 +16,7 @@ import java.net.Socket;
  * ever reaches a certain threshold.
  *
  * @author Sergiy Doroshenko webserg@gmail.com Feb 11, 2009
- *         1:31:53 PM
+ * 1:31:53 PM
  */
 public class ThreadPerTaskWebServer {
     public static void main(String[] args) throws IOException {

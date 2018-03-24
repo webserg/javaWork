@@ -35,6 +35,20 @@ public class LockFreeList<T> implements IList<T> {
         while (!head.next.compareAndSet(null, tail, false, false)) ;
     }
 
+    public static void main(String[] args) {
+
+        IList<Integer> ss = new LockFreeList<>();
+
+        ss.add(5);
+        ss.add(10);
+        ss.add(7);
+        ss.add(7);
+        ss.add(6);
+        System.out.println(ss);
+        ss.remove(7);
+        System.out.println(ss);
+    }
+
     /**
      * Add an element.
      *
@@ -105,6 +119,50 @@ public class LockFreeList<T> implements IList<T> {
     }
 
     /**
+     * If element is present, returns node and predecessor. If absent, returns
+     * node with least larger key.
+     *
+     * @param head start of list
+     * @param key  key to search for
+     * @return If element is present, returns node and predecessor. If absent, returns
+     * node with least larger key.
+     */
+    public Window find(Node head, int key) {
+        Node pred = null, curr = null, succ = null;
+        boolean[] marked = {false}; // is curr marked?
+        boolean snip;
+        retry:
+        while (true) {
+            pred = head;
+            curr = pred.next.getReference();
+            while (true) {
+                succ = curr.next.get(marked);
+                while (marked[0]) {           // replace curr if marked
+                    snip = pred.next.compareAndSet(curr, succ, false, false);
+                    if (!snip) continue retry;
+                    curr = pred.next.getReference();
+                    succ = curr.next.get(marked);
+                }
+                if (curr.key >= key)
+                    return new Window(pred, curr);
+                pred = curr;
+                curr = succ;
+            }
+        }
+    }
+
+    public String toString() {
+        Node cur = head;
+        StringBuilder str = new StringBuilder("[");
+        while (cur != null) {
+            str.append(cur.item);
+            cur = cur.next.getReference();
+        }
+        str.append("]");
+        return str.toString();
+    }
+
+    /**
      * list node
      */
     private class Node {
@@ -147,67 +205,10 @@ public class LockFreeList<T> implements IList<T> {
     class Window {
         public Node pred;
         public Node curr;
+
         Window(Node pred, Node curr) {
             this.pred = pred;
             this.curr = curr;
         }
-    }
-
-    /**
-     * If element is present, returns node and predecessor. If absent, returns
-     * node with least larger key.
-     *
-     * @param head start of list
-     * @param key  key to search for
-     * @return If element is present, returns node and predecessor. If absent, returns
-     *         node with least larger key.
-     */
-    public Window find(Node head, int key) {
-        Node pred = null, curr = null, succ = null;
-        boolean[] marked = {false}; // is curr marked?
-        boolean snip;
-        retry:
-        while (true) {
-            pred = head;
-            curr = pred.next.getReference();
-            while (true) {
-                succ = curr.next.get(marked);
-                while (marked[0]) {           // replace curr if marked
-                    snip = pred.next.compareAndSet(curr, succ, false, false);
-                    if (!snip) continue retry;
-                    curr = pred.next.getReference();
-                    succ = curr.next.get(marked);
-                }
-                if (curr.key >= key)
-                    return new Window(pred, curr);
-                pred = curr;
-                curr = succ;
-            }
-        }
-    }
-
-    public String toString() {
-        Node cur = head;
-        StringBuilder str = new StringBuilder("[");
-        while (cur != null) {
-            str.append(cur.item);
-            cur = cur.next.getReference();
-        }
-        str.append("]");
-        return str.toString();
-    }
-
-    public static void main(String[] args) {
-
-        IList<Integer> ss = new LockFreeList<>();
-
-        ss.add(5);
-        ss.add(10);
-        ss.add(7);
-        ss.add(7);
-        ss.add(6);
-        System.out.println(ss);
-        ss.remove(7);
-        System.out.println(ss);
     }
 }

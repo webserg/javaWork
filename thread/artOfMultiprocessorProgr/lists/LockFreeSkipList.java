@@ -5,10 +5,10 @@ import java.util.concurrent.atomic.AtomicMarkableReference;
 
 public final class LockFreeSkipList<T> {
     static final int MAX_LEVEL = 10;
+    private static final Random seedGenerator = new Random();
     final Node<T> head = new Node<T>(Integer.MIN_VALUE);
     final Node<T> tail = new Node<T>(Integer.MAX_VALUE);
     private transient int randomSeed;
-    private static final Random seedGenerator = new Random();
 
     public LockFreeSkipList() {
         randomSeed = seedGenerator.nextInt() | 0x0100; // ensure nonzero;
@@ -16,37 +16,6 @@ public final class LockFreeSkipList<T> {
             head.next[i] = new AtomicMarkableReference<Node<T>>(tail, false);
         }
     }
-
-    public static final class Node<T> {
-        final T value;
-        final int key;
-        final AtomicMarkableReference<Node<T>>[] next;
-        private int topLevel;
-
-        // constructor for sentinel nodes
-        public Node(int key) {
-            value = null;
-            this.key = key;
-            next = (AtomicMarkableReference<Node<T>>[])
-                    new AtomicMarkableReference[MAX_LEVEL + 1];
-            for (int i = 0; i < next.length; i++) {
-                next[i] = new AtomicMarkableReference<Node<T>>(null, false);
-            }
-            topLevel = MAX_LEVEL;
-        }
-
-        // constructor for ordinary nodes
-        public Node(T x, int height) {
-            value = x;
-            key = x.hashCode();
-            next = (AtomicMarkableReference<Node<T>>[]) new AtomicMarkableReference[height + 1];
-            for (int i = 0; i < next.length; i++) {
-                next[i] = new AtomicMarkableReference<Node<T>>(null, false);
-            }
-            topLevel = height;
-        }
-    }
-
 
     boolean add(T x) {
         int topLevel = randomLevel();
@@ -178,7 +147,6 @@ public final class LockFreeSkipList<T> {
         return (curr.key == v);
     }
 
-
     private int randomLevel() {
         int x = randomSeed;
         x ^= x << 13;
@@ -189,6 +157,36 @@ public final class LockFreeSkipList<T> {
         int level = 1;
         while (((x >>>= 1) & 1) != 0) ++level;
         return level;
+    }
+
+    public static final class Node<T> {
+        final T value;
+        final int key;
+        final AtomicMarkableReference<Node<T>>[] next;
+        private int topLevel;
+
+        // constructor for sentinel nodes
+        public Node(int key) {
+            value = null;
+            this.key = key;
+            next = (AtomicMarkableReference<Node<T>>[])
+                    new AtomicMarkableReference[MAX_LEVEL + 1];
+            for (int i = 0; i < next.length; i++) {
+                next[i] = new AtomicMarkableReference<Node<T>>(null, false);
+            }
+            topLevel = MAX_LEVEL;
+        }
+
+        // constructor for ordinary nodes
+        public Node(T x, int height) {
+            value = x;
+            key = x.hashCode();
+            next = (AtomicMarkableReference<Node<T>>[]) new AtomicMarkableReference[height + 1];
+            for (int i = 0; i < next.length; i++) {
+                next[i] = new AtomicMarkableReference<Node<T>>(null, false);
+            }
+            topLevel = height;
+        }
     }
 
 }

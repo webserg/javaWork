@@ -1,5 +1,7 @@
 package webserg.programmingPearls;
 
+import junit.framework.TestCase;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -8,11 +10,9 @@ import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import junit.framework.TestCase;
-
 /**
  * @author Sergiy Doroshenko problem is to count the number of times each word occurs in the
- *         document
+ * document
  */
 public class CounterOfEachWorlds extends TestCase {
 
@@ -21,20 +21,6 @@ public class CounterOfEachWorlds extends TestCase {
     static int NHASH = 29989;
 
     static Node[] bin = new Node[NHASH];
-
-    private static class Node {
-
-        String word;
-
-        int count;
-
-        Node next;
-
-        @Override
-        public int hashCode() {
-            return word.hashCode() % NHASH < 0 ? word.hashCode() % NHASH * -1 : word.hashCode() % NHASH;
-        }
-    }
 
     private static void getListOfWorlds(String fileName) {
         File inFile = new File(fileName);
@@ -90,8 +76,22 @@ public class CounterOfEachWorlds extends TestCase {
                 System.out.println(n.word + " = " + n.count + ";" + n.hashCode());
             }
     }
+
+    private static class Node {
+
+        String word;
+
+        int count;
+
+        Node next;
+
+        @Override
+        public int hashCode() {
+            return word.hashCode() % NHASH < 0 ? word.hashCode() % NHASH * -1 : word.hashCode() % NHASH;
+        }
+    }
     /**
-     * 
+     *
      */
     /* public void testGetWorlds() {
          String fileName = "worlds.txt";

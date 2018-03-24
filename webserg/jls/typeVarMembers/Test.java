@@ -1,5 +1,9 @@
 package webserg.jls.typeVarMembers;
 
+interface I {
+    void mI();
+}
+
 /**
  * User: webserg
  * Date: 21.11.12
@@ -31,10 +35,6 @@ class C {
 
     private void mCPrivate() {
     }
-}
-
-interface I {
-    void mI();
 }
 
 class CT extends C implements I {

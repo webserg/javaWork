@@ -6,6 +6,6 @@ package thread.reentrancy.conditions;
  */
 public class BoundedBufferUsing {
     public static void main(String[] args) {
-        BoundedBuffer buffer =  new BoundedBuffer();
+        BoundedBuffer buffer = new BoundedBuffer();
     }
 }

@@ -7,5 +7,6 @@ package patterns.visitor;
  */
 public interface Visitor {
     void visit(ItemA item);
+
     void visit(ItemB item);
 }

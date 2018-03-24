@@ -9,20 +9,21 @@ import java.util.concurrent.Semaphore;
  * BoundedBuffer
  * <p/>
  * Bounded buffer using \Semaphore
- *  * Bounded buffer using condition queues
+ * * Bounded buffer using condition queues
  * BoundedBuffer implements a fixed-length array-based queue with blocking put and take methods
  * controlled by a pair of counting semaphores. The availableItems semaphore represents the
  * number of elements that can be removed from the buffer, and is initially zero (since the buffer is
  * initially empty). Similarly, availableSpaces represents how many items can be inserted into the
  * buffer, and is initialized to the size of the buffer.
+ *
  * @author Brian Goetz and Tim Peierls
  */
 @ThreadSafe
-public class SemaphoreBoundedBufferImpl<E> extends BaseBoundedBuffer<E>{
+public class SemaphoreBoundedBufferImpl<E> extends BaseBoundedBuffer<E> {
     private final Semaphore availableItems, availableSpaces;
-    @GuardedBy("this") private int putPosition = 0, takePosition = 0;
-
     E[] items;
+    @GuardedBy("this")
+    private int putPosition = 0, takePosition = 0;
 
     public SemaphoreBoundedBufferImpl(int capacity) {
         super(capacity);

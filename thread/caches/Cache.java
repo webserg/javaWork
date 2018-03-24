@@ -23,7 +23,7 @@ import java.util.List;
  * I will replace it as it now has its referenced bit cleared. am better than FIFO in speed
  *
  * @author Sergiy Doroshenko
- *         Date: 1/13/11 8:55 PM
+ * Date: 1/13/11 8:55 PM
  */
 public interface Cache<KeyType, ValueType> {
     /**
@@ -31,7 +31,7 @@ public interface Cache<KeyType, ValueType> {
      * <p/>
      * If there already is an item under the given key, it will be replaced by the new value. <p>
      *
-     * @param key may not be null
+     * @param key   may not be null
      * @param value may be null, in which case the cache entry will be removed (if it existed).
      * @return the previous value, or null if none
      */
@@ -45,7 +45,6 @@ public interface Cache<KeyType, ValueType> {
     ValueType get(KeyType key);
 
     /**
-     *
      * @return list
      */
     List<KeyType> getAllKeys();

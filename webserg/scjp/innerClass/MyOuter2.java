@@ -2,8 +2,24 @@ package webserg.scjp.innerClass;
 
 
 public class MyOuter2 {
-    private String x = "out";
     static String y = "stat";
+    private String x = "out";
+
+    static void staticMethodWithInnerClass() {
+
+        class MyInner {
+            MyInner() {
+                System.out.println(y);
+            }
+        }
+        MyInner inner = new MyInner();
+    }
+
+    public static void main(String[] args) {
+        MyOuter2 outer = new MyOuter2();
+        outer.doStuff();
+        staticMethodWithInnerClass();
+    }
 
     public void doStuff() {
         String z = "local";
@@ -24,21 +40,5 @@ public class MyOuter2 {
 
         MyInner inner = new MyInner();
         inner.seeOuter();
-    }
-
-    static void staticMethodWithInnerClass() {
-
-        class MyInner {
-            MyInner() {
-                System.out.println(y);
-            }
-        }
-        MyInner inner = new MyInner();
-    }
-
-    public static void main(String[] args) {
-        MyOuter2 outer = new MyOuter2();
-        outer.doStuff();
-        staticMethodWithInnerClass();
     }
 }

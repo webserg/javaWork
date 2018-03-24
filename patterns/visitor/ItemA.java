@@ -5,7 +5,7 @@ package patterns.visitor;
  * Date: Sep 18, 2010
  * Time: 4:28:07 PM
  */
-public class ItemA implements Item{
+public class ItemA implements Item {
 
     String result;
 
@@ -16,9 +16,10 @@ public class ItemA implements Item{
     public void setResult(String result) {
         this.result = result;
     }
+
     @Override
     public void accept(Visitor v) {
-         v.visit(this);
+        v.visit(this);
     }
 
     @Override

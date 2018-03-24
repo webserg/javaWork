@@ -7,8 +7,8 @@ package webserg.scjp.devel;
  * for multiples of both print FizzBuzz
  *
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 11:37 AM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 11:37 AM
  */
 public class MultiplesPrints {
     public static void main(String[] args) {

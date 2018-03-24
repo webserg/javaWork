@@ -1,6 +1,8 @@
-import os, sys
 import glob
+import os
 from stat import *
+
+
 def walktree(top, callback):
     for f in os.listdir(top):
         print (glob.glob('*.java'))
@@ -15,18 +17,20 @@ def walktree(top, callback):
         else:
             # Unknown file type, print a message
             print ('Skipping %s', pathname)
-            
+
+
 def visitfile(f):
     print(f)
-def countLines(root,name):
+
+
+def countLines(root, name):
     count = 0
     print (name)
-    #for line in open(join(root, name),'r'):
+    # for line in open(join(root, name),'r'):
     #    count += 1
     return count
+
+
 if __name__ == '__main__':
     walktree('c:\\projects\\HEAD\\standard\\siab', visitfile)
-    #os.walk('c:\\projects\\HEAD\\standard\\siab', visitfile, '') 
-
-
-
+    # os.walk('c:\\projects\\HEAD\\standard\\siab', visitfile, '')

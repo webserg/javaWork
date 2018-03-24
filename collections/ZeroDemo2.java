@@ -1,4 +1,5 @@
 package collections;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,10 +16,10 @@ public class ZeroDemo2 {
         // convert to String array
 
         Object out[] = stringlist.toArray();
-        
+
         for (int i = 0; i < out.length; i++) {
             System.out.println(out[i]);
-            
+
         }
     }
 }

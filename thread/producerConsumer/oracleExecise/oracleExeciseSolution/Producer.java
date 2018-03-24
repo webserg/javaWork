@@ -1,16 +1,15 @@
 package thread.producerConsumer.oracleExecise.oracleExeciseSolution;
 
 import java.util.Random;
-import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/16/11 1:53 PM
+ * email:webserg@gmail.com
+ * Date: 1/16/11 1:53 PM
  */
 class Producer implements Runnable {
-    private BlockingQueue<String> drop ;
+    private BlockingQueue<String> drop;
 
     Producer(BlockingQueue<String> drop) {
         this.drop = drop;

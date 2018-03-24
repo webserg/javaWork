@@ -7,7 +7,7 @@
  * without fee is hereby granted.
  *
  * This sample source code is provided for example only,
- * on an unsupported, as-is basis. 
+ * on an unsupported, as-is basis.
  *
  * AUTHOR MAKES NO REPRESENTATIONS OR WARRANTIES ABOUT THE SUITABILITY OF
  * THE SOFTWARE, EITHER EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
@@ -28,22 +28,24 @@
  */
 
 package thread.ch03;
+
 public class BusyFlag1 {
-	protected Thread busyflag = null;
+    protected Thread busyflag = null;
 
-	public void getBusyFlag () {
-		while (busyflag != Thread.currentThread()) {
-			if (busyflag == null)
-				busyflag = Thread.currentThread();
-			try {
-				Thread.sleep(100);
-			} catch (Exception e) {}
-		}
-	}
+    public void getBusyFlag() {
+        while (busyflag != Thread.currentThread()) {
+            if (busyflag == null)
+                busyflag = Thread.currentThread();
+            try {
+                Thread.sleep(100);
+            } catch (Exception e) {
+            }
+        }
+    }
 
-	public void freeBusyFlag () {
-		if (busyflag == Thread.currentThread()) {
-			busyflag = null;
-		}
-	}
+    public void freeBusyFlag() {
+        if (busyflag == Thread.currentThread()) {
+            busyflag = null;
+        }
+    }
 }

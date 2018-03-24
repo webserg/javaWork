@@ -17,5 +17,5 @@ a_string = 'My alphabet starts where your alphabet ends.'
 print(a_string[3:6])
 print(a_string)
 string = "example"
-for c in string: 
+for c in string:
     print("one letter: " + c)

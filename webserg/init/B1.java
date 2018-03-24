@@ -1,35 +1,34 @@
 package webserg.init;
 
 public class B1 extends A1 {
-    {
-        System.out.println("init block B1 ");
-    }
-
     static {
         System.out.println("static block B1");
 
     }
 
+    int k = p();
     private int publ = 7;
 
-    static int p() {
-        System.out.println("p");
-        return 1;
+    {
+        System.out.println("init block B1 ");
     }
 
     {
         System.out.println("init t = " + t);
     }
 
-    int k = p();
+    {
+        System.out.println("init " + k);
+    }
 
 
     public B1() throws Exception {
         System.out.println("constructor B1" + k);
     }
 
-    {
-        System.out.println("init " + k);
+    static int p() {
+        System.out.println("p");
+        return 1;
     }
 
     public static void main(String[] args) throws Exception {

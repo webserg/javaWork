@@ -16,8 +16,8 @@ public class Counter {
         }
         //@formatter:off
         sources.stream()
-                .map(x-> x*2)
-                .peek(x-> atomicLong.incrementAndGet())
+                .map(x -> x * 2)
+                .peek(x -> atomicLong.incrementAndGet())
                 .filter(x -> x > 5)
                 .forEach(System.out::println);
         //@formatter:on

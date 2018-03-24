@@ -1,18 +1,19 @@
 package algoritms.trees.dataStructuresInJava;
 
-public class TreePosition implements Position{
+public class TreePosition implements Position {
 
-    private TreePosition prev,next;
+    private TreePosition prev, next;
     private Object element;
-    
+
     public Object element() {
-	return element;
+        return element;
     }
-    
-    public Object root(){
-	  return null;
+
+    public Object root() {
+        return null;
     }
-    
-    public void perent(){}
+
+    public void perent() {
+    }
 
 }

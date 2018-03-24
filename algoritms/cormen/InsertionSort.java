@@ -2,8 +2,6 @@ package algoritms.cormen;
 
 import java.util.Arrays;
 
-import static junit.framework.Assert.assertEquals;
-
 /**
  * Created by webserg on 10/3/2016.
  * Insertion sort by Cormen

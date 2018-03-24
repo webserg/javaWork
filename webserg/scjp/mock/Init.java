@@ -1,18 +1,18 @@
 package webserg.scjp.mock;
 
 public class Init {
-    X x = new X();
-
-    Init() {
-        System.out.println("constructor");
+    static {
+        System.out.println("stat");
     }
+
+    X x = new X();
 
     {
         System.out.println("init block");
     }
 
-    static {
-        System.out.println("stat");
+    Init() {
+        System.out.println("constructor");
     }
 
     /**

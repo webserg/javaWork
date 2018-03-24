@@ -1,10 +1,13 @@
 package java8.lambda;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class Member {
 
+    String name;
+    Calendar birthday;
+    Sex gender;
+    String emailAddress;
     public Member(String name, Calendar birthday, Sex gender, String emailAddress) {
         this.name = name;
         this.birthday = birthday;
@@ -12,14 +15,9 @@ public class Member {
         this.emailAddress = emailAddress;
     }
 
-    public enum Sex {
-        MALE, FEMALE
+    public static int compareByAge(Member a, Member b) {
+        return a.birthday.compareTo(b.birthday);
     }
-
-    String name;
-    Calendar birthday;
-    Sex gender;
-    String emailAddress;
 
     public int getAge() {
         // ...
@@ -30,8 +28,8 @@ public class Member {
         return birthday;
     }
 
-    public static int compareByAge(Member a, Member b) {
-        return a.birthday.compareTo(b.birthday);
+    public void setBirthday(Calendar birthday) {
+        this.birthday = birthday;
     }
 
     public String getName() {
@@ -40,10 +38,6 @@ public class Member {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public void setBirthday(Calendar birthday) {
-        this.birthday = birthday;
     }
 
     public Sex getGender() {
@@ -62,7 +56,7 @@ public class Member {
         this.emailAddress = emailAddress;
     }
 
-    public void printMember(){
+    public void printMember() {
         toString();
     }
 
@@ -74,6 +68,10 @@ public class Member {
                 ", gender=" + gender +
                 ", emailAddress='" + emailAddress + '\'' +
                 '}';
+    }
+
+    public enum Sex {
+        MALE, FEMALE
     }
 }
 

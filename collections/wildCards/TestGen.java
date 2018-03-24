@@ -1,7 +1,6 @@
 package collections.wildCards;
 
 
-
 import java.util.LinkedList;
 import java.util.List;
 
@@ -12,19 +11,24 @@ import java.util.List;
  */
 public class TestGen {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		List<A> listA = new LinkedList<A>();
-		List<B> listB = new LinkedList<B>();
-		List<Object> listO = new LinkedList<Object>();
-		m1(listA);
-		m2(listA);
-	}
-static void m1(List<? extends A> l){}
-static void m2(List<A> l){}
+    /**
+     * @param args
+     */
+    public static void main(String[] args) {
+        List<A> listA = new LinkedList<A>();
+        List<B> listB = new LinkedList<B>();
+        List<Object> listO = new LinkedList<Object>();
+        m1(listA);
+        m2(listA);
+    }
+
+    static void m1(List<? extends A> l) {
+    }
+
+    static void m2(List<A> l) {
+    }
 
 }
 
-class B extends A{}
+class B extends A {
+}

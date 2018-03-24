@@ -6,12 +6,12 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class Reflector {
-	public static void main(String[] args) throws Exception{
+    public static void main(String[] args) throws Exception {
 
-		Set<String> s = new HashSet<String>();
-		s.add("foo");
-		Iterator it = s.iterator();
-		Method m = it.getClass().getMethod("hasNext");
-		System.out.println(m.invoke(it));
-	}
+        Set<String> s = new HashSet<String>();
+        s.add("foo");
+        Iterator it = s.iterator();
+        Method m = it.getClass().getMethod("hasNext");
+        System.out.println(m.invoke(it));
+    }
 }

@@ -4,8 +4,6 @@ import thread.exercises.goteborg.ball.init.BallWorld;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Balls {
 

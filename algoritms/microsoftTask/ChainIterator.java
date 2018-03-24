@@ -1,11 +1,10 @@
 package algoritms.microsoftTask;
+
 /**
- * 
  * itarate through linked list
- * 
- * @author Sergiy Doroshenko
  *
  * @param <T>
+ * @author Sergiy Doroshenko
  */
 public class ChainIterator<T extends Node<T>> {
 
@@ -19,31 +18,31 @@ public class ChainIterator<T extends Node<T>> {
     }
 
     public void add(T t) {
-        if(tail == null){
+        if (tail == null) {
             tail = t;
             head = tail;
-        }else {
+        } else {
             tail.setNext(t);
             tail = tail.getNext();
         }
     }
 
-    
+
     public T getHead() {
         return head;
     }
 
-    
+
     public void setHead(T head) {
         this.head = head;
     }
 
-    
+
     public T getTail() {
         return tail;
     }
 
-    
+
     public void setTail(T tail) {
         this.tail = tail;
     }

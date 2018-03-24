@@ -1,4 +1,5 @@
 package java8.lambda;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,14 +24,16 @@ import java.util.List;
 public class LazyEvaluationUsing {
     public static void main(String[] args) {
         List<Student> students = new ArrayList<>();
-        students.add(new Student("first",1));
-        students.add(new Student("second",2));
-        students.add(new Student("third",3));
-        students.add(new Student("fours",1));
-        students.add(new Student("fives",5));
+        students.add(new Student("first", 1));
+        students.add(new Student("second", 2));
+        students.add(new Student("third", 3));
+        students.add(new Student("fours", 1));
+        students.add(new Student("fives", 5));
 
-        students.stream().map(s -> s.getScore()).forEach(System.out :: println);
-        int sum = students.stream().map(s -> s.getScore()).reduce(0, (x, y) -> {  return (x + y); });
+        students.stream().map(s -> s.getScore()).forEach(System.out::println);
+        int sum = students.stream().map(s -> s.getScore()).reduce(0, (x, y) -> {
+            return (x + y);
+        });
         System.out.println(sum);
     }
 }

@@ -30,6 +30,7 @@ public class Singleton {
      * synchronized block, the waiting thread enters and creates another
      * Singleton object. Note that when the second thread enters the synchronized block,
      * it does not check to see if instance is non-null
+     *
      * @return
      */
     public static synchronized Singleton getInstance() {

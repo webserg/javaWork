@@ -1,7 +1,6 @@
 package thread.caches.lru;
 
 import thread.caches.Cache;
-import thread.caches.lfu.CountKey;
 
 import java.util.*;
 
@@ -24,31 +23,30 @@ import java.util.*;
  * some of my family member are (LRU2 and 2Q) (they were implemented in order to improve LRU caching
  *
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/20/11 11:30 AM
+ * email:webserg@gmail.com
+ * Date: 1/20/11 11:30 AM
  */
 public class LeastRecentlyUsed<K, V> implements Cache<K, V> {
     private final int CAPASITY = 10;
-    private LinkedList<K> queue = new LinkedList< >();
-    private Map<K, V> map = new HashMap< >();
+    private LinkedList<K> queue = new LinkedList<>();
+    private Map<K, V> map = new HashMap<>();
 
     @Override
     public V put(K key, V value) {
-         if (queue.size() < CAPASITY) {
+        if (queue.size() < CAPASITY) {
 
-            addKey(key,value);
+            addKey(key, value);
 
         } else {
 
-            replaceKey(key,value);
+            replaceKey(key, value);
         }
         return null;
     }
 
     /**
-     *
      * @param key   key
-     * @param value    value
+     * @param value value
      */
     private void addKey(K key, V value) {
         queue.offer(key);
@@ -56,39 +54,39 @@ public class LeastRecentlyUsed<K, V> implements Cache<K, V> {
     }
 
     /**
-     *
-     * @param key   key
+     * @param key key
      */
     private void hit(K key) {
-            queue.remove(key);
-            queue.offer(key);
+        queue.remove(key);
+        queue.offer(key);
     }
 
 
     /**
      * //replacement policy
-     * @param key key
-     * @param value  value
+     *
+     * @param key   key
+     * @param value value
      */
     private void replaceKey(K key, V value) {
         K oldKey = queue.poll();
         map.remove(oldKey);
         queue.offer(key);
-        map.put(key,value);
+        map.put(key, value);
     }
 
     @Override
     public V get(K key) {
-        V v =  map.get(key);
-        if(v != null){
-             hit(key); //whenever an item is accessed, I place at the top.
+        V v = map.get(key);
+        if (v != null) {
+            hit(key); //whenever an item is accessed, I place at the top.
         }
         return v;
     }
 
     @Override
     public List<K> getAllKeys() {
-        List<K> l = new ArrayList< >(queue);
+        List<K> l = new ArrayList<>(queue);
         return l;
     }
 }

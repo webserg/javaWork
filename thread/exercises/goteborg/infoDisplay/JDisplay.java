@@ -1,33 +1,38 @@
 package thread.exercises.goteborg.infoDisplay;
-import java.awt.*;
+
 import javax.swing.*;
+import java.awt.*;
 
 public class JDisplay implements HWDisplay {
 
-    private JFrame win;
-    private CharDisplay [] [] text;
     private static int ROWS = 20;
     private static int COLS = 30;
+    private JFrame win;
+    private CharDisplay[][] text;
 
-    public JDisplay () {
-	win = new JFrame();
-	win.getContentPane().setLayout(new GridLayout(ROWS,COLS));
-	text = new CharDisplay [ROWS][COLS];
-	for(int i=0; i<ROWS; i++) 
-	    for (int j=0; j < COLS; j++) {
-	    text[i][j] = new CharDisplay();
-	    win.getContentPane().add(text[i][j]);
-	}
-	win.pack();
-	win.setVisible(true);
+    public JDisplay() {
+        win = new JFrame();
+        win.getContentPane().setLayout(new GridLayout(ROWS, COLS));
+        text = new CharDisplay[ROWS][COLS];
+        for (int i = 0; i < ROWS; i++)
+            for (int j = 0; j < COLS; j++) {
+                text[i][j] = new CharDisplay();
+                win.getContentPane().add(text[i][j]);
+            }
+        win.pack();
+        win.setVisible(true);
     }
 
-    public int getRows() {return ROWS;}
+    public int getRows() {
+        return ROWS;
+    }
 
-    public int getCols() {return COLS;}
+    public int getCols() {
+        return COLS;
+    }
 
     public void write(int row, int col, char c) {
-	text[row][col].write(c);
+        text[row][col].write(c);
     }
 
 }
@@ -37,20 +42,22 @@ class CharDisplay extends JLabel {
     private static final Color bgColor = Color.GRAY;
     private static final Color fgColor = Color.YELLOW;
 
-    public CharDisplay (){
+    public CharDisplay() {
         setText(" ");
-        setFont(new Font("Monospaced",Font.BOLD,20));
+        setFont(new Font("Monospaced", Font.BOLD, 20));
         setBackground(bgColor);
         setForeground(fgColor);
         setOpaque(true);
-     }
+    }
 
 
-    public void write(final char c) { 
+    public void write(final char c) {
         SwingUtilities.invokeLater(new Runnable() {
-		public void run() {
-		    setText(new Character(c).toString());
-		}
-	    });
-    };
+            public void run() {
+                setText(new Character(c).toString());
+            }
+        });
+    }
+
+    ;
 }

@@ -7,7 +7,6 @@ import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CyclicBarrier;
-import java.util.concurrent.Semaphore;
 
 public class Balls {
 
@@ -35,7 +34,7 @@ public class Balls {
         });
 
         Thread.currentThread().setName("MyMainThread");
-        CyclicBarrier barrier = new CyclicBarrier(4,()->nap((int) (5000 * Math.random())));
+        CyclicBarrier barrier = new CyclicBarrier(4, () -> nap((int) (5000 * Math.random())));
 
         List<Ball> balls = new ArrayList<>();
         Ball red = new Ball(world, 50, 80, 5, 10, Color.red, barrier);

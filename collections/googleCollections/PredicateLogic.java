@@ -6,15 +6,12 @@ package collections.googleCollections;
  * Time: 12:46:44 PM
  */
 
-import static com.google.common.base.Predicates.and;
-import static com.google.common.base.Predicates.compose;
-import static com.google.common.base.Predicates.in;
-import static com.google.common.base.Predicates.not;
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 
 import java.util.List;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
+import static com.google.common.base.Predicates.*;
 
 public class PredicateLogic {
     public static void main(String[] args) {

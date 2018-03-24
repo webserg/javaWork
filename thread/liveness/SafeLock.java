@@ -27,6 +27,14 @@ import java.util.concurrent.locks.ReentrantLock;
  * to bow safely that they can't stop bowing to each other:
  */
 public class SafeLock {
+    public static void main(String[] args) {
+        final Friend alphonse = new Friend("Alphonse");
+        final Friend gaston = new Friend("Gaston");
+        new Thread(new BowLoop(alphonse, gaston)).start();
+        new Thread(new BowLoop(gaston, alphonse)).start();
+        // if(false && true) System.out.println("true");
+    }
+
     static class Friend {
         private final String name;
         private final Lock lock = new ReentrantLock();
@@ -70,7 +78,7 @@ public class SafeLock {
                 }
             } else {
                 System.out.format("%s: %s started to bow to me, but" +
-                        " saw that I was already bowing to him.%n",
+                                " saw that I was already bowing to him.%n",
                         this.name, bower.getName());
             }
         }
@@ -100,15 +108,6 @@ public class SafeLock {
                 bowee.bow(bower);
             }
         }
-    }
-
-
-    public static void main(String[] args) {
-        final Friend alphonse = new Friend("Alphonse");
-        final Friend gaston = new Friend("Gaston");
-        new Thread(new BowLoop(alphonse, gaston)).start();
-        new Thread(new BowLoop(gaston, alphonse)).start();
-       // if(false && true) System.out.println("true");
     }
 
 }

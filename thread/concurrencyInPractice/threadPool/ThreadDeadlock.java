@@ -12,10 +12,10 @@ import java.util.concurrent.Future;
  * always deadlock. The second task sits on the work queue until the
  * first task completes, but the first will not complete because it is
  * waiting for the result of the second task. ThreadDeadlock
- * 
+ * <p>
  * <p/>
  * Task that deadlocks in a single-threaded Executor
- * 
+ *
  * @author Brian Goetz and Tim Peierls
  */
 public class ThreadDeadlock {

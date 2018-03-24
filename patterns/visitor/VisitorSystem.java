@@ -15,10 +15,10 @@ public class VisitorSystem {
         Item it3 = new ItemB();
         Item it4 = new ItemB();
 
-        List<Item> items = Arrays.asList(new ItemA(),new ItemA(),new ItemB(),new ItemA(),new ItemB());
+        List<Item> items = Arrays.asList(new ItemA(), new ItemA(), new ItemB(), new ItemA(), new ItemB());
         Visitor v = new VisitorOne();
 
-        for (Item i : items){
+        for (Item i : items) {
             i.accept(v);
         }
 

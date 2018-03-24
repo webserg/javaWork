@@ -1,17 +1,17 @@
 package thread.concurrencyInPractice.tests;
 
+import junit.framework.TestCase;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import junit.framework.TestCase;
-
 /**
  * TestingThreadFactory
  * <p/>
  * Testing thread pool expansion
- * 
+ *
  * @author Brian Goetz and Tim Peierls
  */
 public class TestThreadPool extends TestCase {
@@ -35,7 +35,7 @@ public class TestThreadPool extends TestCase {
         for (int i = 0; i < 20 && threadFactory.numCreated.get() < MAX_SIZE; i++)
             Thread.sleep(100);
         System.out.println("==" + threadFactory.numCreated.get());
-        assertEquals(MAX_SIZE * 10,threadFactory.numCreated.get());
+        assertEquals(MAX_SIZE * 10, threadFactory.numCreated.get());
         exec.shutdownNow();
     }
 }
@@ -43,6 +43,7 @@ public class TestThreadPool extends TestCase {
 class TestingThreadFactory implements ThreadFactory {
     public final AtomicInteger numCreated = new AtomicInteger();
     private final ThreadFactory factory = Executors.defaultThreadFactory();
+
     public Thread newThread(Runnable r) {
         System.out.println(numCreated.incrementAndGet());
         return factory.newThread(r);

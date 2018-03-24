@@ -49,8 +49,8 @@ public class AbstractLinkedListLRUCacheTest {
         assertTrue(keys.containsAll(Arrays.asList(f)));
     }
 
-    protected  List<ValueObject> fillStorage() {
-        List<ValueObject> storage = new ArrayList< >();
+    protected List<ValueObject> fillStorage() {
+        List<ValueObject> storage = new ArrayList<>();
         Random random = new Random();
         random.nextInt(100);
         for (int i = 0; i < 100; i++) {

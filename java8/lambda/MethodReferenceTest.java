@@ -1,14 +1,7 @@
 package java8.lambda;
 
-import java.util.List;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Collection;
+import java.util.*;
 import java.util.function.Supplier;
-import java.util.Set;
-import java.util.HashSet;
-import java.util.GregorianCalendar;
 
 public class MethodReferenceTest {
 
@@ -94,12 +87,14 @@ public class MethodReferenceTest {
         // Reference to an instance method
         // of an arbitrary object of a particular type
 
-        String[] stringArray = { "Barbara", "James", "Mary", "John",
-                "Patricia", "Robert", "Michael", "Linda" };
+        String[] stringArray = {"Barbara", "James", "Mary", "John",
+                "Patricia", "Robert", "Michael", "Linda"};
         Arrays.sort(stringArray, String::compareToIgnoreCase);
 
         Set<Member> rosterSetLambda =
-                transferElements(roster, () -> { return new HashSet<Member>(); });
+                transferElements(roster, () -> {
+                    return new HashSet<Member>();
+                });
 
         Set<Member> rosterSet = transferElements(roster, HashSet::new);
         System.out.println("Printing rosterSet:");

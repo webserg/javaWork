@@ -1,24 +1,20 @@
 package thread.exercises.goteborg.ball.init;
 
-import thread.exercises.goteborg.ball.killingBalls.*;
-
-import java.awt.*;
 import javax.swing.*;
-import java.util.*;
+import java.awt.*;
+import java.util.ArrayList;
 
 public class BallWorld<T extends BallI> extends JPanel {
 
+    private final static Color BGCOLOR = Color.white;
     private final int xSize = 250;
     private final int ySize = 250;
-
-    private final static Color BGCOLOR = Color.white;
-
     private ArrayList<T> balls = new ArrayList<>();
 
     public BallWorld() {
-        setPreferredSize(new Dimension(xSize,ySize));
-	setOpaque(true);
-	setBackground(BGCOLOR);
+        setPreferredSize(new Dimension(xSize, ySize));
+        setOpaque(true);
+        setBackground(BGCOLOR);
     }
 
     //
@@ -27,15 +23,16 @@ public class BallWorld<T extends BallI> extends JPanel {
     // the GUI thread.
     //
     public void addBall(final T b) {
-	SwingUtilities.invokeLater(new Runnable () {
-		public void run() {
-		    balls.add(b);
-		    repaint();
-	        }
-	    });
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                balls.add(b);
+                repaint();
+            }
+        });
     }
+
     public void removeBall(final T b) {
-        SwingUtilities.invokeLater(new Runnable () {
+        SwingUtilities.invokeLater(new Runnable() {
             public void run() {
                 balls.remove(b);
                 repaint();
@@ -48,8 +45,8 @@ public class BallWorld<T extends BallI> extends JPanel {
     // reads the balls collection.
     //
     public void paintComponent(Graphics g) {
-	super.paintComponent(g);
-	for(T b : balls)
-	    b.draw(g);
+        super.paintComponent(g);
+        for (T b : balls)
+            b.draw(g);
     }
 }

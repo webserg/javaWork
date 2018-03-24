@@ -1,16 +1,24 @@
 package patterns.builder;
 
-public class LocationImpl implements Location{
- private String location;
+public class LocationImpl implements Location {
+    private String location;
 
- public LocationImpl(){ }
- public LocationImpl(String newLocation){
- location = newLocation;
- }
+    public LocationImpl() {
+    }
 
- public String getLocation(){ return location; }
+    public LocationImpl(String newLocation) {
+        location = newLocation;
+    }
 
- public void setLocation(String newLocation){ location = newLocation; }
+    public String getLocation() {
+        return location;
+    }
 
- public String toString(){ return location; }
+    public void setLocation(String newLocation) {
+        location = newLocation;
+    }
+
+    public String toString() {
+        return location;
+    }
 }

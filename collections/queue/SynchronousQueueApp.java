@@ -1,8 +1,7 @@
 package collections.queue;
 
-import java.util.concurrent.*;
+import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.SynchronousQueue;
 
 /**
  * User: Sergiy Doroshenko
@@ -11,7 +10,7 @@ import java.util.concurrent.SynchronousQueue;
 //SynchronousQueue will allow an insert into the queue only if there is a thread waiting to consume it
 public class SynchronousQueueApp {
     public static void main(String[] args) {
-        BlockingDeque<Integer> deque = new  LinkedBlockingDeque<Integer>();
+        BlockingDeque<Integer> deque = new LinkedBlockingDeque<Integer>();
         Runnable producer = new Producer("Producer", deque);
         Runnable consumer = new Customer("Consumer", deque);
         new Thread(producer).start();

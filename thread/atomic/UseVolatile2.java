@@ -15,7 +15,7 @@ package thread.atomic;
  */
 class Edge2 {
     int x = 0;
-    volatile  boolean v = false;
+    volatile boolean v = false;
 
     public void writer() {
         x = 42;   //happens-before
@@ -53,7 +53,7 @@ public class UseVolatile2 {
                 edge.writer();
             }
         });
-                other.start();
+        other.start();
         one.start();
         one.join();
         other.join();

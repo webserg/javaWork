@@ -30,8 +30,8 @@ public class ThreadA {
             System.out.println("total is " + foo.i);
         }
         /*
-           * b.total+=50; System.out.println("another is " + b.total);
-           */
+         * b.total+=50; System.out.println("another is " + b.total);
+         */
         exec.shutdown();
     }
 
@@ -62,7 +62,9 @@ class ThreadB extends Thread {
             }
             try {
                 Thread.sleep(100);
-            } catch (InterruptedException e) {e.printStackTrace(); }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }
 
     }

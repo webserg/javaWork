@@ -1,19 +1,19 @@
 package webserg.pazzlers.ch5;
 
 public class Strange1 {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		try {
+        try {
 
-			Missing m = new Missing();
+            Missing m = new Missing();
 
-		} catch (java.lang.NoClassDefFoundError ex) {
+        } catch (java.lang.NoClassDefFoundError ex) {
 
-			System.out.println("Got it!");
+            System.out.println("Got it!");
 
-		}
-		System.out.println("go...");
+        }
+        System.out.println("go...");
 
-	}
+    }
 
 }

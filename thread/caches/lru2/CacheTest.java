@@ -15,8 +15,8 @@ import static org.junit.Assert.assertTrue;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/14/11 2:52 PM
+ * email:webserg@gmail.com
+ * Date: 1/14/11 2:52 PM
  */
 public class CacheTest {
     List<ValueObject> storage = new ArrayList<ValueObject>();
@@ -82,21 +82,21 @@ public class CacheTest {
 
         }
         for (int j = 0; j < 2; j++)
-        for (int i = 0; i < 20; i++) {
-            if (i % 3 == 0) {
-                UserOfCache.get(new KeyObject(3 + ""));
-                a++;
-            } else if (i % 5 == 0) {
-                UserOfCache.get(new KeyObject(5 + ""));
-                b++;
-            } else if (i % 8 == 0) {
-                UserOfCache.get(new KeyObject(8 + ""));
-                c++;
-            } else {
-                UserOfCache.get(new KeyObject(i + ""));
-                d++;
+            for (int i = 0; i < 20; i++) {
+                if (i % 3 == 0) {
+                    UserOfCache.get(new KeyObject(3 + ""));
+                    a++;
+                } else if (i % 5 == 0) {
+                    UserOfCache.get(new KeyObject(5 + ""));
+                    b++;
+                } else if (i % 8 == 0) {
+                    UserOfCache.get(new KeyObject(8 + ""));
+                    c++;
+                } else {
+                    UserOfCache.get(new KeyObject(i + ""));
+                    d++;
+                }
             }
-        }
 
         System.out.println("a " + a);
         System.out.println("b = " + b);

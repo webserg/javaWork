@@ -3,12 +3,6 @@ package webserg.scjp.innerClass;
 public class InnerStatic {
     static String x = "";
 
-    static class MyInner {
-        void doStaff() {
-            System.out.println(MyInner.class);
-        }
-    }
-
     /**
      * @param args
      */
@@ -20,5 +14,11 @@ public class InnerStatic {
         InnerStatic out = new InnerStatic();
         String x = InnerStatic.x;
         InnerStatic.MyInner inner2 = new InnerStatic.MyInner();
+    }
+
+    static class MyInner {
+        void doStaff() {
+            System.out.println(MyInner.class);
+        }
     }
 }

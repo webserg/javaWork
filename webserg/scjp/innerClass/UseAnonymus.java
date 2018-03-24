@@ -1,15 +1,10 @@
 package webserg.scjp.innerClass;
 
-public class UseAnonymus {
+interface Foo {
 
-    void useBar() {
-        Bar bar = new Bar();
-        bar.useFoo(new FooAnonim() {
-        });
-        FooAnonim foo = new FooAnonim() {
-        };//note ; must be!!
-        bar.useFoo(foo);
-    }
+}
+
+public class UseAnonymus {
 
     /**
      * @param args
@@ -19,9 +14,14 @@ public class UseAnonymus {
         use.useBar();
     }
 
-}
-
-interface Foo {
+    void useBar() {
+        Bar bar = new Bar();
+        bar.useFoo(new FooAnonim() {
+        });
+        FooAnonim foo = new FooAnonim() {
+        };//note ; must be!!
+        bar.useFoo(foo);
+    }
 
 }
 

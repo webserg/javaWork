@@ -2,11 +2,11 @@ package thread.producerConsumer.oracleExecise;
 
 /**
  * @author Sergiy Doroshenko
- *         email:webserg@gmail.com
- *         Date: 1/16/11 1:39 PM
+ * email:webserg@gmail.com
+ * Date: 1/16/11 1:39 PM
  */
 class Drop {
-//Message sent from producer to consumer.
+    //Message sent from producer to consumer.
     private String message;
     //True if consumer should wait for producer to send message, false
     //if producer should wait for consumer to retrieve message.
@@ -17,7 +17,8 @@ class Drop {
         while (empty) {
             try {
                 wait();
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {
+            }
         }
         //Toggle status.
         empty = true;
@@ -31,7 +32,8 @@ class Drop {
         while (!empty) {
             try {
                 wait();
-            } catch (InterruptedException e) {}
+            } catch (InterruptedException e) {
+            }
         }
         //Toggle status.
         empty = false;

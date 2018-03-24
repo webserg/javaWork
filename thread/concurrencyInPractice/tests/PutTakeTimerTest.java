@@ -6,7 +6,7 @@ import java.util.concurrent.CyclicBarrier;
  * PutTakeTest
  * <p/>
  * Producer-consumer test program for BoundedBuffer
- * 
+ *
  * @author Brian Goetz and Tim Peierls
  */
 public class PutTakeTimerTest extends PutTakeTest {
@@ -59,7 +59,7 @@ public class PutTakeTimerTest extends PutTakeTest {
         private boolean started;
         private long startTime, endTime;
 
-        
+
         public void run() {
             long t = System.nanoTime();
             if (started != true) {

@@ -10,6 +10,11 @@ public class AsyncGuava {
 
     ListeningExecutorService executor = MoreExecutors.listeningDecorator(Executors.newFixedThreadPool(2));
 
+    public static void main(String[] args) {
+        AsyncGuava asyncGuava = new AsyncGuava();
+        asyncGuava.asyncChainExample();
+    }
+
     public void asyncChainExample() {
         Callable<User> fetcher = new RemoteUserFetcher("user0001");
         ListenableFuture<User> userFuture = executor.submit(fetcher);
@@ -34,17 +39,17 @@ public class AsyncGuava {
         });
     }
 
-    public static void main(String[] args) {
-        AsyncGuava asyncGuava = new AsyncGuava();
-        asyncGuava.asyncChainExample();
-    }
-
     private void handleFailure() {
         System.out.println("failure");
     }
 
     private void handleResult(Stats result) {
         System.out.println("good result");
+    }
+
+    private Stats computeStats(User user) throws InterruptedException {
+        Thread.sleep(1000);
+        return new Stats(1);
     }
 
     private class RemoteUserFetcher implements Callable<User> {
@@ -73,11 +78,6 @@ public class AsyncGuava {
         public Stats call() throws Exception {
             return computeStats(user);
         }
-    }
-
-    private Stats computeStats(User user) throws InterruptedException {
-        Thread.sleep(1000);
-        return new Stats(1);
     }
 
 }

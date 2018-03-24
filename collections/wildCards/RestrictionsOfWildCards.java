@@ -26,7 +26,7 @@ public class RestrictionsOfWildCards {
         List<List<? super Number>> numslist = new ArrayList<List<? super Number>>();  //nested wildcards are permitted!!!!!!
 //        numslist.add(Arrays.asList(1, 2, 3));
 //        numslist.add(Arrays.asList(2.78, 3.14));
-        numslist.add(Arrays.asList(2.78,"", new Object()));
+        numslist.add(Arrays.asList(2.78, "", new Object()));
         System.out.println(numslist);
 
         //        One way to remember this restriction is that the relation between wildcards and ordinary types is

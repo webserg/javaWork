@@ -1,13 +1,8 @@
 package thread.concurrencyInPractice.cancellation;
 
-import static thread.concurrencyInPractice.LaunderThrowable.launderThrowable;
+import java.util.concurrent.*;
 
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-import java.util.concurrent.TimeUnit;
-import java.util.concurrent.TimeoutException;
+import static thread.concurrencyInPractice.LaunderThrowable.launderThrowable;
 
 /**
  * TimedRun

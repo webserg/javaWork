@@ -6,18 +6,23 @@ package webserg.jls.classes;
  */
 public class WithDeepNesting {
     boolean toBe;
-    WithDeepNesting(boolean b) { toBe = b; }
-    class Nested {
-        boolean theQuestion;
-        class DeeplyNested {
-            DeeplyNested(){
-                theQuestion = toBe || !toBe;
-            }
-        }
+
+    WithDeepNesting(boolean b) {
+        toBe = b;
     }
 
     public static void main(String[] args) {
         WithDeepNesting wn = new WithDeepNesting(true);
         Nested.DeeplyNested nn = new WithDeepNesting(true).new Nested().new DeeplyNested();
+    }
+
+    class Nested {
+        boolean theQuestion;
+
+        class DeeplyNested {
+            DeeplyNested() {
+                theQuestion = toBe || !toBe;
+            }
+        }
     }
 }

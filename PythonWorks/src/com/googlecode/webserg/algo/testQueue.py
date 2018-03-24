@@ -1,4 +1,5 @@
 from Queue import Queue
+
 q = Queue()
 q.enqueue('hello')
 q.enqueue('dog')

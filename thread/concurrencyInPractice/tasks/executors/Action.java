@@ -8,7 +8,7 @@ public class Action {
     }
 
     public static List<ImageInfo> scanForImageInfo(CharSequence source) {
-	return null;
+        return null;
     }
 
     public static void renderImage(ImageData data) {

@@ -1,7 +1,7 @@
 package patterns.builder;
 
 public class Scheduler {
-	
+
 //	 public Appointment createAppointment(AppointmentBuilder builder,
 //	 Date startDate, Date endDate, String description,
 //	 Location location, ArrayList attendees) throws

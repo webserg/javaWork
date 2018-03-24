@@ -1,11 +1,6 @@
 package webserg.scjp.mock;
 
 public class CovariantTest {
-    A getObj() {
-        System.out.println("CovariantTest");
-        return new A();
-    }
-
     /**
      * @param args
      */
@@ -13,6 +8,11 @@ public class CovariantTest {
         CovariantTest t = new SubCovariantTest();
         System.out.println(t.getObj().i);
 
+    }
+
+    A getObj() {
+        System.out.println("CovariantTest");
+        return new A();
     }
 
 }

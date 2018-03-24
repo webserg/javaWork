@@ -1,10 +1,6 @@
 package webserg.boxing;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * author : Sergey Doroshenko
@@ -33,18 +29,17 @@ public class BoxUnBox {
     }
 
     public static void removeNegative(List<Double> v) {
-        for (Iterator<Double> it = v.iterator(); it.hasNext();) {
+        for (Iterator<Double> it = v.iterator(); it.hasNext(); ) {
             Double d = it.next();
             if (d < 0) v.remove(d);//it.remove();
         }
     }
 
     public static void removeNegative2(Collection<Double> v) {
-        for (Iterator<Double> it = v.iterator(); it.hasNext();) {
+        for (Iterator<Double> it = v.iterator(); it.hasNext(); ) {
             if (it.next() < 0) it.remove();
         }
     }
-
 
 
     public static void main(String[] args) {
@@ -68,7 +63,7 @@ public class BoxUnBox {
         myCollection.add("123");
         myCollection.add("456");
         myCollection.add("789");
-        for (Iterator<String> it = myCollection.iterator(); it.hasNext();) {
+        for (Iterator<String> it = myCollection.iterator(); it.hasNext(); ) {
             String myObject = it.next();
             //System.out.println(myObject);
             it.remove();
@@ -77,7 +72,7 @@ public class BoxUnBox {
         }
         System.out.println(myCollection.toString());
 
-    //List<String> words = Lists.toList("hello", "world");
+        //List<String> words = Lists.toList("hello", "world");
 
     }
 }

@@ -43,11 +43,11 @@ public class SeveralTypesOfExceptions {
     public static void main(String[] args) {
         logger.setLevel(Level.INFO);
         try {
-            if(1==1){
-                throw  new IOException();
-            }else throw  new SQLException();
+            if (1 == 1) {
+                throw new IOException();
+            } else throw new SQLException();
         } catch (IOException | SQLException ex) {
-            logger.log(Level.INFO,ex.getMessage());
+            logger.log(Level.INFO, ex.getMessage());
             throw new RuntimeException(ex);
         }
     }

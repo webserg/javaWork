@@ -3,21 +3,22 @@ package thread.concurrencyCookbook.chapter1.recipe1.core;
 import thread.concurrencyCookbook.chapter1.recipe1.task.Calculator;
 
 /**
- *  PeriodictskExecution class of the example
+ * PeriodictskExecution class of the example
  */
 public class Main {
 
-	/**
-	 * PeriodictskExecution method of the example
-	 * @param args
-	 */
-	public static void main(String[] args) {
+    /**
+     * PeriodictskExecution method of the example
+     *
+     * @param args
+     */
+    public static void main(String[] args) {
 
-		//Launch 10 threads that make the operation with a different number
-		for (int i=1; i<=10; i++){
-			Calculator calculator=new Calculator(i);
-			Thread thread=new Thread(calculator);
-			thread.start();
-		}
-	}
+        //Launch 10 threads that make the operation with a different number
+        for (int i = 1; i <= 10; i++) {
+            Calculator calculator = new Calculator(i);
+            Thread thread = new Thread(calculator);
+            thread.start();
+        }
+    }
 }

@@ -21,7 +21,7 @@ import java.util.Map;
  * User: webserg
  * Date: 16.12.12
  */
-public class LinkedListLRUCache<K,V> extends LinkedHashMap<K,V> implements Cache<K,V> {
+public class LinkedListLRUCache<K, V> extends LinkedHashMap<K, V> implements Cache<K, V> {
     private final int capacity;
 
     public LinkedListLRUCache(int capacity) {
@@ -35,6 +35,6 @@ public class LinkedListLRUCache<K,V> extends LinkedHashMap<K,V> implements Cache
 
     @Override
     public List<K> getAllKeys() {
-        return  new ArrayList< >(keySet());
+        return new ArrayList<>(keySet());
     }
 }

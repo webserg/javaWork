@@ -10,15 +10,15 @@ class Raptor extends Bird {
         System.out.print("r1 ");
     }
 
-    public Raptor() {
-        System.out.print("r2 ");
+    static {
+        System.out.print("r4 ");
     }
 
     {
         System.out.print("r3 ");
     }
 
-    static {
-        System.out.print("r4 ");
+    public Raptor() {
+        System.out.print("r2 ");
     }
 }

@@ -7,24 +7,16 @@ public class AnotherConstructor extends A {
         System.out.println("only one static " + k);
     }
 
+    {
+        System.out.println("only one " + k);
+    }
+
     public AnotherConstructor() {
         System.out.println("no param");
     }
 
     public AnotherConstructor(String s) {
         this();
-    }
-
-    {
-        System.out.println("only one " + k);
-    }
-
-    void go() {
-        //AnotherConstructor();// can not invoke constructor
-    }
-
-    B[] useB() {
-        return new G[10];
     }
 
     /**
@@ -35,6 +27,14 @@ public class AnotherConstructor extends A {
         AnotherConstructor a = new AnotherConstructor("");
         G g = new G("");
 
+    }
+
+    void go() {
+        //AnotherConstructor();// can not invoke constructor
+    }
+
+    B[] useB() {
+        return new G[10];
     }
 
 }

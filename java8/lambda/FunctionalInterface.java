@@ -1,10 +1,7 @@
 package java8.lambda;
 
-import collections.sets.Boo;
-
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.function.BinaryOperator;
 import java.util.function.Predicate;
 
 /**
@@ -22,6 +19,6 @@ public class FunctionalInterface {
 //        boolean b = atLeast5(4);
 //        System.out.println(new Boolean(atLeast5(4)));
 
-       //ERROR BinaryOperator add = (x, y) -> x + y;
+        //ERROR BinaryOperator add = (x, y) -> x + y;
     }
 }
