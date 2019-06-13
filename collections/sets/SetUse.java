@@ -53,6 +53,10 @@ public class SetUse {
         //set remains unchanged if you add element which set already contains
         System.out.println(t);
 
+        System.out.println(f1.equals(f11));
+        System.out.println(f1.hashCode());
+        System.out.println(f11.hashCode());
+
 
     }
 
@@ -73,16 +77,12 @@ class Foo {
         return "name=" + name + ";secret=" + secret;
     }
 
-    public boolean equals(Moo obj) {
-        return equals((Object) obj);
-    }
-
     @Override
-    public boolean equals(Object obj) {
-        if (obj instanceof Moo) {
-            return name.equals(((Moo) obj).getName());
-        }
-        return false;
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Foo foo = (Foo) o;
+        return name.equals(foo.name);
     }
 
     @Override
