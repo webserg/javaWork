@@ -29,6 +29,11 @@ public class SetUse {
         Set<String> s2 = new HashSet<>(c);
         s1.retainAll(s2);
         System.out.println(s1);
+        Set<String> s4 = new HashSet<>(c);
+        Set<String> s5 = new HashSet<>(c);
+        s5.add("bb");
+        s4.removeAll(s5);
+        System.out.println(s4);
 
         Set<String> hasNull = new HashSet<String>();
         hasNull.add(null);
