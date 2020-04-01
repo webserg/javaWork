@@ -14,6 +14,8 @@ package patterns.state;
  * Created by sergiy.doroshenko
  * Date: 7/10/11
  */
+
+
 enum States implements State {
     XML {
         public boolean process(patterns.state.Context context) {
