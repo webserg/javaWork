@@ -11,7 +11,7 @@ public class Thr extends Thread {
 
     public void run() {
         System.out.println("a");
-        yield();
+//        yield();
         System.out.println("b");
     }
 
