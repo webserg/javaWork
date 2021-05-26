@@ -22,7 +22,7 @@ public class GroupByUsing {
         students.add(new Student("g", 6, 2011));
         students.add(new Student("h", 9, 2011));
         Comparator<Student> comparator = Comparator.comparing(student -> student.score);
-        comparator = comparator.thenComparing(Comparator.comparing(student -> student.gradYear));
+        comparator = comparator.thenComparing(student -> student.gradYear);
         List<Student> sorted = students.stream().sorted(comparator).collect(Collectors.toList());
         sorted.forEach(System.out::println);
     }

@@ -3,7 +3,7 @@ package webserg.pazzlers.ch5;
 public class SneakyThrow {
 
     public static void sneakyThrow(Throwable t) {
-        Thread.currentThread().stop(t);
+//        Thread.currentThread().stop(t);
     }
 
     public static void test() {
