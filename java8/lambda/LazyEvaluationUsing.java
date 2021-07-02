@@ -30,10 +30,8 @@ public class LazyEvaluationUsing {
         students.add(new Student("fours", 1));
         students.add(new Student("fives", 5));
 
-        students.stream().map(s -> s.getScore()).forEach(System.out::println);
-        int sum = students.stream().map(s -> s.getScore()).reduce(0, (x, y) -> {
-            return (x + y);
-        });
+        students.stream().map(Student::getScore).forEach(System.out::println);
+        int sum = students.stream().map(Student::getScore).reduce(0, Integer::sum);
         System.out.println(sum);
     }
 }
