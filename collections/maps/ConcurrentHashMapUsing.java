@@ -6,6 +6,7 @@ package collections.maps;
  */
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * The simple approach to synchronization taken by both Hashtable and synchronizedMap -- synchronizing
@@ -68,7 +69,10 @@ public class ConcurrentHashMapUsing {
     }
 
     public static void doSomething(Object o) {
-
+        var map = new ConcurrentHashMap<>();
+        map.put("key", " value");
+        System.out.println(map.get("key"));
+        map.keySet().spliterator();
     }
 
 }
