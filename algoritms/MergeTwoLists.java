@@ -47,6 +47,13 @@ public class MergeTwoLists<K extends Comparable<K>> {
     }
 
     @Test
+    public void testMerge12() {
+        List<Integer> mergeTwoLists = new ArrayList<>(Arrays.asList(1, 2));
+        mergeTwoLists.addAll(Arrays.asList(3, 4));
+        Assert.assertEquals(mergeTwoLists.toString(), "[1, 2, 3, 4]");
+    }
+
+    @Test
     public void testMerge2() {
         MergeTwoLists<Integer> mergeTwoLists = new MergeTwoLists<>();
         Assert.assertEquals(mergeTwoLists.merge(Arrays.asList(1, 2), Arrays.asList()).toString(), "[1, 2]");
