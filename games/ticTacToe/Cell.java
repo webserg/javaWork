@@ -38,4 +38,7 @@ public final class Cell {
         result = 31 * result + y;
         return result;
     }
+
+    public static void main(String[] args) {
+    }
 }
