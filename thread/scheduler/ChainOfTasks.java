@@ -3,6 +3,8 @@ package thread.scheduler;
 import com.google.common.util.concurrent.*;
 
 import java.util.concurrent.*;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -15,17 +17,19 @@ import java.util.function.Supplier;
  */
 public class ChainOfTasks {
 
+    AtomicInteger integer = new AtomicInteger(0);
+
     public static void main(String[] args) {
 //        useGuava();
-        useScheduledExecutor();
+        ChainOfTasks chainOfTasks = new ChainOfTasks();
+        chainOfTasks.useScheduledExecutor();
     }
-
 
 
     /**
      * use java library
      */
-    private static void useScheduledExecutor() {
+    private void useScheduledExecutor() {
         ScheduledExecutorService executor = Executors.newScheduledThreadPool(2);
         for (int i = 1; i <= 2; i++) {
             final int k = i;
@@ -40,9 +44,15 @@ public class ChainOfTasks {
         executor.shutdown();
     }
 
-    private static Boolean task(int i) {
+    private Boolean task(int i) {
         makeActualJob(i);
-        CompletableFuture.supplyAsync(new CompleteTask(i)).thenAccept(new FinalTask(i)).exceptionally(new ExceptionTask(i));
+
+        CompletableFuture
+                .supplyAsync(new FirstTask(new FlowData(integer.incrementAndGet())))
+                .thenApplyAsync(new SecondTask())
+                .thenAcceptAsync(new TaskAfterFinal())
+                .exceptionally(new ExceptionTask());
+
         System.out.println("finish " + i);
         return true;
     }
@@ -56,37 +66,33 @@ public class ChainOfTasks {
         }
     }
 
-//    static class Task implements Runnable {
-//        private int i;
-//
-//        public Task(int i) {
-//            this.i = i;
-//        }
-//
-//        @Override
-//        public Boolean call() throws Exception {
-//
-//
-//            System.out.println("run " + i);
-//            try {
-//                Thread.sleep(1000);
-//            } catch (InterruptedException e) {
-//                e.printStackTrace();
-//            }
-//            if (i == 5) throw new Exception("failed " + i);
-//            return true;
-//        }
-//    }
 
-    static class CompleteTask implements Supplier<Boolean> {
-        private int i;
+    static class FlowData {
+        public int id;
+        public boolean isSuccess = true;
 
-        public CompleteTask(int i) {
-            this.i = i;
+        public FlowData(int i) {
+            this.id = i;
         }
 
         @Override
-        public Boolean get() {
+        public String toString() {
+            return "FlowData{" +
+                    "id=" + id +
+                    ", isSuccess=" + isSuccess +
+                    '}';
+        }
+    }
+
+    static class FirstTask implements Supplier<FlowData> {
+        private final FlowData flowData;
+
+        public FirstTask(FlowData flowData) {
+            this.flowData = flowData;
+        }
+
+        @Override
+        public FlowData get() {
 
             try {
 
@@ -95,45 +101,73 @@ public class ChainOfTasks {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                System.out.println("finish async" + i);
+//                int d = 1/0;
+                System.out.println("finish async first task# " + flowData.id);
 //                var res =  (Boolean) f.get();
 //                System.out.println("res" + i );
-                return true;
+                return flowData;
 
             } catch (Throwable e) {
                 e.printStackTrace();
             }
-            return false;
+            flowData.isSuccess = false;
+            return flowData;
         }
     }
 
-    static class ExceptionTask implements Function<Throwable, Void> {
-        private int i;
+    static class SecondTask implements Function<FlowData, FlowData> {
 
-        public ExceptionTask(int i) {
-            this.i = i;
+        public SecondTask() {
+        }
+
+        @Override
+        public FlowData apply(FlowData flowData) {
+
+            if (!flowData.isSuccess) return flowData;
+
+            try {
+
+                try {
+                    Thread.sleep(10000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+//                int d = 1/0;
+                System.out.println("finish async second task#" + flowData);
+//                var res =  (Boolean) f.get();
+//                System.out.println("res" + i );
+                return flowData;
+
+            } catch (Throwable e) {
+                e.printStackTrace();
+            }
+            flowData.isSuccess = false;
+            return flowData;
+        }
+
+    }
+    static class TaskAfterFinal implements Consumer<FlowData> {
+
+        @Override
+        public void accept(FlowData o) {
+            System.out.println("finish async final task# " + o.id + " finish ");
+            if (!o.isSuccess) throw new RuntimeException();
+        }
+
+    }
+
+    static class ExceptionTask implements Function<Throwable, Void> {
+
+        public ExceptionTask() {
         }
 
         @Override
         public Void apply(Throwable throwable) {
-            System.out.println("false " + i);
+            System.out.println("Throwable ExceptionTask false " + throwable.getMessage());
             return null;
         }
     }
 
-    static class FinalTask implements Consumer<Boolean> {
-        private final int i;
-
-        public FinalTask(int i) {
-            this.i = i;
-        }
-
-        @Override
-        public void accept(Boolean o) {
-            System.out.println("task number " + i + " finish " + o);
-            if (!o) throw new RuntimeException();
-        }
-    }
 
     /**
      * use framework
