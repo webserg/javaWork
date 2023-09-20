@@ -75,7 +75,7 @@ public class ReentrancyLockUsing {
     public void first(String name) {
         Lock lock = RLock;
         lock.unlock();
-        lock.lock();
+         lock.lock();
         try {
             System.out.println("first enter = " + name);
             int i = 0;

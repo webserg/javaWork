@@ -27,4 +27,14 @@ public class Switch {
                 System.out.println("");
         }
     }
+
+//    static void t2(long k) {
+//        switch (k) {
+//            case 1:
+//                System.out.println("");
+//            default:
+//            case 2:
+//                System.out.println("");
+//        }
+//    }
 }

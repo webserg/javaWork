@@ -3,7 +3,7 @@ package webserg.scjp.innerClass;
 
 public class MyOuter2 {
     static String y = "stat";
-    private String x = "out";
+    private String x = "private out";
 
     static void staticMethodWithInnerClass() {
 
@@ -27,7 +27,7 @@ public class MyOuter2 {
         final class MyInner {
             public void seeOuter() {
                 System.out.println("out is " + x);
-                // System.out.println("loc is " + z);//Error!!
+                 System.out.println("loc is " + z);//Error!!
                 System.out.println("loc is " + w);
 
             }

@@ -9,4 +9,8 @@ public class TestObj {
     static public void print() {
         System.out.println("hello");
     }
+
+    Object method(){
+        return  "";
+    }
 }

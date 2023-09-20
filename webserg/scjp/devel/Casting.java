@@ -16,6 +16,8 @@ public class Casting {
         float f = (float) 214.0d;
         System.out.println(f);
         byte b = (byte) f;
+        long k='d';
+        float kk=1;
         System.out.println(b);
         System.out.println("=========================");
         Short s = new Short((short) 7);
